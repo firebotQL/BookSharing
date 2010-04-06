@@ -1,0 +1,77 @@
+body {
+    background: #b6b6b6;
+    margin: 0;
+    padding: 0;
+    font-family: arrial;
+}
+
+#login_form {
+    width: 300px;
+    background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
+    border: 1px solid white;
+    margin: 250px auto 0;
+    padding: 1em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-top: 0;
+    font-family: arial black, arial;
+    text-align: center;
+}
+
+input[type=text], input[type=password] {
+    display: block;
+    margin: 0 0 1em 0;
+    width: 280px;
+    border: 5px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    padding: 1em;
+}
+
+input[type=submit], form a {
+    border: none;
+    margin-right: 1em;
+    padding: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background: #348075;
+    color: white;
+    box-shadow: 0 1px 0 white;
+    -moz-box-shadow: 0 1px 0 white;
+    -webkit-box-shadow: 0 1px 0 white;
+}
+
+input[type=submit]:hover, form a:hover {
+    background: #287368;
+    cursoer: pointer;
+}
+
+.error {
+    color: #393939;
+    font-size: 15px;
+}
+
+fieldset {
+    width: 300px;
+    margin: auto;
+    margin-bottom: 2em;
+    display:block;
+}
+
+h1 {
+    text-shadow: 0 1 px 0 white;
+}
+
+#tutInfo {
+    background: #e3e3e3;
+    border-top: 1px solid white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: .7em .7em .7em .2em;
+}
