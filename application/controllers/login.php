@@ -9,8 +9,11 @@ class Login extends Controller {
     }
 
     function index() {
-        $data['credentials_content'] = 'login_form';
-        $this->load->view('includes/template', $data);
+        $data = array( 'header_content' => 'login_view/login_header',
+                       'site_content' => 'login_view/login_form',
+                       'footer_content' => 'login_view/login_footer'
+                        );
+        $this->load->view('template', $data);
     }
 
     function validate_credentials() {
@@ -31,8 +34,11 @@ class Login extends Controller {
     }
 
     function signup() {
-        $data['credentials_content'] = 'signup_form';
-        $this->load->view('includes/template', $data);
+        $data = array( 'header_content' => 'login_view/login_header',
+                       'site_content' => 'login_view/signup_form',
+                       'footer_content' => 'login_view/login_footer'
+                        );
+        $this->load->view('template', $data);
     }
 
     function create_user() {
@@ -53,10 +59,13 @@ class Login extends Controller {
             $this->load->model('user_model');
             $query = $this->user_model->create_user();
             if ($query) {
-                $data['credentials_content'] = 'signup_successful';
-                $this->load->view('includes/template', $data);
+                $data = array( 'header_content' => 'login_view/login_header',
+                               'site_content' => 'login_view/signup_successful',
+                               'footer_content' => 'login_view/login_footer'
+                                );
+                $this->load->view('template', $data);
             } else {
-                $this->load->view('signup_form');
+                $this->load->view('login_view/signup_form');
             }
         }
     }

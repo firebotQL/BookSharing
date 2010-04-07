@@ -8,7 +8,23 @@ class Site extends Controller {
     }
     
     function site_area() {
-        $this->load->view('site_area');
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/new_books',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $this->load->view('template', $data);
+    }
+
+    function inbox() {
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/inbox_area',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $this->load->view('template', $data);
     }
 
     function is_logged_in() {

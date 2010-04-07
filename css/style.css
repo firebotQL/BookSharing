@@ -1,5 +1,5 @@
 body {
-    background: #b6b6b6;
+    background: #cccccc;
     margin: 0;
     padding: 0;
     font-family: arrial;
@@ -7,7 +7,7 @@ body {
 
 #login_form {
     width: 300px;
-    background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
+    background: #999966 url(../img/login_bg.jpg) repeat-x 0 0;
     border: 1px solid white;
     margin: 250px auto 0;
     padding: 1em;
@@ -67,11 +67,71 @@ h1 {
     text-shadow: 0 1 px 0 white;
 }
 
-#tutInfo {
+.footer {
     background: #e3e3e3;
-    border-top: 1px solid white;
-    position: absolute;
     bottom: 0;
+    position: absolute;
+    width: 960px;
+    padding: .01em .01em .01em .01em;
+    text-align: center;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.header_container {
+    background: #e3e3e3;
+    height: 64px;
+    text-align: center;
     width: 100%;
-    padding: .7em .7em .7em .2em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+ul.siteNav {
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-right: 40px;
+    float: right;
+}
+
+ul.siteNav li {
+    display: inline;
+}
+
+ul.siteNav li a {
+    text-decoration: none;
+}
+
+.main_container {
+    float: left;
+    width: 700px;
+    margin-top:20px;
+    background: #9c9;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.side_container {
+    float: right;
+    width: 240px;
+    margin-top: 20px;
+    background: #c9c;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.profileNav {
+    list-style-type: none;
+}
+.profileNav li a {
+    text-decoration: none;
+}
+
+.parent_container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    height: 640px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
