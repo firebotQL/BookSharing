@@ -20,12 +20,13 @@ class Login extends Controller {
         $this->load->model('user_model');
         $query = $this->user_model->validate();
 
-        if ($query ) {// if the user's credentials validated...
+        if ($query->num_rows() > 0 ) {// if the user's credentials validated...
+           
             $data = array(
+                'user_id' => $query->row()->id,
                 'username' => $this->input->post('username'),
                 'is_logged_in' => true
             );
-
             $this->session->set_userdata($data);
             redirect('site/site_area');
         } else {

@@ -6,5 +6,6 @@
         echo form_password('password', 'Password');
         echo form_submit('submit', 'Login');
         echo anchor('login/signup', 'Sign Up');
+        echo form_close();
     ?>
 </div>

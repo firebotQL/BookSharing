@@ -135,3 +135,38 @@ ul.siteNav li a {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
+
+.messages_navigation {
+    float: left;
+    width: 140px;
+    margin-top:20px;
+    margin-left:20px;
+    background: #caa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.messages_list {
+    float: right;
+    width: 460px;
+    margin-top:20px;
+    margin-right:20px;
+    background: #caa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#search-form div {
+	overflow:hidden; /* wrap floats */
+	width: 460px;	/* haslayout wraps floats IE */
+        padding-top:10px;
+        margin-left:20px;
+}
+
+#search-form input[type="text"] {
+	float:left;
+}
+
+#search-form submit {
+	float:right;
+}

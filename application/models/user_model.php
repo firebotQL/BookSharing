@@ -7,7 +7,7 @@ class User_model extends Model {
         $this->db->where('password', md5($this->input->post('password')));
         $query = $this->db->get('user');
         if ($query->num_rows == 1) {
-            return true;
+            return $query;
         }
     }
 
