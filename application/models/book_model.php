@@ -47,7 +47,7 @@ class Book_model extends Model {
                
                 if ($response === False)
                 {
-                    return "response fail\n $request";
+                    return "response fail";
                 }
                 else
                 {

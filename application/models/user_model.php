@@ -41,4 +41,18 @@ class User_model extends Model {
         return $insert;  
 
     }
+
+    function user_exist($username)
+    {
+        $this->db->where('username', $username);
+        $query = $this->db->get('user');
+        if ($query->num_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
 }

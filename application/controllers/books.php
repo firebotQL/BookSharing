@@ -42,8 +42,11 @@ class Books extends Controller {
         if ($action == 'search')
         {
                 //Calls search_amazon method
-
-                $data['book_info'] = $this->book_model->search($keywords, $item_page);
+                $temporary_data = $this->book_model->search($keywords, $item_page);
+                if ($temporary_data != "response fail" && $temporary_data != "parse fail")
+                {
+                    $data['book_info'] =  $temporary_data;
+                }
                 $data['page_info'] = array('title' => 'Results From Amazon Search', 'search-term' => $keywords, 'item-page' => $item_page);
         }
         else
@@ -54,7 +57,7 @@ class Books extends Controller {
 
         
          $config['base_url'] = "/books/search/" . $keywords . "/" . $action . "/";
-         $config['total_rows'] = $data['book_info']->Items->TotalPages;
+         $config['total_rows'] = isset($data['book_info']) ? $data['book_info']->Items->TotalPages : "";
          $config['per_page'] = '1';
          $config['num_links'] = '10';
          $config['uri_segment'] = '5';

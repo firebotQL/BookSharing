@@ -1,13 +1,9 @@
 <div class="test">
     <?php echo $this->pagination->create_links(); ?>
 </div>
-<?php if (isset($book_info)): // Check to see if $book_info has been passed ?>
-<p>
-	Total Number of Results:
+<?php if (!empty($book_info)): // Check to see if $book_info has been passed ?>
+<p>     Total Number of Results:
 	<?php echo $book_info->Items->TotalResults; //Output total number of results in Amazon format ?>
-</p>
-<p>
-	<?php echo $book_info->Items->TotalPages; //Output total number of pages ?>
 </p>
 <table class="books">
 	<?php foreach($book_info->Items->Item as $book): //Loop through results ?>

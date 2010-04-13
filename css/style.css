@@ -156,6 +156,22 @@ ul.siteNav li a {
     -webkit-border-radius: 5px;
 }
 
+.message_heading {
+    float: right;
+    width: 460px;
+    margin-top:20px;
+    margin-right:20px;
+    background: #caa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.message_heading table {
+    background: #999;
+    padding-top:10px;
+    margin-left:20px;
+}
+
 #search-form div {
 	overflow:hidden; /* wrap floats */
 	width: 460px;	/* haslayout wraps floats IE */
