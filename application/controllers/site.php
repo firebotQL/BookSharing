@@ -28,9 +28,11 @@ class Site extends Controller {
 
         $this->load->model('message_model');
         $id = $this->session->userdata('user_id');
-        $per_page = 10;
+        $per_page;
         $type_id = "1";
         $nr = "0";
+        $per_page = "10";
+        
         $data['type'] = 'inbox';
         if ($this->uri->segment(3) != "")
         {
@@ -42,7 +44,10 @@ class Site extends Controller {
             $nr = $this->uri->segment(4);
         }
         
-        $data['message'] = $this->message_model->get_messages($id, $type_id, $per_page, $nr);
+        
+        $data['message'] = $this->message_model->get_messages($id, $type_id, $nr ,$per_page, FALSE);
+        $temp = $this->message_model->get_messages($id, $type_id, $nr ,$per_page, TRUE);
+        $totalMessageRows = $temp->num_rows();
         $data['type_id'] = $type_id;
        
         $user_heading = "";
@@ -73,10 +78,10 @@ class Site extends Controller {
         }
         
         $config['base_url'] = "/site/message_box/" . $type_id . "/";
-        $config['total_rows'] = $data['message']->num_rows();
-        $config['per_page'] = $per_page;
+        $config['total_rows'] = $totalMessageRows;
+        $config['per_page'] = '10';
         $config['num_links'] = '10';
-        $config['uri_segment'] = 5;
+        $config['uri_segment'] = 4;
 
 
 
@@ -125,8 +130,7 @@ class Site extends Controller {
             $receiver_name = $this->input->post('receipent');
             $content = $this->input->post('content');
             $subject = $this->input->post('subject');
-            $username = $this->input->post('username');
-            $this->message_model->save_message($sender_id, $username, $content, $subject);
+            $this->message_model->save_message($sender_id, $receiver_name, $content, $subject);
             redirect('site/message_box');
             return;
         }

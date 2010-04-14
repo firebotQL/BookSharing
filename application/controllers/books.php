@@ -22,7 +22,7 @@ class Books extends Controller {
         
         $keywords = $this->uri->segment(3);
         $action = $this->uri->segment(4);
-        $item_page = $this->uri->segment(5);
+        $item_page = $this->uri->segment(5) + 1;
 
         if (empty($keywords))
             $keywords = $this->input->post('keywords');

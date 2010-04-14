@@ -3,11 +3,13 @@
 
 class Message_model extends Model {
 
-    function get_messages($id, $type_id, $per_page, $nr)
+    function get_messages($id, $type_id, $per_page, $nr, $full)
     {
         $field = "receiver_id";
         if ($type_id == "2")
             $field = "sender_id";
+        if ($type_id == "2" || $type_id == "1")
+            $type_id = "0";
         $this->db->select('m.subject,
                              m.date_sent,
                              m.content,
@@ -17,8 +19,16 @@ class Message_model extends Model {
         $this->db->join('user us','us.id = mr.sender_id');
         $this->db->join('user ur','ur.id = mr.receiver_id');
         $this->db->where($field, $id);
-//        $this->db->where('type_id', $type_id);
-        $query = $this->db->get('message_relation mr', $per_page, $nr);
+        $this->db->where('type_id', $type_id);
+
+        if ($full == TRUE)
+        {
+            $query = $this->db->get('message_relation mr');
+        }
+        else
+        {
+            $query = $this->db->get('message_relation mr', $nr ,$per_page);
+        }
         return $query;
     }
 
@@ -27,15 +37,14 @@ class Message_model extends Model {
         $this->db->select('id');
         $this->db->where('username', $receiver_name);
         $user = $this->db->get('user', 1);
-        print_r($user);
-        if ($user->num_rows() < 0 )
+        if ($user->num_rows() > 0 )
         {
             $receiver_id = $user->row()->id;
-            $date_sent = getdate();
-            $date_sent = $date_sent['year'] . "-" 
-                            . $date_sent["month"]
-                            . "-" . $date_sent["mday"];
-            print_r($date_sent);
+            $date_sent1 = getdate();
+            
+            $date_sent = $date_sent1['year'] . "-"
+                            . $date_sent1["mon"]
+                            . "-" . $date_sent1["mday"];
             $m_data = array('date_sent' =>  $date_sent,
                             'subject' => $subject,
                             'content' => $content);
