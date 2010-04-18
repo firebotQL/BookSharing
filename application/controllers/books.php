@@ -30,13 +30,17 @@ class Books extends Controller {
             $item_page = $this->input->post('item_page');
         if (empty($action))
             $action = $this->input->post('action');
-      
-        $data = array('header_content' => 'site_view/site_header',
+
+        $data['keywords'] = $keywords;
+        $data['action'] = $action;
+        $data['item_page'] = $item_page;
+        $data += array('header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
                        'main_content' => 'site_view/find_books',
                        'profile_content' => 'site_view/profile'
                       );
+
         //Checks if search form has been submitted.
 
         if ($action == 'search')
@@ -65,8 +69,39 @@ class Books extends Controller {
          $this->pagination->initialize($config);
 
 
-
+         $data['profile_id'] = $this->session->userdata('user_id');
          $this->load->view('template', $data); 
+    }
+
+    function show() {
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/dummy',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $data['profile_id'] = $this->session->userdata('user_id');
+        $this->load->view('template', $data);
+    }
+
+    function add_book() {
+         $isbn = $this->input->post('isbn');
+         $book_type = $this->input->post('type');
+         $keywords = $this->input->post('keywords');
+         $actions = $this->input->post('action');
+         $item_page = $this->input->post('item_page')-1;
+         if (!isset($isbn) || 
+             !isset($book_type) ||
+             !isset($keywords) ||
+             !isset($actions) ||
+             !isset($item_page)
+             )
+            return;
+
+         $user_id = $this->session->userdata('user_id');
+         $this->load->model('book_model');
+         $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
+         redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
     }
         
 }

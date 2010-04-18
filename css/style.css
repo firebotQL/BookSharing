@@ -186,3 +186,47 @@ ul.siteNav li a {
 #search-form submit {
 	float:right;
 }
+
+.profile_data {
+    float: right;
+    background: #a73;
+    width: 460px;
+    margin-top:20px;
+    margin-right:40px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.profile_photo {
+    float: left; 
+    background: #343;
+    margin-top:20px;
+    margin-left:40px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.profile_bookshelve {
+    float: left;
+    background: #FF0000;
+    margin-top:20px; 
+    margin-left:20px;
+    margin-right: 10px; 
+    width: 95%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.profile_comments {
+    float: left;
+    background: #343;
+    margin-top:20px;
+    margin-left:20px;
+    width: 95%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.main_profile_area {
+    height: auto;
+}

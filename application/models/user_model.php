@@ -42,7 +42,7 @@ class User_model extends Model {
 
     }
 
-    function user_exist($username)
+    function user_exist_by_name($username)
     {
         $this->db->where('username', $username);
         $query = $this->db->get('user');
@@ -54,5 +54,31 @@ class User_model extends Model {
         {
             return FALSE;
         }
+    }
+
+
+
+    function user_exist_by_id($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('user');
+        if ($query->num_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+    function get_user_data($id) {
+        $this->db->where('user_id', $id);
+        $query = $this->db->get('user_data');
+        if ($query->num_rows() > 0)
+        {
+            return $query->row();
+        }
+        return NULL;
     }
 }

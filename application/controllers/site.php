@@ -14,18 +14,18 @@ class Site extends Controller {
                        'main_content' => 'site_view/new_books',
                        'profile_content' => 'site_view/profile'
                         );
+        $data['profile_id'] = $this->session->userdata('user_id');
         $this->load->view('template', $data);
     }
     
     function message_box() {
-
         $data = array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
                        'main_content' => 'site_view/message_area',
                        'profile_content' => 'site_view/profile'
                         );
-
+        $data['profile_id'] = $this->session->userdata('user_id');
         $this->load->model('message_model');
         $id = $this->session->userdata('user_id');
         $per_page;
@@ -96,6 +96,7 @@ class Site extends Controller {
                        'main_content' => 'site_view/message_area',
                        'profile_content' => 'site_view/profile'
                         );
+        $data['profile_id'] = $this->session->userdata('user_id');
         $data['type'] = 'compose';
         $this->load->view('template', $data);
     }
@@ -107,9 +108,11 @@ class Site extends Controller {
                        'main_content' => 'site_view/inbox_area',
                        'profile_content' => 'site_view/profile'
                         );
+        $data['profile_id'] = $this->session->userdata('user_id');
         $this->load->view('template', $data);
     }
     function send_message() {
+        $profile_content = "site_view/profile/" . $this->session->userdata('user_id');
         $this->load->model('message_model');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('receipent', 'Receipent','callback_username_message_check|trim|required|min_length[4]');
@@ -120,6 +123,7 @@ class Site extends Controller {
                        'main_content' => 'site_view/message_area',
                        'profile_content' => 'site_view/profile'
                         );
+        $data['profile_id'] = $this->session->userdata('user_id');
         if ($this->form_validation->run() == FALSE)
         {
             $data['type'] = 'compose';
@@ -138,9 +142,81 @@ class Site extends Controller {
 
     }
 
+    function mybooks() {;
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/book_shelve',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $data['profile_id'] = $this->session->userdata('user_id');
+        $this->load->view('template', $data);
+    }
+
+    function myfriends() {
+         $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/dummy',
+                       'profile_content' => 'site_view/profile'
+                        );
+         $data['profile_id'] = $this->session->userdata('user_id');
+
+         $this->load->view('template', $data);
+    }
+
+    function profile() {
+        $user_id;
+        $main_content;
+        $data = array();
+        if ($this->uri->segment(3) != "")
+        {
+            $user_id = $this->uri->segment(3);
+            $main_content = "site_view/profile_view";
+        }
+        else
+        {
+            $data['error_message'] = "0";
+            $main_content = "site_view/error";
+        }
+        
+        $this->load->model('user_model');
+
+        if (!$this->user_model->user_exist_by_id($user_id))
+        {
+            $data['error_message'] = "1";
+            $main_content = 'site_view/error';
+        }
+        else
+        {
+            $data['user_data'] = $this->user_model->get_user_data($user_id);
+        }
+
+        $data += array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => $main_content,
+                       'profile_content' => 'site_view/profile'
+                        );
+
+        $data['profile_id'] = $this->session->userdata('user_id');
+        $this->load->view('template', $data);
+    }
+
+    function logout() { 
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/dummy',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $data['profile_id'] = $this->session->userdata('user_id');
+        $this->load->view('template', $data);
+    }
+    
     function username_message_check($username) {
         $this->load->model('user_model');
-        return $this->user_model->user_exist($username);
+        return $this->user_model->user_exist_by_name($username);
     }
 
     function is_logged_in() {
