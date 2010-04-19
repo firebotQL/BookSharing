@@ -71,15 +71,15 @@ class Book_model extends Model {
     {
         $b_data = array('isbn' => $isbn,
                         'type_id' => $book_type);
-        $bk_data;
+        $bs_data;
         $result = FALSE;
         $query = $this->db->where($b_data);
         $query = $this->db->get('book');
         if ($query->num_rows() > 0)
         {
-            $bk_data = array('book_id' => $query->row()->id,
+            $bs_data = array('book_id' => $query->row()->id,
                              'user_id' => $user_id);
-            $inner_q = $this->db->get('book_shelve', $bk_data);
+            $inner_q = $this->db->get('book_shelve', $bs_data);
             if ($inner_q->num_rows() > 0)
             {
                 return $result;
@@ -89,11 +89,20 @@ class Book_model extends Model {
         {
             $this->db->insert('book', $b_data);
             $book_id = $this->db->insert_id();
-            $bk_data = array('book_id' => $book_id,
+            $bs_data = array('book_id' => $book_id,
                              'user_id' => $user_id);
         }
 
-        $result = $this->db->insert('book_shelve', $bk_data);
+        $result = $this->db->insert('book_shelve', $bs_data);
+        return $result;
+    }
+
+    function get_shelve_books($user_id)
+    {
+        $this->db->select('b.id, b.isbn, b.isbn13');
+        $this->db->join('book b', 'b.id = bs.book_id');
+        $this->db->where('user_id',$user_id);
+        $result = $this->db->get('book_shelve bs');
         return $result;
     }
 

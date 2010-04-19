@@ -208,7 +208,7 @@ ul.siteNav li a {
 
 .profile_bookshelve {
     float: left;
-    background: #FF0000;
+    background: #00F0FF;
     margin-top:20px; 
     margin-left:20px;
     margin-right: 10px; 
@@ -229,4 +229,22 @@ ul.siteNav li a {
 
 .main_profile_area {
     height: auto;
+}
+
+.mybook_info {
+    float: left;
+}
+
+.mybook_details {
+    float: right;
+}
+
+.profile_book_p {
+    font-size:0.575em;
+    border: #B0AA93;
+    border-style: solid;
+    border-top-width: 1px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
 }

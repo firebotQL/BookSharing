@@ -1,5 +1,5 @@
 <div class="profile_view">
-    <h4>NAME OF THE USER</h4>
+    <h4><?php echo $user_name ?> profile</h4>
     <div class="main_profile_area">
         <div class="profile_photo">
            <img src="/images/no_avatar.gif"  height="125px" width="115px"/>
@@ -17,17 +17,27 @@
         </div>
     </div>
     <div class="profile_bookshelve">
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-        <p>BOOKSSSSSSSSSSSSSSSSS</p>
-    </div>
+         <h5>User bookshelve</h5>
+         <div class="pagination">
+            <?php echo $this->pagination->create_links(); ?>
+            </div>
+            <div class="my_book_shelve">
+                <?php if (!empty($book_list)): ?>
+                <table>
+                    <?php foreach ($book_list->Items->Item as $book): ?>
+                            <tr>
+                                <td class="profile_book_p">
+                                    <p> Title: <strong><?php echo $book->ItemAttributes->Title; //Echo title of book ?></strong></p>
+                                    <p> by <?php echo $book->ItemAttributes->Author; // Echo author of book ?></p>
+                                </td>
+                            </tr>
+                    <?php endforeach; ?>
+                </table>
+                <?php endif; ?>
+            </div>
+        </div>
     <div class="profile_comments">
-        <p>Comment1</p>
-        <p>Comment2</p>
+        <h5>Comments</h5>
         <?php
             $textarea_init = array('name' => 'comment_content',
                  'cols' => '60',

@@ -142,14 +142,48 @@ class Site extends Controller {
 
     }
 
-    function mybooks() {;
+    function mybooks() {
+        $nr = 0;
+        $page_nr = 1;
+
+        if ($this->uri->segment(3) != "")
+        {
+            $page_nr = (int)$this->uri->segment(3) / 10 + 1;
+        }
+        
+        $user_id = $this->session->userdata('user_id');
+        $this->load->model('book_model');
+        $result = $this->book_model->get_shelve_books($user_id);
         $data = array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
                        'main_content' => 'site_view/book_shelve',
                        'profile_content' => 'site_view/profile'
                         );
+
+        $separated = "";
+        if($result->num_rows() > 0)
+        {
+            foreach ($result->result() as $row)
+            {
+                $search_query[] = $row->isbn;
+            }
+            $separated = implode("|", $search_query);
+        }
+        $amazon_result = $this->book_model->search($separated, $page_nr);
+        $data['book_list'] = $amazon_result;
         $data['profile_id'] = $this->session->userdata('user_id');
+
+        $config['base_url'] = "/site/mybooks/";
+        $config['total_rows'] = $amazon_result->Items->TotalResults;
+        $config['per_page'] = '10';
+        $config['num_links'] = '10';
+        $config['uri_segment'] = 3;
+
+
+
+        $this->pagination->initialize($config);
+
         $this->load->view('template', $data);
     }
 
@@ -168,6 +202,7 @@ class Site extends Controller {
     function profile() {
         $user_id;
         $main_content;
+        $page_nr = 1;
         $data = array();
         if ($this->uri->segment(3) != "")
         {
@@ -179,16 +214,23 @@ class Site extends Controller {
             $data['error_message'] = "0";
             $main_content = "site_view/error";
         }
+
+        if ($this->uri->segment(4) != "")
+        {
+            $page_nr = (int)$this->uri->segment(3) / 10 + 1;
+        }
         
         $this->load->model('user_model');
-
-        if (!$this->user_model->user_exist_by_id($user_id))
+        $user = $this->user_model->user_exist_by_id($user_id);
+        $user_name = "";
+        if ($user == NULL)
         {
             $data['error_message'] = "1";
             $main_content = 'site_view/error';
         }
         else
         {
+            $user_name = $user->row()->username;
             $data['user_data'] = $this->user_model->get_user_data($user_id);
         }
 
@@ -199,21 +241,42 @@ class Site extends Controller {
                        'profile_content' => 'site_view/profile'
                         );
 
+        /* Book retrieval part */
+        $this->load->model('book_model');
+        $result = $this->book_model->get_shelve_books($user_id);
+        $separated = "";
+        if($result->num_rows() > 0)
+        {
+            foreach ($result->result() as $row)
+            {
+                $search_query[] = $row->isbn;
+            }
+            $separated = implode("|", $search_query);
+        }
+        $amazon_result = $this->book_model->search($separated, $page_nr);
+        $data['book_list'] = $amazon_result;
+        $data['profile_id'] = $this->session->userdata('user_id');
+
+        $config['base_url'] = "/site/profile/" .$this->session->userdata('user_id') . "/" ;
+        $config['total_rows'] = $amazon_result->Items->TotalResults;
+        $config['per_page'] = '10';
+        $config['num_links'] = '10';
+        $config['uri_segment'] = 4;
+
+
+
+        $this->pagination->initialize($config);
+        $data['user_name'] = $user_name;
         $data['profile_id'] = $this->session->userdata('user_id');
         $this->load->view('template', $data);
     }
 
-    function logout() { 
-        $data = array( 'header_content' => 'site_view/site_header',
-                       'site_content' => 'site_view/site_area',
-                       'footer_content' => 'site_view/site_footer',
-                       'main_content' => 'site_view/dummy',
-                       'profile_content' => 'site_view/profile'
-                        );
-        $data['profile_id'] = $this->session->userdata('user_id');
-        $this->load->view('template', $data);
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('login/index');
     }
-    
+
     function username_message_check($username) {
         $this->load->model('user_model');
         return $this->user_model->user_exist_by_name($username);

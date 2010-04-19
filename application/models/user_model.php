@@ -64,7 +64,7 @@ class User_model extends Model {
         $query = $this->db->get('user');
         if ($query->num_rows() > 0)
         {
-            return TRUE;
+            return $query;
         }
         else
         {

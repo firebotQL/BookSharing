@@ -17,4 +17,12 @@ class Friends extends Controller
         $data['profile_id'] = $this->session->userdata('user_id');
         $this->load->view('template', $data);
     }
+
+    function add_friend()
+    {
+        $friend_id = $this->input->post('friend_id');
+        $user_id = $this->session->userdata('user_id');
+        $this->model->load('friend_model');
+        $this->friend_model->add_friend($friend_id, $user_id);
+    }
 }
