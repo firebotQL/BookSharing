@@ -56,6 +56,20 @@ class User_model extends Model {
         }
     }
 
+    function exist_user_email($email)
+    {
+        $this->db->where('email_address', $email);
+        $query = $this->db->get('user_data');
+        if ($query->num_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
 
 
     function user_exist_by_id($id)
@@ -72,7 +86,8 @@ class User_model extends Model {
         }
     }
 
-    function get_user_data($id) {
+    function get_user_data($id)
+    {
         $this->db->where('user_id', $id);
         $query = $this->db->get('user_data');
         if ($query->num_rows() > 0)
@@ -80,5 +95,18 @@ class User_model extends Model {
             return $query->row();
         }
         return NULL;
+    }
+
+    function update_user_data($id, $user_data)
+    {
+        $this->db->where('user_id', $id);
+        $this->db->update('user_data', $user_data);
+    }
+
+    function update_password($id, $password)
+    {
+        $data = array('password' => md5($password));
+        $this->db->where('id', $id);
+        $this->db->update('user', $data);
     }
 }

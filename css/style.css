@@ -239,12 +239,30 @@ ul.siteNav li a {
     float: right;
 }
 
-.profile_book_p {
+.profile_book_p  {
     font-size:0.575em;
-    border: #B0AA93;
     border-style: solid;
     border-top-width: 1px;
     border-right-width: 0px;
     border-bottom-width: 0px;
+    border-left-width: 0px;
+}
+
+.profile_comment_a {
+    border: #B0AA93;
+    border-style: solid;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+.profile_comment_p {
+    width: 95%;
+    border: #B0AA93;
+    border-style: solid;
+    border-top-width: 1px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
     border-left-width: 0px;
 }

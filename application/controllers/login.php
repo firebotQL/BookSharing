@@ -48,9 +48,9 @@ class Login extends Controller {
 
         $this->form_validation->set_rules('first_name', 'Name', 'trim|required');
         $this->form_validation->set_rules('second_name', 'Second Name', 'trim|required');
-        $this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email|callback_unique_email');
 
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|callback_unique_user');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required|matches[password]');
 
@@ -68,6 +68,33 @@ class Login extends Controller {
             } else {
                 $this->load->view('login_view/signup_form');
             }
+        }
+    }
+
+    function unique_user($str) {
+        $this->load->model('user_model');
+        if (!$this->user_model->user_exist_by_name($str))
+        {
+            return TRUE;
+        }
+        else
+        {
+            $this->form_validation->set_message('unique_user', "%s {$str} already exist");
+            return FALSE;
+        }
+    }
+
+    function unique_email($str)
+    {
+        $this->load->model('user_model');
+        if (!$this->user_model->exist_user_email($str))
+        {
+            return TRUE;
+        }
+        else
+        {
+            $this->form_validation->set_message('unique_email', "%s {$str} already exist");
+            return FALSE;
         }
     }
 }

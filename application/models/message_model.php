@@ -14,7 +14,11 @@ class Message_model extends Model {
                              m.date_sent,
                              m.content,
                              us.username as \'sendername\',
-                             ur.username as \'receivername\'');
+                             ur.username as \'receivername\',
+                             mr.id as \'m_r_id\',
+                             m.id as \'m_id\',
+                             us.id as \'sender_id\',
+                             ur.id as \'receiver_id\'');
         $this->db->join('message m', 'm.id = mr.message_id');
         $this->db->join('user us','us.id = mr.sender_id');
         $this->db->join('user ur','ur.id = mr.receiver_id');
@@ -40,13 +44,8 @@ class Message_model extends Model {
         if ($user->num_rows() > 0 )
         {
             $receiver_id = $user->row()->id;
-            $date_sent1 = getdate();
-            
-            $date_sent = $date_sent1['year'] . "-"
-                            . $date_sent1["mon"]
-                            . "-" . $date_sent1["mday"];
-            $m_data = array('date_sent' =>  $date_sent,
-                            'subject' => $subject,
+
+            $m_data = array('subject' => $subject,
                             'content' => $content);
             $this->db->insert('message', $m_data);
             $m_query_id = $this->db->insert_id();

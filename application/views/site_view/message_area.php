@@ -24,7 +24,8 @@
                  'cols' => '60',
                  'value' => 'Here is your message');
             echo form_open('site/send_message');
-            echo form_input('receipent', set_value('receipent', 'Receipent user'));
+            $receipent = isset($username) ? $username : 'Receipent user';
+            echo form_input('receipent', set_value('receipent', $receipent));
             echo form_input('subject', set_value('subject', 'Subject'));
 
 
@@ -36,6 +37,10 @@
     <div class="message_content">
     </div>
 </div>
+<?php elseif($type == "read"): ?>
+    <div class="read_message">
+
+    </div>
 <?php endif; ?>
 
 
