@@ -39,7 +39,17 @@
 </div>
 <?php elseif($type == "read"): ?>
     <div class="read_message">
-
+        <?php
+            $textarea_init = array('name' => 'content',
+                 'cols' => '60',
+                 'value' => $message_text);
+            $from = isset($username) ? $username : 'N/A';
+            echo form_input('from', set_value('from', $from));
+            echo form_input('subject', set_value('subject', $subject));
+            echo form_textarea($textarea_init);
+            echo anchor("site/reply_message/" . $message_id, "Reply");
+            echo anchor("#", "Back");
+        ?>
     </div>
 <?php endif; ?>
 

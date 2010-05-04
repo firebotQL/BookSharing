@@ -11,18 +11,26 @@ class Comments extends Controller
 
     function send()
     {
-        $user_id = $this->uri->segment(3);
+        $user_id_or_isbn = $this->uri->segment(3);
         $comment = $this->input->post('comment_content');
-
-        if (empty($user_id) || empty($comment))
+        $type_id = $this->input->post('type_id') ? $this->input->post('type_id') : 0 ;
+        if (empty($user_id_or_isbn) || empty($comment))
         {
             return;                 // TODO: MAKE SOME ERROR MESSAGE TO HAPPEN
         }
         $sender_id =  $this->session->userdata('user_id');
-        $is_sent = $this->comment_model->send_comment($user_id, $sender_id, $comment);
+        $is_sent = $this->comment_model->send_comment($user_id_or_isbn, $sender_id, $comment, $type_id);
         if ($is_sent)
         {
-            redirect("site/profile/" . $user_id);
+            switch($type_id)
+            {
+                case 0:
+                    redirect("site/profile/" . $user_id_or_isbn);
+                    break;
+                case 1:
+                    redirect("books/details/" . $user_id_or_isbn);
+                    break;
+            }
         }
         else
         {

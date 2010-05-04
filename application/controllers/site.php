@@ -119,9 +119,29 @@ class Site extends Controller {
             return FALSE;
         } 
 
+        $user_id = $this->session->userdata('user_id');
         $message_id = $this->uri->segment(3);
-
-        
+        $this->load->model("message_model");
+        $data = array();
+        $message_result = $this->message_model->get_message($user_id, $message_id);
+        if ($message_result->num_rows() > 0)
+        {
+            $message_data = $message_result->row();
+            $data += array('message_text' => $message_data->content,
+                           'username' => $message_data->username,
+                           'subject' => $message_data->subject,
+                           'message_id' => $message_id
+            );
+            $data += array( 'header_content' => 'site_view/site_header',
+                           'site_content' => 'site_view/site_area',
+                           'footer_content' => 'site_view/site_footer',
+                           'main_content' => 'site_view/message_area',
+                           'profile_content' => 'site_view/profile'
+                            );
+            $data['profile_id'] = $this->session->userdata('user_id');
+            $data['type'] = 'read';
+            $this->load->view('template', $data);
+        }
     } 
 
     function books() {
@@ -193,7 +213,7 @@ class Site extends Controller {
             }
             $separated = implode("|", $search_query);
         }
-        $amazon_result = $this->book_model->search($separated, $page_nr);
+        $amazon_result = $this->book_model->search($separated, $page_nr, "Medium");
         $data['book_list'] = $amazon_result;
         $data['profile_id'] = $this->session->userdata('user_id');
 
@@ -331,7 +351,7 @@ class Site extends Controller {
             }
             $separated = implode("|", $search_query);
         }
-        $amazon_result = $this->book_model->search($separated, $page_nr);
+        $amazon_result = $this->book_model->search($separated, $page_nr, "Medium");
         $data['book_list'] = $amazon_result;
         $data['profile_id'] = $user_id;
 
@@ -349,9 +369,9 @@ class Site extends Controller {
 
 
         $this->load->model('comment_model');
-        $total_comments = $this->comment_model->get_total($user_id);
+        $total_comments = $this->comment_model->get_total($user_id, "0");
 
-        $comments = $this->comment_model->get_comments($user_id, $comment_from-1, 3);
+        $comments = $this->comment_model->get_comments($user_id, $comment_from-1, 3, "0");
         
         // Pagination for comments
         $config['base_url'] = "/site/profile/" . $user_id . "/" . ($page_nr-1)*10 ;

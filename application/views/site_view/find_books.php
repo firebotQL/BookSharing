@@ -18,6 +18,12 @@
             <td>
                 <p> Title: <strong><?php echo $book->ItemAttributes->Title; //Echo title of book ?></strong></p>
                 <p> by <?php echo $book->ItemAttributes->Author; // Echo author of book ?></p>
+                <?php
+                   // foreach( as $row)
+                   // {
+                        echo $book->ItemAttributes->Feature;
+                   // }
+                ?>
             </td>
             <td>
                 <?php

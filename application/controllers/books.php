@@ -46,7 +46,7 @@ class Books extends Controller {
         if ($action == 'search')
         {
                 //Calls search_amazon method
-                $temporary_data = $this->book_model->search($keywords, $item_page);
+                $temporary_data = $this->book_model->search($keywords, $item_page, "Medium");
                 if ($temporary_data != "response fail" && $temporary_data != "parse fail")
                 {
                     $data['book_info'] =  $temporary_data;
@@ -102,6 +102,48 @@ class Books extends Controller {
          $this->load->model('book_model');
          $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
          redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
+    }
+
+    function details()
+    {
+        $isbn = $this->input->post('isbn');
+        if (empty($isbn))
+            $isbn = $this->uri->segment(3);
+
+        $page = $this->uri->segment(4);
+        $book_data = $this->book_model->search($isbn, "1", "Large");
+
+        if (!empty($book_data))
+        {
+            //print_r($book_data);
+
+            $data = array('book' => $book_data->Items->Item);
+
+            $this->load->model('comment_model');
+            $total_comments = $this->comment_model->get_total("", "1", $isbn);
+
+            $comments = $this->comment_model->get_comments("", $page, 3, "1", $isbn);
+
+            // Pagination for comments
+            $config['base_url'] = "/books/details" . $isbn . "/" .$page;
+            $config['total_rows'] = $total_comments;
+            $config['per_page'] = '3';
+            $config['num_links'] = '10';
+            $config['uri_segment'] = 3;
+
+            $this->pagination->initialize($config);
+            $data['set_2'] = $this->pagination->create_links();
+            $data['comments'] = $comments;
+            $data['isbn'] = $isbn;
+            $data += array( 'header_content' => 'site_view/site_header',
+                           'site_content' => 'site_view/site_area',
+                           'footer_content' => 'site_view/site_footer',
+                           'main_content' => 'site_view/book_details',
+                           'profile_content' => 'site_view/profile'
+                    );
+            $data['profile_id'] = $this->session->userdata('user_id');
+            $this->load->view('template', $data);
+        }
     }
         
 }
