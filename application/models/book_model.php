@@ -106,5 +106,15 @@ class Book_model extends Model {
         return $result;
     }
 
+    function check_book_exist($user_id, $isbn)
+    {
+        $this->db->select('b.id');
+        $this->db->join('book b', 'b.id = bs.book_id');
+        $this->db->where('user_id', $user_id);
+        $this->db->where('b.isbn', $isbn);
+        $result = $this->db->get('book_shelve bs');
+        return $result->num_rows();
+    }
+
 
 }

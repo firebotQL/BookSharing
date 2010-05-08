@@ -6,6 +6,20 @@
                      height="100px"
                      width="75px"/>
             <p>Rating hides here</p>
+            <?php
+                if ($exist == FALSE)
+                {
+                    echo "<a href=\"#\" class=\"add_details_book\"> Add to Bookshelve </a>";
+                    echo form_open();
+                    echo form_hidden('jid_hidden_isbn', $book->ItemAttributes->ISBN);
+                    echo form_hidden('jid_hidden_type', "1");
+                    echo form_close();
+                } 
+                else  
+                {
+                    echo '<p> Already in bookshelve </p>';
+                }
+            ?>
         </div>
         <div class="book_description">
             <p>Title: <strong><?php echo $book->ItemAttributes->Title; //Echo title of book ?></strong></p>
@@ -41,8 +55,8 @@
             $textarea_init = array('name' => 'comment_content',
                  'cols' => '60',
                  'value' => 'Here is your comment');
-            echo form_hidden('')
             echo form_open('comments/send/' . $isbn);
+            echo form_hidden('type_id', '1');
             echo form_textarea($textarea_init);
             echo form_submit('submit','Post');
             echo form_close();

@@ -27,15 +27,22 @@
             </td>
             <td>
                 <?php
+                   echo form_open('books/details');
+                   echo form_hidden('isbn', $book->ItemAttributes->ISBN);
+                   echo form_submit('submit', 'View details');
+                   echo form_close();
+
                    echo form_open('books/add_book');
                    echo form_hidden('action', set_value('action', $action));
                    echo form_hidden('keywords', set_value('keywrods',$keywords));
                    echo form_hidden('item_page', set_value('item_page',$item_page));
                    echo form_hidden('isbn', set_value('isbn', $book->ItemAttributes->ISBN));
                    echo form_hidden('type', set_value('type', 0));
+                   echo form_hidden('page_type', set_value('page_type', '0'));
                    echo form_submit('submit','Add to Bookshelve');
                    echo form_close();
                 ?>
+
                 
             </td>
 	</tr>

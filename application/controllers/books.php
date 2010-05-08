@@ -77,7 +77,7 @@ class Books extends Controller {
         $data = array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
-                       'main_content' => 'site_view/dummy',
+                       'main_content' => 'site_view/books_main',
                        'profile_content' => 'site_view/profile'
                         );
         $data['profile_id'] = $this->session->userdata('user_id');
@@ -102,6 +102,22 @@ class Books extends Controller {
          $this->load->model('book_model');
          $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
          redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
+    }
+
+    function add_book_a()
+    {
+        $isbn = $this->input->post('isbn');
+        $book_type = $this->input->post('type');
+
+        if (!isset($isbn) ||
+            !isset($book_type)
+        )
+
+        $user_id = $this->session->userdata('user_id');
+        $this->load->model('book_model');
+        $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
+
+        print_r("Already in bookshelve");
     }
 
     function details()
@@ -134,14 +150,23 @@ class Books extends Controller {
             $this->pagination->initialize($config);
             $data['set_2'] = $this->pagination->create_links();
             $data['comments'] = $comments;
-            $data['isbn'] = $isbn;
+            $data['isbn'] = $isbn; 
             $data += array( 'header_content' => 'site_view/site_header',
                            'site_content' => 'site_view/site_area',
                            'footer_content' => 'site_view/site_footer',
                            'main_content' => 'site_view/book_details',
                            'profile_content' => 'site_view/profile'
-                    );
+                    ); 
             $data['profile_id'] = $this->session->userdata('user_id');
+            $book_count = $this->book_model->check_book_exist($data['profile_id'], $isbn);
+            if ($book_count > 0)
+            {
+                $data['exist'] = TRUE;
+            }
+            else
+            {
+                $data['exist'] = FALSE;
+            }
             $this->load->view('template', $data);
         }
     }
