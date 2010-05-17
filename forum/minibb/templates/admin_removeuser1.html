@@ -1,0 +1,19 @@
+<form action="{$main_url}/{$bb_admin}" method="post">
+<table class="tbTransparent">
+<tr>
+<td class="tbTransparentCell">
+<span class="txtNr">
+<input type="hidden" name="action" value="removeuser2" />
+<br />
+{$l_removeUser}: <input type="text" size="5" maxlength="11" name="userID" class="textForm" value="{$userID}" /> ({$l_enterID})
+<br />
+<input type="checkbox" name="removemessages" value="on" /> {$l_removeUserMessages}
+</span>
+<br /><br />
+<b>{$l_noAsking}</b>
+<br /><br />
+<input type="submit" value="{$l_removeUser}" class="inputButton" />
+</td>
+</tr>
+</table>
+</form>

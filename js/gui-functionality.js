@@ -1,17 +1,34 @@
 $(function() {
-    $('.add_details_book').click(function() {
-        var isbn = $("input[name='jid_hidden_isbn']").val();
-        var type = $("input[name='jid_hidden_type']").val();
-        var posting = "isbn=" + isbn + "&type=" + type;
+    $('.jid_hidden_data').submit(function() {
+        var serialized = $(this).serialize();
+        var sUrl = "http://localhost/books/add_book_a";
         $.ajax({
-            url: "/books/add_book_a",
+            url: sUrl,
             type: "POST",
-            data: posting,
+            data: serialized,
             success: function(data) {
                 $(".add_details_book").html(data);
-                $(".add_detauls_book").attr('class', 'added');
+                $(".jid_hidden_data").remove();
             }
-        })
+        });
+        return false;
+    });
 
+    $('#jid_f_book_upload').submit(function() {
+     //  var serialized = $(this).formSerialize();
+       var sUrl = "http://localhost/books/upload";
+
+       $(this).ajaxSubmit({
+           url: sUrl,
+           type: "POST",
+          // data: serialized,
+           success: function(data) {
+               $(".main_container").html(data);
+           },
+           error: function (XMLHttpRequest) {
+               alert(XMLHttpRequest);
+           }
+       });
+       return false;
     });
 });

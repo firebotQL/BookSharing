@@ -9,10 +9,14 @@
             <?php
                 if ($exist == FALSE)
                 {
-                    echo "<a href=\"#\" class=\"add_details_book\"> Add to Bookshelve </a>";
-                    echo form_open();
-                    echo form_hidden('jid_hidden_isbn', $book->ItemAttributes->ISBN);
-                    echo form_hidden('jid_hidden_type', "1");
+                    echo "<p class=\"add_details_book\"><p>";
+
+                    echo form_open("", array('class' => 'jid_hidden_data'));
+                    echo form_hidden('isbn', $book->ItemAttributes->ISBN);
+                    echo form_hidden('type', isset($book->ItemAttributes->TYPE) ?
+                                                $book->ItemAttributes->TYPE :
+                                                "0");
+                    echo form_submit('submit', "Add to bookshelve");
                     echo form_close();
                 } 
                 else  

@@ -1,0 +1,1870 @@
+<h1>miniBB&reg;</h1>
+<h2>Complete User and Administration Guide</h2>
+<small>Most Recently updated on March 25, 2010.</small>
+
+<pre>
+Copyright (c) 2001-2010 Paul Puzyrev, Sergei Larionov, www.minibb.com
+Permission is granted to copy, distribute and/or modify this document 
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+</pre>
+
+<small style="background-color:#4967A0;color:#FFF;padding:2px">Any tool is powerful only if you know how to use it.</small>
+
+<h2>Important Notice</h2>
+
+<p>This Document contains almost everything you should initially know about miniBB, however it was composed in the earliest years of miniBB project, and during the next few years only minor changes were made. That's why we must warn you: this version of the Guide doesn't cover all functions and possibilities of miniBB, and it's required a big time to work on explaining them all. We plan to start it in the nearest future. We apologize in advance for possible defects you may discover during your reading and we hope you will be patient and understand that preparing a comprehensive Manual is even a bigger task than building the Program itself. If you are not sure if some feature exists, or how this and that works, do not hesitate to ask us on our <a href="http://www.minibb.com/forums/">forums</a>. We are always willing to help the people in all questions which affect our software.</p>
+
+<ol type="1">
+
+
+<li><a href="#specifics">Terminology</a></li>
+<li><a href="#copyright">Copyrights</a></li>
+<li><a href="#intro">Introduction</a>
+<li><a href="#require">Requirements</a></li>
+
+<li><a href="#config1">Installation</a>
+
+<ol>
+<li><a href="#files">File list</a></li>
+<li><a href="#config1">Setting up the software: Step #1</a></li>
+<li><a href="#createForums">Creating forums</a></li>
+</ol>
+
+</li>
+
+<li>Customization
+
+<ol>
+
+<li><a href="#config2">Configuring the software: Step #2</a></li>
+<li><a href="#templates">Templates</a>
+
+<ul>
+<li><a href="#customtpl">Custom templates</a></li>
+</ul>
+
+</li>
+
+<li><a href="#lang">Language packs</a></li>
+<li><a href="#css">Skins: CSS file</a></li>
+</ol>
+
+</li>
+
+<li>Administrative options
+
+<ol>
+<li><a href="#panel">Admin panel</a>
+
+<ul>
+<li><a href="#addforum">Adding forums</a></li>
+<li><a href="#editforum">Editing, re-ordering, deleting forums</a></li>
+<li><a href="#subcats">Forum supertitles (categories)</a></li>
+<li><a href="#removeuser">Removing a user</a></li>
+<li><a href="#banuser">Ban/unban a user by IP</a></li>
+<li><a href="#banuserid">Ban/unban a user by ID</a></li>
+<li><a href="#searchusers">Search users</a></li>
+<li><a href="#deleteemails">Delete email notifications</a></li>
+<li><a href="#exportemails">Exporting emails list</a></li>
+<li><a href="#restoreadmin">Restore Admin data in database</a></li>
+</ul>
+
+</li>
+
+<li>"Hidden" admin forums options
+
+<ul>
+<li><a href="#privateforums">Private forums</a></li>
+<li><a href="#archiveforums">Archive (read-only) forums</a></li>
+<li><a href="#postforums">Post-only forums</a></li>
+<li><a href="#userrankings">Users special rankings</a></li>
+<li><a href="#reguserforums">Registered-users-only forums</a></li>
+<li><a href="#modsarray">Moderators definition</a></li>
+<li><a href="#exlastdisc">Excluding last discussions</a></li>
+<li><a href="#sorthread">Sorting specific thread in DESC order</a></li>
+<li><a href="#deletemessages">Deleting messages</a></li>
+<li><a href="#deletetopics">Deleting topics</a></li>
+<li><a href="#editmessages">Editing messages</a></li>
+<li><a href="#movetopics">Moving topics</a></li>
+<li><a href="#locktopic">Locking topics</a></li>
+<li><a href="#stickytopic">"Stickying" topics</a></li>
+<li><a href="#subscriptions">Subscriptions</a></li>
+<li><a href="#adminprefs">"Preferences" for admin</a></li>
+</ul>
+
+</li>
+
+<li>Moderators
+
+<ul>
+<li><a href="#moderators">Concepts and possibilities</a></li>
+</ul>
+
+</li>
+
+</ol>
+
+</li>
+
+<li>Forums-wide user options
+
+<ol>
+<li><a href="#hierarchy">Users hierarchy</a></li>
+<li><a href="#registration">User's registration</a></li>
+<li><a href="#userlogin">User's login</a></li>
+<li><a href="#userlang">User's language</a></li>
+<li><a href="#newposts">New topics and replies</a>
+
+<ul>
+<li><a href="#emailNotifications">Email notifications</a></li>
+<li><a href="#highlight">Automatic links highlighting</a></li>
+<li><a href="#bbcodes">BB Codes</a></li>
+<li><a href="#quoting">Quoting messages</a></li>
+</ul>
+
+</li>
+
+<li><a href="#userlocktopic">Locking topics</a></li>
+<li><a href="#editmessage">Editing messages</a></li>
+<li><a href="#userprefs">Editing preferences</a>
+
+<ul>
+<li><a href="#viewemail">Show email public</a></li>
+<li><a href="#sorttopics">Sort topics</a></li>
+</ul>
+
+</li>
+
+<li><a href="#changepassword">Changing user password</a></li>
+<li><a href="#forgotpassword">Forgotten password</a></li>
+<li><a href="#search">Forums search panel</a></li>
+<li><a href="#stats">Statistics</a></li>
+
+</ol>
+
+</li>
+
+<li>Some notes for developers
+
+<ol>
+<li><a href="#lang">Language packs</a></li>
+<li><a href="#dbmodules">Database modules</a></li>
+<li><a href="#includeindex">Including in your own PHP script</a></li>
+<li><a href="#mod_rewrite">Keywords-rich and user-friendly URLs using Apache's mod_rewrite engine</a></li>
+<li><a href="#phpcode">PHP scripts</a></li>
+</ol>
+
+</li>
+
+<li><a href="#upgrades">Upgrading miniBB</a></li>
+<li><a href="#gnu">GNU Free Documentation License</a></li>
+
+</ol>
+
+
+<h2><a name="specifics">Terminology used in this Manual</a></h2>
+
+<ul>
+
+<li><strong>Forum software</strong>, also called "bulletin board", "message board", "Internet forum" etc., is a <strong>program</strong> for public exchanging messages. miniBB is exactly about it. With miniBB, you can build your own forum.</li>
+
+<li><strong>Message</strong> is a piece of information of forum, posted by a certain Member or a Guest (anonymous poster). Also may be called "<strong>Post</strong>" or "<strong>Reply</strong>".</li>
+
+<li><strong>Topic</strong> is a collection of messages following the same subject. Also may be called "<strong>Thread</strong>". Topic consists of messages listing.</li>
+
+<li><strong>Forum</strong> is a collection of Topics. "Forums" mean the message board in whole and consists of forums listing on the front page, while a single "Forum" is related to a certain subject of discussions. Forum consists of topics listing. Recent Topics from all Forums at once are displayed on the front page of miniBB.</li>
+
+<li><strong>Super-title</strong> in miniBB is a replacement of a forum group or category. It is usually displayed only on the front page or forum dropdown choice box above the forum's title.</li>
+
+<li><strong>Forums Member</strong> - a person on forum, who has registered a virtual account, consisting of username, password and email address, which are automatically plugged-in when the member logs-in on forum amongst the other provided information. Also may be called "user" or "forums participant". Each Member has its own public profile referenced in a message.</li>
+
+<li><strong>Administrator</strong>, or may be simply called "Admin", is the only one person in miniBB who has access to the Admin Panel, consisting of forums and members lower level management.</li>
+
+<li><strong>Moderator</strong> is the assigned member for certain forum, which is specially privileged by the Administrator to manage, track and control forum messages and topics, also as member accounts.</li>
+
+</ul>
+
+<h2><a name="copyright">Copyrights</a></h2>
+
+<p>miniBB is a GPL project (read more on <a href="http://directory.fsf.org/miniBB.html">Free Software Foundation</a> about GPL License), programmed by Paul Puzyrev and Sergei Larionov. You are allowed to copy/distribute/modify all scripts under terms of GPL. You may edit every opened source file which is present in miniBB core package or its extension. Still, if you are using the software under the free GPL License terms, according to the sections 1 and 2c of this License, <b>you are not allowed to remove miniBB copyright attribution link</b> from the template "main_footer.html" (even you may edit it's look or location) and offer miniBB as "your" product or part of website, putting just your own copyright over all forum pages. For removing the link and/or any copyright information, you need to buy <a href="http://www.minibb.com/commercial_license.html">miniBB commercial license</a>. If you have removed miniBB attribution link without allowance, it means you have stolen and pirated the software itself. Do you know any good examples of web projects which were successful using a pirated software?.. Before being a thief, think about what it brings you, or rather what it <em>won't</em> bring you.</p>
+
+<p>If you want to integrate miniBB into your own software, there are two ways of doing that: a) distributing your software for free with the proper license, you should mention miniBB's authors copyright intact in every script, and you can do that without any persmission from us, since GPL license covers that; b) distributing your software commercially, you should either to keep all miniBB copyright notices as in the free software's case, but if you want to remove all references to us, we need to sign a special commercial agreement, which is <a href="http://www.minibb.com/forums/index.php?action=tpl&amp;tplName=contact_us_form">discussed individually</a> for each case.</p>
+
+<h2><a name="intro">Introduction</a></h2>
+
+<p>miniBB (an abbreviation of "minimalist bulletin board") is a flat-type (not threaded) bulletin board, discussion forums software, written in <a href="http://www.php.net">PHP</a> and using <a href="http://www.mysql.com">mySQL</a> or another PHP-compatible database as data backend. "Mini" doesn't mean "nothing". Specially developed for small and medium forum communities, which have less than 100 unique posts per day, miniBB also could be, and used in much larger projects. If you take a look at miniBB settings file, or this manual, you'll find a lot of options, both for users and administrator, which allow full and in-time control over the board.</p>
+
+<p>This guide refers to almost all miniBB features and possibilities. It is created both for user and administrator, and is included in miniBB package as the "default" FAQ document. You can use this manual as basic user FAQ for your page under GNU Free Documentation License described below. If you are using this guide as FAQ in your forums, remove all administration and developers guides. Regular users should be informed only about related options.</p>
+
+<p>Some options described in this manual require basic HTML and PHP knowledge. If you are on beginner-user level, study it very carefully before applying any modifications to the miniBB package. Remember: this software comes free, but with no warranties.</p>
+
+
+
+<h2><a name="require">Requirements</a></h2>
+
+<p>There are no special requirements about server type, OS, PHP or mySQL version. Every system that supports PHP/mySQL combination, should also support miniBB. We've got reports that miniBB was successfully up &amp; running on Unix, Linux, Windows, Novell, MacOSX servers, with Apache or IIS or other typical web-server installed. As about PHP or database version, we recommend to use ONLY FINAL and STABLE versions of these products. It's the question of your own security at first.</p>
+
+<p>Before installing miniBB, make sure you have PHP installed on your server, and you have mySQL host, login and password information which you'll need to put into configuration file.</p>
+
+
+
+<h1>Installation</h1>
+
+<h2><a name="files">Files list</a></h2>
+
+<p>By default miniBB has the aforementioned files &amp; folders structure. </p>
+
+<pre>
+<strong>[IMG]</strong>
+	<strong>[forum_icons]</strong>- a folder where all forum icons reside
+			<strong>default.gif</strong> * - default forum icon coming with miniBB package
+	<strong>button_bold.gif</strong> - BB-code's Bold button icon
+	<strong>button_image.gif</strong> - BB-code's Referenced Image button icon
+	<strong>button_italic.gif</strong> - BB-code's Italic button icon
+	<strong>button_url.gif</strong> - BB-code's URL button icon
+	<strong>dottedhl.gif</strong> - styling image of the A:hovered ULRs
+	<strong>keypwd.gif</strong> - styling icon for protected by a password forums
+	<strong>menubg.jpg</strong> - default heading's background table's image
+	<strong>mini_bb.gif</strong> - white-on-transparent icon for miniBB (could be put on dark backgrounds)
+	<strong>minibb.gif</strong> - blue-on-transparent icon for miniBB (could be put on light backgrounds)
+	<strong>p.gif</strong> - 1x1 px transparent dot icon (used in the proper aligning of HTML tables)
+	<strong>page.gif</strong> - Forum Pagination's row icon
+	<strong>s.gif</strong> - Forum Reply's icon
+	<strong>topic_default.gif</strong> - default icon for Topic item in Topics listing
+	<strong>topic_empty.gif</strong> - icon indicating not-answered Topics in Topics listing
+	<strong>topic_hot.gif</strong> - icon indicating very active Topics in Topics listing, containing more than <em>$viewmaxreplys</em> messages
+	<strong>topic_locked.gif</strong> - icon indicating a Locked Topic in Topics listing
+	<strong>topic_reverse.gif</strong> - icon indicating a reversed (latest replies first) Topic in Topics listing
+	<strong>topic_sticky.gif</strong> - icon indicating a Sticky Topic in Topics listing
+	<strong>topic_stlock.gif</strong> - icon indicating a Sticky Topic in Topics listing, which is Locked
+<strong>[LANG]</strong> - this folder contains all possible Language packs and translations for the forum
+	<strong>eng.php</strong> - default language pack for the forum, containing all possible translations; 
+<strong>[TEMPLATES]</strong> - this folder stores forum templates which may be all modified non-destructively. Below are described forum options they are used in.
+	<strong>admin_addforum1.html</strong> - forum adding form in the Admin panel
+	<strong>admin_banusr1.html</strong> - user banning form in the Admin panel
+	<strong>admin_deleteban1.html</strong> - deletion of user's ban form in the Admin panel
+	<strong>admin_editforum1.html</strong> - forum editing form in the Admin panel (step 1: choosing the forum)
+	<strong>admin_editforum2.html</strong> - forum editing form in the Admin panel (step 2: modifying the forum)
+	<strong>admin_export_emails.html</strong> - exporting user emails form in the Admin panel
+	<strong>admin_login.html</strong> - Admin panel's login form
+	<strong>admin_panel.html</strong> - Admin panel's options list
+	<strong>admin_removeuser1.html</strong> - removing user form in the Admin panel
+	<strong>admin_searchusers.html</strong> - searching users form in the Admin panel
+	<strong>admin_searchusersres.html</strong> - searching users results in the Admin panel
+	<strong>admin_sendmails1.html</strong> - "removing email from topic subscriptions" form in the Admin panel
+	<strong>admin_viewsubs.html</strong> - viewing subscriptions list for Admin and Moderators
+	<strong>email_admin_userregister_<i>eng</i>.txt</strong> - email text when notifying member on registration; <em>eng</em> may be added or changed to your language's prefix
+	<strong>email_reply_notify_<i>eng</i>.txt</strong> - email notification text when notifying member on a new Message in Topic
+	<strong>email_user_confirm_<i>eng</i>.txt</strong> - email confirmation text when confirming member's registration
+	<strong>email_user_password_<i>eng</i>.txt</strong> - email confirmation text when sending forgotten password to a member
+	<strong>email_user_register_<i>eng</i>.txt</strong> - new registration's greetings
+	<strong>faq.html</strong> - the content located under the "Manual" link on the board (by default, includes reference to this Manual)
+	<strong>form.js</strong> - JavaScript codes for various client-side procedures on the board
+	<strong>go.html</strong> - intermediate message displayed when <em>$metaLocation</em> option is set
+	<strong>main_access_denied.html</strong> - message displayed when the user has been banned by the IP address or user ID
+	<strong>main_footer.html</strong> - common footer for all forum pages
+	<strong>main_forumgroup.html</strong> - forum's super-title layout for the front forums page if <em>$startPageModern=FALSE;</em>
+	<strong>main_forums.html</strong> - forum listing's layout for the front forums page if <em>$startPageModern=FALSE;</em> (old-school look)
+	<strong>main_forums_cell.html</strong> - forum listing's raw's layout for the front forums page if <em>$startPageModern=FALSE;</em>
+	<strong>main_forums_list.html</strong> - forums dropdown box displayed beneath each topics listing
+	<strong>main_header.html</strong> - common header for all forum pages (containing meta-tags, keywords, dynamic titles, navigation menu, etc.)
+	<strong>main_last_discuss_cell.html</strong> - Recent Topics' raw's layout for the front forums page if <em>$startPageModern=FALSE;</em>
+	<strong>main_last_discussions.html</strong> - Recent Topics' general layout for the front forums page if <em>$startPageModern=FALSE;</em>
+	<strong>main_modern_fcell.html</strong> - forum listing's raw's layout for the front forums page if <em>$startPageModern=TRUE;</em>
+	<strong>main_modern_layout.html</strong> - forum layout for the "modern" version of the board if <em>$startPageModern=TRUE;</em>
+	<strong>main_modern_lcell.html</strong> - Recent Topics' raw's layout for the front forums page if <em>$startPageModern=TRUE;</em>
+	<strong>main_modern_stitle.html</strong> - forum's super-title layout for the front forums page if <em>$startPageModern=TRUE;</em>
+	<strong>main_post_area.html</strong> - common code for posting form's table and the submit button
+	<strong>main_post_closed.html</strong> - "Topic is closed" status
+	<strong>main_post_form.html</strong> - common posting form and related BB-code buttons
+	<strong>main_posts.html</strong> - topic's general layout
+	<strong>main_posts_cell.html</strong> - topic's raw's layout
+	<strong>main_topics.html</strong> - topics listing's general layout
+	<strong>main_topics_cell.html</strong> - topics listing's raw's general layout
+	<strong>main_user_info.html</strong> - public member's profile's general layout
+	<strong>main_user_info_cell.html</strong> - public member's profile's raw's layout
+	<strong>main_warning.html</strong> - common template to display warnings, error messages, notices etc.
+	<strong>manual_eng.html</strong> - this Manual
+	<strong>protect_forums.html</strong> - form displayed when all forums are protected by a password
+	<strong>search.html</strong> - search forums form
+	<strong>stats.html</strong> - forums statistics
+	<strong>stats_bar.html</strong> - forums statistics' raw's bar layout
+	<strong>tools_edit_post.html</strong> - editing message form
+	<strong>tools_edit_topic_title.html</strong> - editing topic's title form
+	<strong>tools_move_topic.html</strong> - moving topic form
+	<strong>tools_send_password.html</strong> - sending forgotten password form
+	<strong>tools_userips.html</strong> - list of all members posted from the certain IP address
+	<strong>user_dataform.html</strong> - member's profile form
+	<strong>user_logged_in.html</strong> - member's logged-in status
+	<strong>user_login_form.html</strong> - member's logged-out status
+	<strong>user_login_only_form.html</strong> - common table for member's login status
+<strong>_install.php</strong> - software's auto-installation file. Should be removed after installation!
+<strong>_install_mysql.sql</strong> - software's installation file (SQL commands). Should be removed after installation!
+<strong>bb_admin.php</strong> - Admin Panel's core script; should be renamed to the other filename for security reasons.
+<strong>bb_codes.php</strong> - core functions for BB codes; it could be non-destructively extended with new BB-codes.
+<strong>bb_cookie.php</strong> - core functions for member's authorization
+<strong>bb_default_style.css</strong> - CSS properties (skin theme) for the board (font colors, sizes, table widths, borders, hyperlink colors etc.)
+<strong>bb_func_checkusr.php</strong> - core functions for checking member's registration and profile updates
+<strong>bb_func_confpwd.php</strong> - core functions for password confirmation via email
+<strong>bb_func_delmsg.php</strong> - core functions for deleting a message
+<strong>bb_func_deltopic.php</strong> - core functions for deleting a topic
+<strong>bb_func_editmsg.php</strong> - core functions for editing a message
+<strong>bb_func_editprf.php</strong> - core functions for editing member's profile
+<strong>bb_func_forums.php</strong> - core functions to display forums listing in a dropdown box
+<strong>bb_func_inslng.php</strong> - core function to display all available languages to select in member's profile
+<strong>bb_func_ldisc.php</strong> - core functions to display Recent Topics
+<strong>bb_func_locktop.php</strong> - core functions for locking a topic
+<strong>bb_func_login.php</strong> - core functions for handling login on the board
+<strong>bb_func_man.php</strong> - core functions to parse Manual
+<strong>bb_func_movetpc.php</strong> - core functions for moving a topic
+<strong>bb_func_posthold.php</strong> - core functions to display so called "post-hold" form, when the message can't be posted for some reason
+<strong>bb_func_pthread.php</strong> - core functions to post a new message
+<strong>bb_func_ptopic.php</strong> - core functions to post a new topic
+<strong>bb_func_regusr.php</strong> - core functions to register an account
+<strong>bb_func_search.php</strong> - core functions to search forums
+<strong>bb_func_sendpwd.php</strong> - core functions to send a forgotten password
+<strong>bb_func_stats.php</strong> - core functions to display statistics of forums
+<strong>bb_func_sticky.php</strong> - core functions to make topic sticky
+<strong>bb_func_txt.php</strong> - core text-parsing functions
+<strong>bb_func_unsub.php</strong> - core functions to unsubscribe from a topic
+<strong>bb_func_usernfo.php</strong> - core functions to display member's profile
+<strong>bb_func_usrdat.php</strong> - core functions to parse entered profile's values
+<strong>bb_func_vforum.php</strong> - core functions to display forums listing
+<strong>bb_func_viewip.php</strong> - core functions to display list of usernames which has been posted from the same IP address
+<strong>bb_func_vthread.php</strong> - core functions to display messages listing (topic)
+<strong>bb_func_vtopic.php</strong> - core functions to display topics listing (forum)
+<strong>bb_functions.php</strong> - common software's functions and the version container
+<strong>bb_plugins.php</strong> - script to extend with different add-ons at the common non-destructive level
+<strong>bb_plugins2.php</strong> - script to extend with different add-ons at the common non-destructive level
+<strong>bb_plugins_user.php</strong> - script to extend with different add-ons at the member's level
+<strong>bb_specials.php</strong> - additional forum options, like defs for private, read-only and post-only forums, moderators assignments, members custom rankings etc.
+<strong>COPYING</strong> - GPL License file
+<strong>index.php</strong> - root software's script; may be renamed to have a different filename.
+<strong>setup_mysql.php</strong> - MySQL requests and functions module; you may develop another SQL-module compatrible with PHP based on these functions (MSSQL, Postgre, MySQLite etc.)
+<strong>setup_options.php</strong> - common root settings file
+</pre>
+
+<p>You can't rename forum's root folders, else the software won't function properly.</p>
+
+<p>Depending on the installed add-ons, optionally, there may be also various plug-in script files located under the abovementioned folders.</p>
+
+
+
+<h2><a name="config1"></a>Setting up the software: Step #1</h2>
+
+<p>At first, you should have a <strong>web-hosting space</strong> and the registered <strong>domain</strong> where your forums will reside under. One copy of MiniBB could be executed on one domain only.</p>
+
+<p>Hosting package should support <strong>PHP</strong> and <strong>mySQL</strong></p>
+
+<p>There should be a mySQL database available, and you should know its name, login, password and host name where it resides. This data is required for the miniBB installation. If you don't know what is a mySQL database, try to search the web first. On many hosting plans, there are available administration tools like cPanel, where you could create a database on your own.</p>
+
+<p>mySQL's user name, password, host and database should be known and well-working in advance. According to the mySQL's access privileges, it must be a "super-user", which is allowed to create tables. Many users don't know a lot about these values, and get errors like <b>Database/configuration error.</b> or <b>Database/configuration error (DB is missing).</b>, and are filling our support staff with the same type questions all related just to improper setup of mySQL. miniBB doesn't use anything specific for connection to database - they are only regular PHP/mySQL functions. If you will get such errors via Installation, it will mean <b>you have specified wrong settings</b>.</p>
+
+<p>Unpack your minibb zip package somewhere on your disk. Be sure you are unpacked all files <b>keeping original folders structure</b>, so they are <b>not located in the same folder</b> on your disk. Be sure you have [IMG], [LANG], [TEMPLATES] folders extracted.</p>
+
+<p>You should transfer all miniBB package files and folders to the place under your hosting, where you would like to see your forum running. Use <strong>File Transfer Protocol (FTP)</strong> client for that; hereby you should have FTP access (login and password) to the server. If you don't know what is FTP and how to use it, try to search the web first. <strong>Use a qualified FTP client program for this purpose</strong>, because files should be not broken or binary-converted when transferring on the server. Our FTP client recommendation is <a href="http://www.ghisler.com/" target="_blank">Total Commander</a>.</p>
+
+<p>When all files are transferred, make sure you have uploaded them all, and the files/folders structure <strong>matches the original</strong>. Compare all uploaded and original files by size, one-by-one, to the original package. It is a very common mistake, when some file has been not uploaded in full (during the connection error, or FTP client reset error), and all that may give an additional error report when executing miniBB, so it will not execute partially or in full. For example, this is a reason for common error reports like "<i>TEMPLATE NOT FOUND</i>", "<i>Fatal error.</i>", "<i>...failed to open stream: No such file or directory in...</i>", "<i>Failed opening ... for inclusion...</i>" etc.</p>
+
+<p>By default, in the basic mode, MiniBB doesn't require special file permissions.</p>
+
+<p>On your disk, locate the file called <strong>setup_options.php</strong> which contains almost every common option of miniBB. Open it for editing in some <strong>plain text editor</strong>.</p>
+
+<p>Here and further, <strong>modify all miniBB files with a qualified text editor!</strong> Our recommendation is <a href="http://www.flos-freeware.ch/notepad2.html" target="_blank">Notepad2</a>. This editing program, or similar are not storing additional newlines, spaces or breaks before &lt;?php and/or after ?&gt; tags, and it doesn't change the original structure of the file. Having something extra in the file may cause problems with your forum program. For example, you will be unable to log in, and kind of such error will appear: <i><a href="http://www.minibb.com/forums/7_2583_0.html" target="_blank">Cannot modify header information - headers already sent by (output started at...</a></i>.</p>
+
+<p>Under the settings file, you will find a lot of settings, but it is not required to edit all of them in this 1st step. We will edit only some of them, and will explain the others later. Let's begin.</p>
+
+<ul>
+<li><b>&#36;DB = 'mysql';</b> Depending on your database module, could be 'mysql', 'postgresql' or 'mssql'. Keep 'mysql' for current version of miniBB.</li>
+<li><b>&#36;DBhost='localhost';</b> Specify host name for the forums database. On most hosting plans it is 'localhost', but may vary.</li>
+<li><b>&#36;DBname='miniBB';</b> Specify the name of the database.</li>
+<li><b>&#36;DBusr='USERNAME';</b> Specify the database's username.</li>
+<li><b>&#36;DBpwd='PASSWORD';</b> Specify the database's password.</li>
+<li><b>&#36;Tf='minibbtable_forums'; &#36;Tp='minibbtable_posts'; &#36;Tt='minibbtable_topics'; &#36;Tu='minibbtable_users'; &#36;Ts='minibbtable_send_mails'; &#36;Tb='minibbtable_banned';</b> Specify database's table names - for security reasons, you must change default names.</li>
+<li><b>&#36;admin_usr = 'ADMIN_USR';</b> Specify Administrator's login, is inserted in database also as first engine username with the member's ID equal to 1. Do not use "|" character in the Admin's username (most likely, use only alphanumerical symbols and digits). You may change it anytime later; read on our forums <a href="http://www.minibb.com/forums/7_905_1.html">how to change admin's password</a> properly.</li>
+
+<li><b>&#36;admin_pwd = 'ADMIN_PWD';</b> Specify Admin's password.</li>
+
+<li><b>&#36;admin_email = 'admin@email';</b> Specify root admin's email. It is not displayed to public on forums.</li>
+
+<!-- 2.0.4 -->
+<li><b>//$reply_to_email=$admin_email;</b> not a mandatory option, which keeps an email-address specified, used in Reply-To, Errors-To and Return-Path fields of all forum emailings. If it's allowed by the server, on this email address you will also get all emails returned by some reason. By default, all emails contain Reply-To email specified in $admin_email.</li>
+<!-- 2.0.4 -->
+
+<li><b>&#36;bb_admin = 'bb_admin.php?';</b> Admin panel's script's filename - rename default bb_admin.php (administrative file) in a root directory to something else, for security reasons, and then specify the filename here. The value must contain question mark at the end.</li>
+<li><b>&#36;main_url='http://www_yourdomain_url/forums';</b> Full URL (beginning with "http://") <u>to your forums</u> (not to the main site!!!); <b>with no ending slash</b>); used in email notifications and other scripting stuff, like redirect from one page to the other. Must be set correctly in order the board works fine. <strong>Pay special attention</strong>: <i>www.domain.com</i> and <i>domain.com</i> are not the same things, specially when we talk about handling of authorization cookies. If the cookie has been set from <i>www.domain.com</i>, it will not work on <i>domain.com</i> (so you won't be logged in), and otherwise. This is a very common mistake, which makes troubles with logging in/out in forums.</li>
+</ul>
+
+<p>Pay attention also at the option <strong><a href="#pathToFiles">$pathToFiles</a></strong>, which is described below. It's not a subject of changing if your miniBB program is running smoothly. However on some operating systems like Windows, and under some server configurations, it will be strongly required, that you set full absolute path to your scripts, so they can be included via PHP's <i>include</i> function properly. Also, many third party libraries functions available in PHP, may require this option to be set as full path (GD or Aspell, for example).</p>
+
+<p>After you've done editing of <em>setup_options.php</em>, save it and update on your server. Then proceed to the Installation itself.</p>
+
+<h2><a name="install">Automatic Installation</a></h2>
+
+<p>Installation of miniBB is very simple and takes less than a minute.</p>
+
+<p>Locate <em>http://www_yourdomain_url/forums/_install.php</em> (this URL stands for your own URL) in your browser. If you have configured everything properly, it should open miniBB installation screen, where some of your server's security options will be automatically detected. Read everything carefully and continue installation, following instructions on that screen. Usually, it takes couple of seconds to create all database tables and admin account on forums.</p>
+
+<p><small>MiniBB is also possible to install manually. This is recommended only for professionals having troubles or limitations with mySQL database. For manual installation, execute commands located under <em>_install_mysql.sql</em> file and reset admin's account in the admin panel, clicking the proper link.</small></p>
+
+<p>After installation is completed, delete <i>_install.php</i> and <i>_install_mysql.sql</i> files from the forums folder directory for security reasons.</p>
+
+
+<h2><a name="createForums">Creating forums</a></h2>
+
+<p>miniBB engine is using cookies for registered users and admin log in. PHP sessions could be used optionally, but we don't recommend it because of weak search engine mechanisms on sessions. Please refer to "logging" section for more info. So, turn on cookies in your browser for that stuff.</p>
+
+<p>Do a login to your admin page. Usually is "bb_admin.php", but since your are renamed this file (<b>did you?</b>..), only you know what is admin panel URL. So, go to that panel, and probably you will be prompted for your admin login and password. Enter them, and you must go into admin panel. If the trouble appears and you're not able to login, double check your cookie path, domain and name, probably change them and, on IIS servers, try to uncomment "$metaLocation" option (see below).</p>
+
+<p>There you will see a bunch of options for your miniBB forums. We will describe them <a href="#addforum">later</a>, but now we need to create some forums. So, click on "Add forum" link and... follow instructions on the screen! We guess, it will be very easy to create some forums. Refer to "<a href="#subcats">Supertitles</a>" secton - supertitles are actually replacement for subcategories.</p>
+
+<p>Also, we don't recommend to give forums "large names". Be as laconic as possible. First, it is more rememberable, second, large names do not fit in topics or threads listing pages. Search cralwers like Google also don't like them.</p>
+
+<p>When you enter miniBB as administrator, you are also logged in as simple user. You can make posts under your name, edit other posts, make deletions etc. We'll talk about it later. Only one: by default, you should also see "admin panel" link beneath every page. And you can automatically reach your panel following this link, each time you are signed in as admin.</p>
+
+<h1>Customization</h1>
+
+<h2><a name="config2">Configuring the software: 2nd step</a></h2>
+
+<p>At this moment, your miniBB should be running already! Go to index.php and check this. But, there is a lot of other options that probably you want to change. Let's refer to <i>setup_options.php</i> again. Note for PHP newbies: //$a='b'; string actually means nothing, and this setting will not work in any case, because this statement is COMMENTED (two slashes before). Removing slashes means UNCOMMENT or ENABLE this setting. For changing setting, change its content between apostrophes (''). Numerical settings may also not contain apostrophes.</p>
+
+<ul>
+<li><b>&#36;lang='eng';</b> Language used in miniBB interface. Just check how your language file in directory "lang" is called (example: eng.php is 'eng', rus.php is 'rus'). By default, only english language file is included. For more language packs, refer to our site.</li>
+<li><b>&#36;skin='default';</b> The name of the CSS-skin (in this case, "bb_<i>default</i>_style.css"). Exambles for using skin: 'default', 'light' or 'classic'. For more skins, refer to our site. In many cases, you need to leave the title and edit default skin itself.</li>
+<li><b>&#36;sitename='Community build on miniBB';</b> Forum's title. Appears on all pages, as well as in notification email subjects and bodies. Try to avoid long titles. First of all, it will affect the overall look &amp; feel of the board, because such titles are widely used in forums navigation links. Second, modern email spam filters may consider emails with more than 55 characters subject as "non-human" and block them. MiniBB team's recommendation is to put maximum of 4 most important keywords in such title, describing your forums, with no overlimiting of 35 characters.</li>
+<li><b>&#36;emailadmin=1;</b> Email admin if new topics or replies are posted, also if new user is registered. 0 for no 1 for yes. Replies/topics emails are sent if admin is not the message poster.</li>
+<li><b>&#36;emailusers=1;</b> If <b>1</b>, users can subscribe to email notification on all topics and posts they make (even if they are not authors of these topics or posts). Recommended only for small and medium forums. If your forums have a lot of visitors and posters, we recommend to turn this to <b>0</b>. This setting doesn't affect forgotten password sendings and registration password sendings (see below). Beginning from the version RC3a, it is possible to define, if users may receive notifications on their chosen language (set <i>$emailusers=<b>2</b>;</i>). In this case, you should create email notification files with language 3 letters postfix, for example: email_reply_notify_rus.txt, email_user_register_rus.txt, email_user_password_rus.txt for Russian language (if you defined <i>$lang='rus';</i>). If these files do not exist, default language pack file (email_reply_notify_eng.txt, email_user_register_eng.txt or email_user_password_eng.txt) will be taken. For admin and system notifications, default language pack is taken with ('_eng' postfix).</li>
+<li><b>&#36;userRegName = '_A-Za-z0-9 ';</b> Via registration, users can use only these symbols in their login name. You can add "international" letters (f.e., specific russian symbols under special encoding table). String is based on REGEXP match, so if you are not sure, don't touch it. DON'T ADD "|" sign please, and other specific symbols too (especially like &lt;, &gt;, apostrophe ' and quotes "), else it may lead to security problems with your forum!</li>
+<li><b>&#36;l_sepr</b> is a symbol to separate some values like menu items. For example, set it to '&middot;' and you'll get small middle dot.</li>
+<li><b>&#36;post_text_maxlength='10240';</b> Max characters and spaces allowed in 1 message. Don't set to 0 - then your visitors will not be able to post anything.</li>
+<li><b>&#36;post_word_maxlength=70;</b> Max amount of chars, allowed in 1 word. Used for disabling "long URLs destroys your design" thing.</li>
+<li><b>&#36;topic_max_length=70;</b> Max amount of chars, allowed in topic title.</li>
+<li><b>&#36;viewmaxtopic=30;</b> How many topics to show on one page.</li>
+<li><b>&#36;viewlastdiscussions=30;</b> How many last discussions to show on 1st page, 0 disables last discussions (see below what means "last discussions").</li>
+<li><b>&#36;viewmaxreplys=30;</b> How many replies to show on one page.</li>
+<li><b>&#36;viewmaxsearch=40;</b> Max search results per page.</li>
+<li><b>&#36;viewpagelim=50;</b> Max pages you can view in either search, posts or topics list.</li>
+<li><b>&#36;viewTopicsIfOnlyOneForum=0;</b> If you have only one forum, topics inside can be automatically displayed on 1st page. 1 for yes, 0 for no.</li>
+<li><b>&#36;protectWholeForum = 0;</b> Should we protect all forums by one password? If value is 1, two values below are defined as well. Else set to 0.</li>
+<li><b>&#36;protectWholeForumPwd = 'SOME_PWD';</b> Password for protecting the whole forum.</li>
+<li><b>&#36;postRange = 60;</b> Antispam: time range in secs. User can not post a message less than after this time. Attention: zero (0) disables antispam!</li>
+
+<!--2.3-->
+<li><b>$dateOnlyFormat = 'j F Y';</b> PHP date's definition containing year, month and day only. They could be replaced to "Today" and "Yesterday" on forums, if such variable is specified. Still, it's not a mandatory setting.</li>
+
+<li><b>$timeOnlyFormat = 'H:i';</b> PHP time's definition containing hours, minutes, and seconds only.</li>
+
+<!--/2.3-->
+
+<li><b>&#36;dateFormat = $dateOnlyFormat.' '.$timeOnlyFormat;</b> or <b>&#36;dateFormat = 'j F Y H:i:s';</b> Date format for displaying in forums. The same syntax as defined in PHP. Textual English month names defined by 'F' are replaced to months definitions taken from the language file. If you would like to display "Today" and "Yesterday" instead of a date, put the concatenation of two above options mentioned. Else specify the regular date format and disable two options above.</li>
+
+<li><b>&#36;cookiedomain = '';</b> Cookie domain. Most likely you need to leave this blank, however, if you have problems logging into the forum, set this to your domain name, without the http://. F.e., if your forum is at http://www.mysite.com/miniBB then set this value to "www.mysite.com".</li>
+<li><b>&#36;cookiename = 'miniBBsite';</b> Cookie name. Use only latin letters, digits and underscore sign specifying it. No spaces, dots or special symbols are allowed, this will make the login impossible to proceed. Should begin with a latin letter.</li>
+<li><b>&#36;cookiepath = '';</b> Cookie setting. Usually you don't need to change this.</li>
+<li><b>&#36;cookiesecure = FALSE;</b> Cookie setting. Usually you don't need to change this.</li>
+<li><b>&#36;cookie_expires = 3600;</b> This is the number of seconds that a session lasts for, 3600 = 1 hour, 2592000 = 30 days. The session will exprire if the user doesn't view a page on the forum within this amount of time. If you are experiencing problems with international users, set this to 25 hours.</li>
+<li><b>&#36;cookie_renew = 1800;</b> This is the time after which session is sent again; for example, user was logged 
+once, then logs again (password is not asked), works and this amount of time is reached. Usually it is not 
+necessary to change this.</li>
+<li><b>&#36;disallowNames=array('anonymous', 'ass', 'etc.');</b> This feature prevents users from registering forbidden names. In apostrophes, define unwelcomed user registration names. If you are using more than 1 language pack, define here all strings under name &#36;l_anonymous in language pack, else visitor will be able to register under 'Anonymous' name, for example. Case doesn't matter when you define a word. You could also define a word fragment here, so users will not be able to register login name which contains this fragment.</li>
+<!--20-->
+<li><b>$disallowNamesIndex=array('admin');</b> Combined together with $disallowNames, allows to set list of prohibited usernames which cannot be used via user's registration. The difference is that script checks for a word fragment defined in $disallowNames and <i>exact</i> match with words defined in $disallowNamesIndex. For example, having "admin" in $disallowNames you prohibit users register even the names like "b<i>admin</i>ton". So, put fragments in the first array and exact matches in the second.</li>
+<!--/20-->
+<li><a name="setup_sortingtopics"><b>&#36;sortingTopics=0;</b></a> If 1, topics are sorted by new topics even for anonymous users; else they are sorted by new answers.</li>
+<li><b>&#36;topStats=4;</b> Must be either 1, 2, 3 or 4 - correspondly for statistics' Top5, Top10, Top20 and Top40.</li>
+<li><b>&#36;genEmailDisable=0;</b> 1 totally disables system email sendings: forgotten password sending and registration password sending, if you enabled &#36;closeRegister (see below). Useful for those who has no sendmail or another program installed on the server.</li>
+<li><b>&#36;defDays=365;</b> Default term value which defines statistics for that days period (for example, if you want to show statistics within 1 month as a default value, set it to 30).</li>
+<li><b>&#36;userUnlock=0;</b> If it is set to 0, registered user <b>can not</b> unlock his topic again after it was locked (by admin or himself), and vice versa. If set to 2, users are not able to lock their topics in general (avail. from ver. 2.0 RC3).</li>
+<li><b>&#36;emailadmposts=0;</b> It means that admin receives emails only about new user registration. If $emailadmposts is set to 1, admin also will receive notification about every new post. If it is not set, or is equal to 0, admin will not receive those emails, but will be able to subscribe to topics manually.</li>
+<li><b>&#36;useredit=86400;</b> Parameter defines number of seconds, after which user WILL NOT BE ABLE to edit his message. By default is 1 day (86400 sec.) If 0 or not set, user will be able to edit his post everytime.</li>
+<li><b>//&#36;metaLocation='go';</b> This option should solve login/logout problem which has been experienced by some users on IIS servers and other exotic servers. These servers can not send 2 headers (cookie and location) one after another. Having <b>go.html</b> file (or any other file, cause filename can be set here) in the templates forums directory with meta header in it, you first will visit that file, and then you'll be relocated from it to another place. You can edit go.html if your wish; for now, its structure is very simple and it redirects within 0 seconds, so probably you won't ever actually see it. This option is not turned on by default.</li>
+<li><b>//&#36;closeRegister=1;</b> setting this to 1, it is possible to avoid "open" registrations. By default when user registers, he enters desired login/password and from the first step becomes a registered user. It is possible to avoid incorrect email address upon registration in that case. If you set this setting to 1 (default is still 0 or unset), on the registration form user will not see the password field, and will receive it via email provided upon registration (password will be generated automatically). In the template <i>user_dataform.html</i> there  should be &lt;!--PASSWORD--&gt;&lt;!--/PASSWORD--&gt; tags; when registering, user won't see the inner content between these tags, but will see it only editing the profile (so the tags are needed because the same template is used for the registration and modifying the profile). Having this option set, you SHOULD set $genEmailDisable parameter equal to 0. And of course you should have sendmail working ok. If you set this option to 1, don't forget to edit registration message <i>$l_goToLogin</i> in language pack, when you should inform the user that he will get his password on email. Alternatively, in your forums manual mention that registered users should enter their correct email address, because password will be sent here. <!--2.0 RC6-->If you have this option set, user must confirm email also if he changes it in Preferences.<!--/2.0 RC6--></li>
+
+<li><b>//&#36;timeDiff=21600;</b> Allows you to set time difference between you and server, so all dates are displayed in your time zone. This could be a rare thing and necessary only if you, for example, have server in US and are visiting it from Norway. You need to set up $timeDiff in seconds. Positive 21600 sets up +6 hours of time difference. Note that miniBB is still saving server time into SQL database. This option will only re-calculate the server times in your format. Setting this, of course, will slow down the execution of scripts.</li>
+
+<li><b>//&#36;stats_barWidthLim='31';</b> this setting affects statistics bar length. In most cases, you do not change this.</li>
+
+<!--20-->
+<li><b>$dbUserSheme</b>=array(<br />
+'username'=&gt;array(1,'username','login'),<br />
+'user_password'=&gt;array(3,'user_password','passwd'),<br />
+'user_email'=&gt;array(4,'user_email','email'),<br />
+'user_icq'=&gt;array(5,'user_icq','icq'),<br />
+'user_website'=&gt;array(6,'user_website','website'),<br />
+'user_occ'=&gt;array(7,'user_occ','occupation'),<br />
+'user_from'=&gt;array(8,'user_from','from'),<br />
+'user_interest'=&gt;array(9,'user_interest','interest'),<br />
+'user_viewemail'=&gt;array(10,'user_viewemail','user_viewemail'),<br />
+'user_sorttopics'=&gt;array(11,'user_sorttopics','user_sorttopics'),<br />
+'language'=&gt;array(14,'language','language'),<br />
+'num_topics'=&gt;array(16,'num_topics',''),<br />
+'num_posts'=&gt;array(17,'num_posts',''),<br />
+'user_custom1'=&gt;array(18,'user_custom1','user_custom1'),<br />
+'user_custom2'=&gt;array(19,'user_custom2','user_custom2'),<br />
+'user_custom3'=&gt;array(20,'user_custom3','user_custom3')<br />
+);<br />
+
+<p>This database scheme array describes relations between field names in user_data_form.html (registration, profile) correspondingly to database, and database indexes used in userinfo viewing. So, you can use your own database table for usernames (for example, as another part of your site) and only define relations here. Relation format: [MINIBB DEF] =&gt; array([NUMERICAL_INDEX_KEY],[TABLE_FIELD_NAME],[FORM_FIELD_NAME]); Pay attention that the structure of fields, their types must be default as in miniBB database, for example, user_password must be saved in md5 format. Edit this option ONLY if you are NOT NEWBIE!</p>
+
+<p>How the registration/profile script works: it goes through every [MINIBB DEFINITION], and correspondly parses a $_POST[FORM_FIELD_NAME]. When viewing profile, [INDEX] is taken into consideration. Fields like "user_regdate" or "activity" are not defined by user, so, it is not necessary (and even forbidden) to define them here.</p>
+
+<p>Second password field must be named 'passwd2'.</p>
+
+<p>All values in a form must be named as their fields. Example: field "login" will be valued as "{$login}".</p>
+
+<p>For viewing new or custom fields on User Info page, you need to set corresponding $l_usrInfo variable. Keys of this array are the same as keys for table fields (for example, if key for user_icq is 5, ICQ language definition is $l_usrInfo[5]). user_custom1, user_custom2, user_custom3 database fields can be displayed on the user info page as well you will need to add corresponding values for these to the language pack though: $l_usrInfo[12], $l_usrInfo[13] and $l_usrInfo[14] ,- accordingly. You may also add additional custom fields, naming them so they contain 'user_custom' in the system key definition. In that case, set corresponding $l_usrInfo so it begins from 15. For example, if you have 'user_custom1', 'user_custom2', 'user_custom_name', 'user_custom_surname' listed in order one by one, $l_usrInfo keys are 12, 13, 14, 15.</p>
+
+<p>If you have enabled email notifications about new user registrations and/or send registration information to user's email, you MUST also fix variables defining user data, in the templates: templates: email_admin_userregister.txt, email_user_register.txt. Variables must correspond to your registration form fields (for example, if you have form field named "email", variable will be {$email}). With default miniBB database structure, no need to change these templates.</p>
+
+</li>
+
+<li><b>$dbUserId='user_id'; $dbUserDate='user_regdate'; $dbUserDateKey=2; $dbUserAct='activity'; $dbUserNp='user_newpasswd';
+$dbUserNk='user_newpwdkey';</b> Field names that are updated AUTOMATICALLY. DO NOT include them in db scheme list.</li>
+
+<li><b>$enableNewRegistrations=TRUE;</b> If you want to enable new users register themselves; FALSE in another case.</li>
+<li><b>$enableProfileUpdate=TRUE;</b> If you want user would able to update their profiles themselves; FALSE in another case.</li>
+
+<li><b>$indexphp='index.php?';</b> The name of your index file; you can rename it to something else if miniBB's index is conflicting with existing site's index name. Don't forget to put "?" after filename.</li>
+
+<li><b>$usersEditTopicTitle=TRUE;</b> If you want topic authors may edit their topic's title; else FALSE.</li>
+
+<li><a name="pathToFiles"><b>$pathToFiles='./';</b></a> Full file system path to your miniBB files (could be, /usr/home/public_html/forum/ for example, on Linux). Must have SLASH at the end. You may use one copy of general miniBB core, but having just different index and options file, create many communities based on this core. This option also could solve some file including problems on systems like Novell. You can set the full path to the scripts, or leave default if the board is working normally. This option also is necessary to set, if you include your own php header and footer (see below).</li>
+
+<li><b>//$includeHeader='header.php';</b> Uncomment and set alternate header, if you don't want to use miniBB's default main_header.html (useful if you use some header.php from your own site, for better integration).</li>
+
+<li><b>//$includeFooter='footer.php';</b> The same as above, for footer. Don't forget that our copyright link must migrate from our footer to yours in this case.</li>
+
+<li><b>//$emptySubscribe=TRUE;</b> Uncomment and set to TRUE if you want your users may subscribe to the topic without posting some text.</li>
+
+<li><b>//$allForumsReg=TRUE;</b> If you want to make all forums for registered only users by one touch; else FALSE.</li>
+
+<li><b>//$registerInactiveUsers=TRUE;</b> If you want all registered users become inactive until you accept them. Used for manual user activity acceptions. If activity field's value in database is "1", user is able to make new topics, posts and another operations on forum. If "0", user is able only to login, but not use anything. It means his account <i>is</i> in database, but has been blocked for a while. With this, miniBB turns into a powerful anti-flood message board: you can make all your forums for registered users only with one option; you can use only "live" emails, sending registration passwords there, you can set an option to view all new registrations on your email, and even if flooder has been registered, entering his Profile, you as admin or moderator can disable his activity (if you are logged as admin, at the end of member's profile, you will see a cell "Member" and "Yes/No" in it. Clicking on Yes, you enable member status, and vice versa). In combination with sending all new user registration on admin's email, you always will know who was registered on your forums.
+
+<p>If user is registered and not accepted, he will always see a message "You don`t have access to this forum." or something else defined in language's $l_privateForum. Correct this variable according to your needs OR just mention in your forum rules, that user is inactive until accepted.</p>
+</li>
+
+<li><b>$enableViews=TRUE;</b> By default, miniBB counts topic views, but does it only by simple way, when user opens some topic from the first page. Actually, topic views is not really necessary column, but could be useful for small communities. When counting views, SQL-server makes an UPDATE request; on large databases, it could cause speed problems. So there is also possibility to comment or set this option to FALSE so this kind requests will not happen.</li>
+
+<!--/20-->
+
+<li><b>//$mod_rewrite=TRUE;</b> Set only if you are using Apache server and would to use "virtual addresses" via it in miniBB. Read for more below. Not for newbies!</li>
+
+<!--20 RC2b-->
+<li><a name="userInfoInPosts"><b>//$userInfoInPosts=array($dbUserSheme['user_from'][1], $dbUserSheme['user_website'][1]);</b></a> Available from version 2.0 RC2b, this option defines list of user's table fields, which values may be displayed in every post user makes. You can put exact field values here (not based on $dbUserSheme), for example:
+<pre>
+$userInfoInPosts=array('user_from', 'user_website');
+</pre>
+but be sure these fields are appearing in user's table itself. After setting this, in main_posts_cell.html template you can set, for example, {$userInfo_<i>user_from</i>[$poster_id]} and {$userInfo_<i>user_website</i>[$poster_id]}, and you will get actual values instead of variables when template will be parsed. Operating with user's info table this way, you can get the value of any user field (like avatar, signature etc.) Combining this with plugins, we are achieving very smart level of customization.
+</li>
+<!--/20 RC2b-->
+
+<!--20 RC3a-->
+<li><b>//$userDeleteMsgs=1;</b> Available from version 2.0 RC3a, this option allows users to delete their own topics and/or messages (set 1 for allowing to delete only replies, 2 - for deleting both topics and replies). This option is tied up with $userEdit option (see above) - when topic or message is expired for editing, it can not be deleted anymore. When deleting a record, PHP script makes many updates in another fields (number of posts per forum, posts per topic, posts per user etc.) - so, use this function on your own risk. Creating/deleting their topics often, users may overload your database.</li>
+<!--/20 RC3a-->
+
+<!--20 RC4-->
+<li><b>//$textLd=1;</b> Available from 2.0 RC4, setting $textLd=1; or $textLd=2; you will get {$lastPostText} variable available in latest discussions section on the first page (templates/main_last_discuss_cell.html). If set to 2, all HTML formatting is removed from the post text, and you can use it in &lt;acronym&gt; tag, for example. If set to 1, post text is left as it is.</li>
+<!--/20 RC4-->
+
+<!--20 RC5-->
+<li><b>$startIndex='index.php';</b> Available from 2.0 RC5, this <b>mandatory</b> option sets the basic filename of "index" file, which will be displayed in backlinks to the main forum on the intermediate forum pages. Prevents duplicated content of search engines indexing. Default is 'index.php'. Set 'index.html' for mod_rewrite (when only setting mod_rewrite "index.html" rule - read below).</li>
+<li><b>$manualIndex='index.php?action=manual';</b> The same principle as for <b>mandatory</b> setting above; displays backlink to manual page. You may set 'manual.html' for mod_rewrite.</li>
+
+<li><b>$description='How to make up a forum? Get miniBB - free and paid discussion custom forum software, bulletin board system script, written in php &amp; mysql. Download now!';</b> - mandatory option specifying default description tag for the forums start page and other internal pages. Description in topics list is generated basing upon the forum description, and messages list description is based upon the first characters of the first message.</li>
+
+<li><b>//$enableGroupMsgDelete=TRUE;</b> Available from 2.0 RC5, enables or disables group messages deleting by admin or moderator - he is able to delete many messages at once, checkmarking them and clicking on necessary link. Specially useful on anonymous boards, when you are forced to fight the spam or flood. For enabling this option, just uncomment the variable and set it any value.</li>
+
+<li><b>//&#36;post_text_minlength=10;</b> Available from 2.0 RC5, this not mandatory option sets minimum amount of symbols needed for posting a message, preventing unmeaningful posts. Default is 10 symbols. Uncomment and set to 0 if you want to disable this.</li>
+<!--/20 RC5-->
+
+<!--20 RC6-->
+<li><b>//$loginsCase=TRUE;</b> Available from 2.0 RC6, not mandatory option. If is not set, or set to FALSE, all logins are CASE SENSITIVE (by default). For example, if you have registered username "Paul", you must type "Paul" in your login field. Not "PAUL, and not "paul" - this will not work. If this option is enabled and set to TRUE, you can type anything - "paul", "PAUL", "Paul" etc. - anything will be compared in lowercase. Notice: nobody is able to register "PAUL" or "paul" usernames, if there is already one "Paul" in database - this doesn't depend on setting this option. This option also DOES NOT affect passwords; password must be entered the same manner as via registration.</li>
+<!--20 RC6-->
+
+<!--20 RC5-->
+<li><b>$enablePhpMailer</b>=array(
+<br />
+'smtp_host'=>'mail.server.com',
+<br />
+/* Specify SMTP host here */
+<br /><br />
+
+'smtp_auth'=>FALSE,
+<br />
+/* If TRUE for SMTP auth, set to TRUE, else to FALSE */
+<br /><br />
+
+'smtp_username'=>'',
+<br />
+/* If TRUE for SMTP auth, set SMTP username */
+<br /><br />
+
+'smtp_pass'=>''
+<br />
+/* If yes for SMTP auth, set SMTP password */
+<br />
+);<br /><br /> Available from 2.0 RC5, this hidden setting (not included by default) allows to use external <a href="http://phpmailer.sourceforge.net/" target="_blank">PHPmailer class</a> for advanced SMTP sendings. For enabling PHPMailer, copy PHPmailer files to forums root directory (class.phpmailer.php, class.smtp.php) and add PHPMailer SMTP settings described below, to the setup_options.php file. Using this class may be helpful, if you have no SMTP installed on server, and want to use external SMTP, which you know settings for, and which is allowed to accept connections from your server. No need to use this class, if the scripts are able to send emails through default server's SMTP.</li>
+<!--20 RC5-->
+
+<li><b>$allowHyperlinks=10;</b> mandatory option; if greater than zero, it means hyperlinks will be allowed for members only who made not less than <i>$allowHyperlinks</i> postings. If set to zero, hyperlinks will be automated also for guests. By hyperlinks, we mean highlighted URLs in postings: when you post anything beginning from http:// , or www. or enclosed in [url][/url] BB codes, it is converted to a clickable hyperlink.</li>
+
+<!--2.0.5-->
+<li><b>//$addMainTitle=1;</b> non-mandatory option which is turned off by default: if it is set, then on topics listing pages and on the thread listing pages, forum generic title is added after certain forum's or topic's title. For example, if you have '<i>My Forums</i>' specified in <i>$sitename</i>, and you have a forum called '<i>Forum One</i>', and the topic '<i>Test Topic</i>' in this forum, then: if you set this option to 1, &lt;title&gt; tag of topics listing page will be '<i>Forum One - My Forums</i>', &lt;title&gt; tag of topics listing page will be '<i>Test Topic - My Forums</i>', else it will be just '<i>Forum One</i>' and '<i>Test Topic</i>' correspondingly.</li>
+<!--/2.0.5-->
+
+<!--2.1-->
+<li><b>//$emailCharset='UTF-8';</b> non-mandatory option which is turned off by default: if it is set to the certain value (like for example 'UTF-8'), and your forums email templates are stored in specific encoding (like UTF-8), it is recommended to set up this option, so emails are sent in the proper encoding and not garbled on the client side.</li>
+<!--/2.1-->
+
+<!--2.3-->
+<li><b>//$url_follow=TRUE;</b> non-mandatory option (not available by default). If set to TRUE, every posted URL will NOT contain rel="nofollow" attribute, like it happens by default with URLs which are not related to the primary forums domain. Please don't forget, that admins and moderators always have a right to set any kind of 3rd party URL without this attribute, using [urlc=...][/url] code instead of regular [url=...][/url]. This attribute manipulation on such pages as Statistics or User's Profile, is controlled by 'NOFOLLOW' variable which needs to be defined separately.</li>
+
+<li><b>//$editMsgReloc=TRUE;</b> non-mandatory option (disabled by default). If set to TRUE, after editing the message you will not see an intermediate warning screen, redirecting straight to the message. This setting may be enabled only if you are sure editing message doesn't affect other installed add-ons. For exampe, if you have File Upload add-on installed, this setting should be disabled, else when modifying message, the script will "miss" re-uploaded files and modified file descriptions. The same could affect many other regular and custom add-ons which include the code for bb_plugins2.php. Disabled by default.</li>
+
+<li><b>//$allowedRefs=array('www.domain_one.com', 'www.domain_two.com');</b> non-mandatory option (not available by default). Allows to specify list of allowed referrers which may come from external sites posting something to your forums. Format: PHP array. DO NOT SPECIFY that variable if you don't really understand what it means. It's only for professional sites which are plugged in with 3rd party software.</li>
+
+<li><b>//$allowedDirectPostActions=array('action_1', 'action_2');</b> non-mandatory option (not available by default). Allows to specify list of allowed actions passed under $action variable, which may be used by custom add-ons or scripts bundled with forums. Format: PHP array. DO NOT SPECIFY that variable if you don't really understand what it means. It's only for professional sites which are plugged in with 3rd party software.</li>
+
+<li><b>//$uname_minlength=3;</b> non-mandatory option (not available by default). Non-destructively specifies the minimum username length upon registration.</li>
+
+<li><b>//$uname_maxlength=40;</b> non-mandatory option (not available by default). Non-destructively specifies the maximum username length upon registration.</li>
+
+<!--/2.3-->
+
+<!--2.4.1-->
+
+<li><b>//$fIconWidth=16;</b> non-mandatory option (not available by default). Non-destructively specifies the width of forum icons.</li>
+
+<li><b>//$fIconHeight=16;</b> non-mandatory option (not available by default). Non-destructively specifies the height of forum icons.</li>
+
+<!--/2.4.1-->
+
+</ul>
+
+<p>That's all, folks! We did the advanced miniBB setup. After that, your forums will work according to your needs and preferences. But, you need to do something corresponding to your page's design, didn't you? So, let's go to the next level.</p>
+
+<h2><a name="templates">Templates</a></h2>
+
+<p>Templates are used to separate HTML code from PHP. They are located in "templates" directory and are usual HTML files (or TXT files - if we talk about email templates). If you don't like our templates, you can change them or design yours. <b>It is important to save all variables</b> (they look like usual PHP "variable variables": {&#36;...}) like shown. Template parser turns every of this variables in its VALUE, giving necessary results.</p>
+
+<p>We don't recommend editing templates with WYSIWYG editors. Try to work with "clear" code, since all PHP variables included in templates will not work in HTML separately. We hope, that it will be enough for you to use any kind of simple text editor with our templates: they are very clean and tide, "hand-made". We tried to make all templates compliant to W3C recommendations. We can't guarantee, that they will work as 100% W3C standart works, but they look the same in different browsers.</p>
+
+<p>If you decide to change templates, you need to refer to the miniBB logic in building them. We hope, all templates names are pretty clear to understand, what they mean. Also, leave ALL the variables inside the templates as they shown.</p>
+
+<p>Most templates are used in different operations (that's why we call this "<b>mini</b>-BB ). F.e., <i>user_dataform.html</i> is used both for registering new user and editing user preferences, <i>main_post_form.html</i> is used on all posts, topics and editing pages.</p>
+
+<p>It is necessary to pay attention to email templates (begins with "email_" and ends with ".txt"). They have special format: first line of every template should contain <b>SUBJECT&lt;&lt;...&gt;&gt;</b> line, with some text instead of "...". As you understand, between "SUBJECT&lt;&lt;" and "&gt;&gt;" there is subject of email. <b>Don't remove</b> this line, else you emails will be garbled!</p>
+
+<p>In <i>main_header.html</i>, you will find page title as &lt;title&gt;&#36;title&lt;/title&gt;. Title is changing dynamically according to the page, f.e., on topic page it becomes topic name, and on topic lists it becomes forum name. This is very smart feature for search indexers (like Google or AllTheWeb for example) to INDEX your forum, since these engines are working mostly with page titles. Also, that's why we recommend to think about "right" forum names: as more simple they will be, as better. In this case, also don't forget to include (or change) META-tags in header.</p>
+
+<h2><a name="customtpl">Custom templates</a></h2>
+
+<p>There is possibility to make a custom template and call it from the script. For example, you need to create separate page before user registration (agreement): you can add any custom template, which is not included in miniBB. Design your template as usual (all script pre-defined variables also work), put it in "/templates" directory and call from the script like:</p>
+
+<pre>
+index.php?action=tpl&amp;tplName=custom_template
+</pre>
+
+<p>where tplName is a name for your created template (in this case, "custom_template.html").</p>
+
+<p>In that way you can also create stuff like "Most loved topics and answers" with the direct list of topics, any FAQs, manuals, description pages, agreements etc., etc., as like as the whole site!</p>
+
+<h2><a name="lang">Language packs</a></h2>
+
+<p>For international (non-english) users, we offer "language packs" feature. You can get them from our "Downloads" page. If you have not found a pack for your language, please translate it basing on the English (or other) translation, and send back to us. This way you may help many users from your country, which also choose miniBB.</p>
+
+<p>Language packs can be found in forums "lang" directory. Usually, only "eng.php" pack is included for default english language on the board. Language pack name is changed in options file.</p>
+
+<p>Language pack simply contains PHP variables with their values. Note for editors: use ` instead of ' in the sentences, or use slashed apostrophe &#92;'. Technically, it is better to use apostrophes (' ') instead of quotes (" "), because of the engine's speed increase.</p>
+
+<p>We hope, it is pretty simple to understand, what's going on inside of language pack, if you want to change it. Despite there are more notes (and any language pack <b>should</b> contain these settings):</p>
+
+<ul>
+<li><b>&#36;Lang:English:&#36;</b> string is referred to language "name", which appears in "Language" menu. When making another version of pack, write language name in English between "&#36;Lang:" and ":&#36;"</li>
+<li><b>&#36;l_meta</b> tag is META-LANGUAGE value for your html encoding. Usually it looks like '&lt;meta http-equiv="content-type" content="text/html;charset=iso-8859-1"&gt;' where you need to change only charset value. Refer to W3C docs for more info on encoding. Note: if you want users to make posts on different language encodings (f.e., english, russian and latvian on the same forum), make l_meta blank ('').</li>
+<li><b>&#36;l_months</b> variable defines array of month names separated by ":". Be sure to include EXACTLY 12 values!</li>
+</ul>
+
+<p>Other variables are in assorting order. While working on miniBB, we have added them in "order of appearance". </p>
+
+<p>If you will see a string looking like "Language variables miniBB vX.X", it means that, variables after this string were added or changed for corresponding version. If we add more features, we will also add variables, and for better finding they will be added in another section.</p>
+
+<p>Language packs describe ALL language used in board, incl. admin panel.</p>
+
+<p><b>Important</b>: language pack's filename can have only of 3 letters (examples: eng.php, alb.php, rus.php).</p>
+
+<p>On a multilingual forum where more than 1 language is installed, and if you are using board's emailing features, you will probably need to create emailing templates for each language separately, naming them with corresponding prefix. For example, if you want English and French interfaces available, and make it possible for registered users to change their preferred language in Preferences, do the following:</p>
+
+<ul>
+<li>Download and copy eng.php, fre.php files to /lang/ folder;</li>
+<li>Create emailing templates for the French language, taking English templates from /templates/ folder, which begin with <i>email_</i> and end with <i>_eng.txt</i>; leave English templates as they are, but create French language templates, naming them with "fre" postfix, i.e. they should begin with <i>email_</i> and end with <i>_fre.txt</i>; copy all these templates to the /templates/ folder;</li>
+<li>For allowing members to receive email notifications on the preferred language, set <i>$emailusers=2;</i> in setup_options.php (read more above this option above).</li>
+</ul>
+
+<p>Having multilingual forums, be always sure you have installed additional, or other than English languages successfully. Specially test any processes related to the email notifications: new user sign up, notification about new post made, password's restoration. If your language is installed improperly, it may cause the software working wrong.</p>
+
+<p>If you have multilanguage forum, it would be a good idea to create many manuals on each language, naming it <i>manual_LNG.html</i>, where LNG is the prefix for your language pack. By default, only manual_eng.html is included. If there is no manual for user's language, empty page will be displayed.</p>
+
+<p>Please note: some variables specified in language pack, are both used in PHP scripts and JavaScript interface notices. That's why in some places it is not suitable to use <strong>apostrophes in your custom translation</strong>. This specially affects 3rd party language packs not checked by miniBB team, or for example, the variable called <strong>$l_accessDenied</strong>, which could be edited upon special rules on forums, and some other variables from the premium add-ons, which are mentioned in plugins instructions. If you are experiencing troubles posting a messages or getting a JavaScript error on page, it could be the reason of the wrong interpretation of apostrophes. Check the JavaScript Error Console of your browser for errors.</p>
+
+<h2><a name="css">Skins: CSS file</a></h2>
+
+<p>CSS (cascading style sheet named bb_default_style.css) is designed to fit all font colors, table borders and sizes on the page in one file. It is included only once in <i>main_header.html</i>. It is W3C compliant. You can edit it as you wish, to fit your forums design to your page's design. In our download section, you will find some free examples of another styles/skins. Even if you don't know CSS, it is very easy to change mostly a couple of colors in HEX, fonts and sizes in pixels/points. Some example CSS skins downloadable from our site can also contain icon packages and image backgrounds and it's easy to add your own background to any CSS skin. You can find skin parameter description in CSS file itself - all main parts of it have small notes explaining the meaning of subsequent font/color/border and other parameters.</p>
+
+<h1>Administrative options</h1>
+
+<h2><a name="panel">Admin panel</a></h2>
+
+<p>You can go to the admin panel manually typing in your browser admin panel's filename which you have entered in options file. But usually, you only need to login as admin into forums, and you'll see admin panel link at the bottom of each page.</p>
+
+<p>Admin panel is very small and very simple. Here is the list of options:</p>
+
+<a name="addforum"></a>
+
+<ul>
+<li><b>Add forum.</b> We have talked about it earlier. With this operation, you can add forum name, description, icon. Forum icons are displayed near forums table. They are placed in directory /img/forum_icons. Icon should be .GIF or .JPG with the size of 16x16 pixels. Here you just need to type a filename of image WITHOUT directory name. If no image specified, default.gif is loaded. You may use straight HTML in forum's name or description, putting, for example, direct HTML links there.</li>
+
+<li><a name="editforum"><b>Edit forum.</b></a> Click on it, choose forum to edit from drop-down list. Editing form appears. You can change forum name, description, and order there. For editing, press "Edit form" button. Below you can see fast preview of how forums will look like. Re-ordering forums is simple: you just need to click on &uarr; or &darr; symbols to "move" forum up or down (this is avalable only beginning from version 2.0 RC3).
+
+<p>From this menu you can also DELETE forum. Note that deleting forum will <b>immediately</b> deletes ALL posts and topics corresponding to it. We don't recommend to do that, 'cause there is no way back. If you still need to delete forum, just click on the checkbox saying "Delete forum" and press "Edit". Forum will be deleted and there will be NO ASKING TWICE, so be careful with this thing.</p>
+
+<p>Deleting forums brings us headache, so, if you will never delete forums, open your admin panel file for editing, find the following line:</p>
+
+<pre>case 'editforum3':</pre>
+
+<p>and add <b>after</b> it the following line:</p>
+
+<pre>if(isset($_POST['deleteforum'])) unset($_POST['deleteforum']);</pre>
+
+<p>You should have:</p>
+
+<pre>
+case 'editforum3':
+if(isset($_POST['deleteforum'])) unset($_POST['deleteforum']);
+$forumname=(isset($_POST['forumname'])?$_POST['forumname']:'');
+$forumdesc=(isset($_POST['forumdesc'])?$_POST['forumdesc']:''); ...
+</pre>
+
+<p>etc. This will avoid forum deleting in any case - even if intruders will know out about your password (we hope this never happens).</p>
+
+</li>
+
+<li><a name="subcats"><b>Forums supertitles (categories).</b></a> Since miniBB is designed for small/medium communities, we have not planned to make splitting forums list by additional category. If you have 4-5 forums, there is no need to create categories, because in this case, your forums will look badly organised. However, there is a possibility to emulate categories for forums, this feature is invented since version 2.0 RC3 and called "supertitles". Supertitles appear BEFORE main forum title, emulating category, and you probably may add supertitles AFTER you created a list of forums and arranged them in desired order. Go to forums preview when editing any forum, click on forum's title when you want to put supertitle, and add it in corresponding field. Notice that moving the main forum title affects also supertitle, so putting one forum from one "category" to another means actually that you need to remove supertitle from this forum and add it to another forum's title. You may use straight HTML in supertitles.
+
+</li>
+
+<li><a name="removeuser"><b>Remove user.</b></a> This immediately deletes selected user. You need to write in <b>user's ID</b>. How to know about that ID? Go to the forums, search for user you want to delete, find user message and mouse over your cursor on member's title below the username. The link will be something like http://.......?action=userinfo&amp;user=243. The last digit (f.e., 243) will be user ID.
+
+<p>Checking box, you can also remove all user MESSAGES and TOPICS (with other user's messages). And all user email notifications, too. We do not recommend to do this. If you won't check this box, only info about registered user will be removed, and all his topics and posts left will be signed as if he is unregistered user (and from now on he will be, actually). See below miniBB users hierarchy.</p>
+
+<p>Note: on large forums, it takes some time to remove user with topics and posts. Be patient.</p>
+
+<p>Programming notes: removing user operation can cause some bad forums security issues(if someone knows your password, of course). For disabling delete, find this line in your admin PHP file:</p>
+
+<pre>case 'removeuser2':</pre>
+and add <b>after</b> it the following line:
+<pre>if(isset($_POST['removemessages'])) unset($_POST['removemessages']);</pre>
+
+<p>You should have:</p>
+
+<pre>
+case 'removeuser2':
+if(isset($_POST['removemessages'])) unset($_POST['removemessages']);
+$userID=(isset($_POST['userID'])?$_POST['userID']:0);
+...
+</pre>
+
+</li>
+
+
+<li><a name="banuser"><b>Ban user IP.</b></a> We have, basically, the simplest and the strongest bans. They are based on user IP (usual proxies also checked), and prohibit user even to enter forums. For banning user IP, just enter his correct IP (contained maximum 15 symbols, including dots). You can also ban so called IP "mask", entire network. Example: if IP to ban is 191.88.32.12, you can ban all IPs within local network (enter <i>191.88.32.+</i>, or more stronger - <i>191.88.+</i>
+
+<p>How to know about user IP? Log into forums as admin, and open any thread. In every user message, you will see his IP.
+Extended feature: clicking on this IP, you can see a list of usernames, under which posts were made. It is nice option for viewing all "anonymous" user nicknames. This options is also available for moderators.</p>
+
+<p>Banning IP, you can also set comment why it was banned, so you can be oriented in ban list in the future easily.</p>
+
+<p>For unsetting ban on IP, just do "Unset/unban selected IPs" in the admin panel. When you click on this link, a list of all bans is offered. Just check necessary bans and press the button.</p>
+</li>
+
+
+<li><a name="banuserid"><b>Ban user by ID.</b></a> You can also ban registered users by their ID. This is really useful if, for example, you have forums only for registered members, and someone begins to flood the board. This operation can be done in the same form where you can ban user ID (see above), you need only to enter correct user ID, not IP. You can view user's ID clicking on his "Member" title (ID goes straight after <i>"user="</i> in URL string). You can't ban user with 0 (zero) ID.
+</li>
+
+
+<li><a name="searchusers"><b>Search users.</b></a> Admin is allowed to search users by ID, username (login) or email, also inactive users (haven't posted anything since registration) and haven't made new posts since defined date. Each record found displays user's login with link to userinfo on the board, registration date, email (even if "hidden") and last reply's post date. In some cases, also found records' count is displayed. Search users results are splitted by pages, if results count is really big.
+
+<p>Searching on ID, you need to enter decimal. Searching on email or login, you need to enter some string. If you do not enter something on ID or login, ALL users list will be displayed.</p>
+
+<p>When searching inactive users, you do not need to enter something. Receiving inactive users list, you can delete many of them by one-time, checking boxes and clicking "Delete" button.</p>
+
+<p>When you search users that haven't posted anything since [date], you need to define this date in YYYY-MM-DD format, which means: "4-digits-year"-"2-digits-month"-"2-digits-day". Script is looking for people, who's last reply date is EARLIER than entered date (not including!). That means, if you enter 2002-03-07, for example, you will look for people, who's last reply was earlier than on 7th March, 2002. People with last reply on 7th March will not be shown, also as "inactive" users, too.</p>
+
+<p>Clicking on [Delete], you can pop-up window with "Remove user" option, where user's ID will be automatically written in form. "Remove user" operation is described above.</p>
+
+</li>
+
+
+<li><a name="deleteemails"><b>Delete email notifications.</b></a> If "user emailing" option in your setup is set to 1, it may happen, that some users emails are already "dead". In this case, you, as the administrator, should receive "mailer-daemon feedback" messages saying "Could not deliver message" or something. 
+<p>In that case you can simply delete dead emails. To do that, type in an email to delete or simply press button for clearing up the whole table.</p>
+</li>
+
+
+<li><a name="exportemails"><b>Export emails.</b></a> This operation is necessary, if you want to make a mass-mail for your users. PLEASE, DON'T SPAM YOUR FORUM USERS! You need the email list only for important news, f.e., site's moving to new address, forums reconstruction etc.
+<p>You can extract only emails or email+username, use tab separator or comma between these values, and output emails to the screen or separate file attachment. If you've chosen last one you will get a download window after pressing submit button.</p>
+</li>
+
+
+<li><a name="restoreadmin"><b>Restore Admin data in database.</b></a> This option updates users table and sets new admin password, username and email if you have changed any of these in the options file. Yes, you can change your admin name anytime you want, more so - we recommend to do it regularly.</li>
+
+</ul>
+
+<h1>"Hidden" admin forums options</h1>
+
+
+<h2><a name="privateforums">Private (closed from public) forums</a></h2>
+
+<p>Only site owner can define private forums and users which are allowed to post and view them. Edit bb_specials.php file, find variable <b>&#36;clForums=array();</b> and add <b>&#36;clForumsUsers[]=array();</b>. $clForums array defines closed forums ID(s), and $clForumsUsers[] elements defines users which are allowed to post in this forum. Here is an example:</p>
+
+<pre>
+&#36;clForums=array(1,3,6);
+&#36;clForumsUsers[1]=array(2,5);
+&#36;clForumsUsers[3]=array(10,11);
+&#36;clForumsUsers[6]=array(12,22);
+</pre>
+
+<p>That means: forums with IDs 1,3,6 are private. Users with IDs 2 and 5 are allowed to post and view forum under ID 1, users with IDs 10 and 11 are allowed to post and view forum under ID 3, users with IDs 12 and 22 are allowed to post and view forum under ID 6. If you are able to think logically, it must not be difficult for you to set these arrays, and it be more simplier for you to edit this file once, else for us to write giant interface, which would be out of concepts of miniBB.</p>
+
+<p>If you don't want to have private forums, leave these arrays blank (but don't remove them!).</p>
+
+<p>Note 1: when setting $clForums array <b>without</b> $clForumsUsers array, you won't get any results, and these forums will be available to <b>anyone</b>, until you define user IDs, which have access to a private forum. Specify empty &#36;clForumsUsers array for some forum, even if it has no users allowed. Another words, these settings are working <b>only together</b>, not separately.</p>
+
+<p>Note 2: it is not necessary define admin ID (1), because admin can enter any private forum and has full access to it.</p>
+
+<p>Note 3: topic titles from private forums don't appear on statistics, last discussions, user info and search pages, and first forums page, too. Anyway, if allowed user or admin is logged, they will appear everywhere automatically.</p>
+
+
+<h2><a name="archiveforums">Archived (read-only) forums</a></h2>
+
+<p>Site owner can create so called "archive" forums. In read-only forums, nobody except admin or defined moderator can make or edit posts. Edit bb_specials.php with array variable <b>&#36;roForums</b> in it. Like in private forums (see above), add read-only comma-separated forums IDs into this array.</p>
+
+
+<h2><a name="postforums">Replies-only forums</a></h2>
+
+<p>Site owner can create so called "post-only" forums. That means, users can do anything except for creating new <b>topics</b> in these forums. It is very useful, if you combine your forums with guestbook or administrative news flash, for example. Edit bb_specials.php with array variable <b>&#36;poForums</b> in it. Like in private forums (see above), add read-only comma-separated forums IDs into this array. In post-only forums, nobody except admin can make or edit topics.</p>
+
+<p>Example:</p>
+
+<pre>
+&#36;poForums=array(1);
+</pre>
+<p>That means, forum with ID 1 is "post-only".</p>
+
+<p>If you have "post-only" forum as guestbook, for example, or just want to redirect user to some thread exactly when he is clicking on forum's title to view topics, you can define it in bb_specials.php as $redthread array. Example from our forums:</p>
+<pre>$redthread=array(8=&gt;355);</pre>
+<p>means when user visits some forum with ID 8, he will redirected to the topic with ID 355, so the full URL will be like <i>action=vthread&amp;forum=8&amp;topic=355</i>. This is optional feature, it is not necessary to include this array if you don't need it.</p>
+
+
+<h2><a name="userrankings">Custom member titles</a></h2>
+
+<p>By default, miniBB doesn't use ranking system (user ranks like 'Administrator', 'Member' are displayed only, and if it is anonymous user, nothing is displayed). We have special solution addon for displaying user ranks basing on their posts amount, but it is possible to define special user rankings, for "special" members (for example, most-active-poster-of-all-time). Open bb_specials.php for that, find &#36;userRanks array, and edit it.</p>
+<pre>
+&#36;userRanks=array(1=&gt;'Boss', 17=&gt;'Team member', 9=&gt;'Team member');
+</pre>
+<p>That means, user's rank with ID 1 is Boss (of course! :), and users with IDs 17 and 9 are "Team members". These rankings will be displayed under nickname in every post. In this way, you also can define so called "special avatars", when image is displayed instead of rank. Just provide full image URL as the rank's description.</p>
+
+
+<h2><a name="reguserforums">Registered-users-only forums</a></h2>
+
+<p>These forums mean, that only registered (and logged correspondly) users can make new topics, new posts and edit their messages here. Use this setting only if you want to separate some forums for all and registered only members at the same time. Use general setting variable &#36;allForumsReg (see above), if you want to make registered-users-only forums for everybody. Variable &#36;regUsrForums=array(); in bb_specials.php means array of forums IDs which are protected.</p>
+<p>Example:</p>
+<pre>
+&#36;regUsrForums=array(1,2);
+</pre>
+<p>That means, forums with ID 1,2 are only for registered users.</p>
+
+<p>In a case of registered-user-only forums, the post-topic or post-thread box with login information WILL APPEAR even if user is not logged in. User will be able to enter his login/pass to make a post. Anonymous or incorrectly logged users will be informed with "Access denied" message. In many cases, they can loose the information they typed, so please <b>warn</b> users of your board someway, that they must register before making any post! In the latest releases, we have defined language pack's variables for it, they are called $l_anonAllowed, and $l_anonDisallowed, and contain the text appearing near each message form, if user is not logged in.</p>
+
+
+<h2><a name="modsarray">Moderators definition</a></h2>
+
+<p>Moderators are people who can help admin in managing forums (read more in <a href="#moderators">moderators</a> section. Variable &#36;mods=array(); in bb_specials.php defines the the array of forum/user IDs which have moderators possibilities.</p>
+<p>Example:</p>
+
+<pre>
+$mods=array(
+1=&gt;array(9,996),
+2=&gt;array(9)
+);
+</pre>
+
+<p>means that user with ID = 9 is the moderator for forums with IDs 1 and 2, and user 996 is moderator for forum 1.</p>
+
+<p>Moderators have access only to specified forum.</p>
+
+<p>Displaying list of moderators is available on the first forums page. In default version, it is hidden. If you want this list to be shown under each forum's row, modify <i>templates/main_forums_cell.html</i> if you have a "regular" forums layout (having set <i>$statsPageModern=FALSE;</i>), or <i>templates/main_modern_fcell.html</i> (having set <i>$statsPageModern=TRUE;</i>), and paste <strong>{$moderatorsList}</strong> (for example, directly after {$forum_desc}). It will display usernames of moderators for the current forum. If there is no moderator specified, nothing will be displayed.</p>
+
+
+<h2><a name="exlastdisc">Excluding certain forums from recent discussions</a></h2>
+
+<p>If you want to exclude some forum from "Recent discussions" list, you can set it in the bb_specials array $lastOut. For example: <b>$lastOut=array(6);</b> excludes forum with ID 6 from "Last discussions" list on the first page. It's not necessary to add this new value if you don't need this.</p>
+
+
+<h2><a name="sorthread">Sorting specific thread in DESCENDING order</a></h2>
+
+<p>You can specify the ID of the thread (topic), which messages can be sorted in DESCending order. By default, every thread is sorted in ASCending order. Specially useful for questbooks. For this, set new array in your bb_specials.php file:</p> <pre>$themeDesc=array(THREAD_IDs);</pre> <p>where THREAD_IDs can be array of IDs of topics. For example: </p>
+<pre>$themeDesc=array(355,11);</pre>
+<p>will set DESC order for topics with ID 355 and 11.</p>
+<p>Note that this option will not affect page listing in last discussions and topics list. When some topic is splitted by pages, last replies will be available when you click on topic's title. If you have such kind of sorted thread (like guestbook), it is better to exclude it from last discussions and set the exact redirect from forum's title (see <a href="#postforums">"Post-only forums"</a> and $redthread).</p>
+<p>When you set this kind of topic, near its title, users will see an icon from /img/topic_reverse.gif.</p>
+
+
+<h2><a name="deletemessages">Deleting messages</a></h2>
+
+<p>Only admin is allowed to delete user messages. Admin needs to be logged into the system. For deleting any message, go to the topic/thread list and click on "Delete" on the top of the message.  JavaScript alert should appear; click "Ok", and the post will be deleted. After delete, message is not available for recovering. We are not keeping Recycle Bins.</p>
+<p>NOTE: you can not delete FIRST message of the topic. That's because the first message in thread list is TOPIC TEXT in reality. If you want to delete first message, it means you want to delete the WHOLE TOPIC. For this, see "Deleting topics".</p>
+
+
+<h2><a name="deletetopics">Deleting topics</a></h2>
+
+<p>Admin or moderators are allowed to delete all available user topics (moderator - for each specified forum); also if $userDeleteMsgs setting is defined, this is possible for regular members, too (for their own topics/replies). Login, go to the bottom of topic page. You will find the link "Delete topic". Click on it. JavaScript alert should appear; click "Ok", and topic will be deleted, with all associated posts, too. Click on "Cancel", and you'll keep the old things. After delete, topic is not available for recovering. No Trash Cans.</p>
+
+<!--20RC2--><p><i>"Cleaning up the board"</i> solution. When your board runs for a big time, you'll probably want to remove some old necessary topics. miniBB has a smart solution build-in, how to do it easy (beginning from version 2.0 RC2). Login as admin and in your Preferences, set default sorting to "New topics", then go to some forum, which you want to clean-up, and go to the last page of topics within this forum. Another words, begin the cleaning from the oldest topics to the newest topics. Go inside some topic, review it, and if you find it unnecessary, delete it as described above. After that, you will be redirected to the page where topic was previously found; near next topic that you need to check, you will find a little mark '&raquo;'. This will help you to not lose the last topic you stayed on.</p>
+
+<!--/20RC2-->
+
+<h2><a name="editmessages">Editing messages</a></h2>
+
+<p>Board administrator can edit any message from the forum at any time, plus, if it is "new topic text", he can edit also topic title. Moderator can edit any message within allowed forum at any time, and also change topic's title. For editing the message, click on "Edit" link on the top of each message in posts list (it appears when allowed person is logged in).</p>
+<!--20RC2-->
+<p>When editing message, admin or moderator can choose, either this message could be edited by user after, or not. Beginning from version 2.0 RC2, by default, all messages become opened for further editing; however, checking the box marked as "<s>Edit</s>", admin or moderator can disable this.</p>
+<!--/20RC2-->
+
+<!--20 RC4-->
+<p>If you want to override "strike through Edit" text near checkbox, when editing a message as admin or moderator, just add <b>$l_editLock='Mark as edited and lock post';</b> in your language pack (if $l_editLock variable is set, it will overwrite default setting).</p>
+<!--/20 RC4-->
+
+<p>Message author can edit topic's title only, if administrator has set necessary option (see <a href="#config2">above</a>).</p>
+<p><!--20RC3-->When admin or moderator edits his own message, "Edited by" string will show his name instead of simple "Admin" or "Moderator" title when editing/disabling another's message; at the same time, if admin or moderator do not check "<s>Edit</s>" box when editing another's message, status of this message will be kept as it was (or like it was not edited by admin at all).<!--/20RC3--></p>
+
+
+<h2><a name="movetopics">Moving topics</a></h2>
+
+<p>Only administrator can move topics from one forum to another. Moving topics is a specific operation, we don't recommend to do it often (since many users will not understand what's going on). Do it only if topics thematics is not the same as the one of a forum. After decision, login as admin, go to the bottom of the topic page, click on "Move topic" and move topic correspondly to the forum you want. You can move topic only to the "another" forum, else there is no sense for this action (don't move topic to the same forum). When moving topics, only forum info is updated, nor datetime or anything. If topic is moved from one closed forum to another, and subscribers are NOT in this forum, their subscriptions will be DELETED.</p>
+
+<h2><a name="locktopic">Locking topics</a></h2>
+
+<p>This is very smart "censorship" operation, which prohibits users from making new posts in special topics. For locking topic, log in as admin, go to the bottom of each page. You will find kinda "lock topic" link. When you press it, topic will be locked. On an old place instead of "lock topic" you should see "unlock topic" link. Click on it, and topic will be unlocked.</p>
+
+<p>Both topic's author (if he is a registered user) and admin can lock/unlock topics. Even if admin has locked this topic, registered author can unlock it - if the corresponding value not set in your options (see $userUnlock option above).</p>
+
+<p><!--20RC3-->Beginning from version 2.0 RC3, it is also could be prohibited, that topic's author can not lock his topic at all (see $userUnlock option above). At the same time, when topic is locked, nobody from participants of topic is not able to edit his message anymore.<!--/20RC3--></p>
+
+
+<h2><a name="stickytopic">"Stickying" topics</a></h2>
+
+<p>"Sticky topic" means the topic, which will be shown on the top of the topics list <i>every time</i>. This is useful for some announcements or really hot discussions, which you want to present first. Sticky topics appear ONLY in topics list. Last discussions page stays untouched! Last discussions is actually fresh meat, there is no necessarity to show sticky posts every day, in the time when new stuff is going.</p>
+
+<p>Sticky topics are available for setting both for admin and moderators. For stickying topic, go to the bottom of the thread and find the "Make sticky" link. Just click on it. When the topic is already sticky, you will find the "Make unsticky" link.</p>
+
+<p>Sticky topics also can be locked. If you lock sticky topic, and then unlock it again, the sticky status will be kept, and vice versa.</p>
+
+<h2><a name="subscriptions">Viewing subscriptions</a></h2>
+
+<p>Entering topic, logged admin can view which users are subscribed to this topic ("Subscriptions" link). Entering view panel, admin can also delete unwanted subscriptions, checking boxes near user's email.</p>
+
+<p>Note: if there are no subscriptions, link will not appear.</p>
+
+<h2><a name="adminprefs">"Preferences" for admin</a></h2>
+
+<p>Actually, admins preferences doesn't change anything special. As usual user, Admin can go to that panel and edit something, but all forums-working datas (Admin email, login and password) are taken from options file. In the admin panel, you will find operation called "Restore Admin data in database", clicking on it, you will automatically copy (or insert) your options data to corresponding Admin field in database. Then you can choose another email and other stuff (ICQ, for example) that will be shown on the "about user" page. So, your email shown in the above mentioned user info page can be independent on the email in the setup options file.</p>
+
+<p>If you are using "Direct email" plugin, you can set another email for emailing admin, so you can have 2 different emails for system messages and direct user emailing.</p>
+
+<h1><a name="moderators">Moderators</a></h1>
+
+<p>In miniBB concepts, moderators are people who can:</p>
+
+<ol type="1">
+<li> Lock, unlock, delete and move any topic - the same way as admin;</li>
+<li> Edit any message (with topic's title) - the same way as admin;</li>
+<li> Post a new topic in post-only forum;</li>
+<li> View poster IP (and view all users that have posted under this IP).</li>
+</ol>
+
+<p>Moderators have no admin's privileges and have no access to the administration panel.</p>
+
+<p>Moderators privileges are splitted by forums.</p>
+
+<p>Each moderator can be defined only by administrator in bb_specials.php file (see above).</p>
+
+<p>Each moderator has special description near his nickname (defined in &#36;l_moderator variable in language). If moderator has special rank, his rank will be displayed instead of it.</p>
+
+<h1>Forums-wide user options</h1>
+
+<h2><a name="hierarchy">Users hierarchy</a></h2>
+
+<p>There is "liberal" users hierarchy in miniBB. Topics can be made both by anonymous users and registered users. Let's see what happens.</p>
+<ul>
+<li><b>Anonymous users.</b> If you are lazy, or do not register for some reasons, you can make anonymous post, even under your usual nick, if it's not taken by another already. Simply type your username in "Login" field without password, and make a post under this name. If you leave both fields blank, your name automatically will be "Anonymous" (it depends on forums language setup even). However, if you will enter the nick which corresponds to any registered user you won't be able to post. This feature is only available, if forum's administrator has not set the forums for registered users. Notice that Administrator may disable some anonymous nicknames for using - in that case, your nickname will be posted as default "Anonymous".</li>
+<li><b>Registered users.</b> WE STRONGLY RECOMMEND all users to register - in any way, will you visit this forum often or not. Why? First, no one else will take your "unique" username/nick, and anonymous users will not be able to post messages under your nick. Second, if you will post some messages under your nick, and register it later, it is NOT POSSIBLE to edit these "anonymous messages" anymore. And finally, any registered user can take your "anonymous" or not registered nick simply by filling registration form.</li>
+</ul>
+
+<p>User info is displayed on the separate page. On the threads page, you'll find only user's nick and, if this user is registered, a "member" beneath. Clicking on it, you'll get all possible info about user, which either is specified/allowed or not (see below). NOTE: by clicking on user's nickname, you "quote" his nickname in the reply form!</p>
+
+<h2><a name="userlogin">User's login</a></h2>
+
+<p>Users must have cookies enabled in the browser. Cookie passwords are saved in encrypted format. User login form is located on every topics or threads page, as well as on the first page. On the topic or thread pages, you are able just to log-in without posting any text. You need to type your login and password correctly.</p>
+
+<p>Depending on forums setup, user login can expire in different time. Usually it expires within 1-2 hours, but administator can also make more longer expire (especially on international forums). Cookies renew mechanism also allows users to stay logged during longer periods of time - until the browser is closed. Anyway, we recommend to do logout before you are leaving forums.</p>
+
+<p>Anonymous users also receive cookie that goes from one page to another. Enjoy comfort!</p>
+
+<h2><a name="userlang">User's language</a></h2>
+
+<p>Registered users can change their board's interface language in their profile, choosing from dropdown list. However, administrator of multilanguage board also can set some links for anonymous users, so they will be able to view the board on desired language. For this, you need to put the link containing variable "setlang" and the value corresponding to the language file name. Example: http://.......index.php?setlang=rus will display board in Russian; however this setting will not affect logged-in user.</p>
+
+<h2><a name="registration">User's registration (Sign Up)</a></h2>
+
+<p>For registering, just click on "Registration" menu and fill in the form.</p>
+
+<p>Necessary fields are:</p>
+<ul>
+<li><b>LOGIN:</b> your username, must be unique - if a user with the identical login already exists, you won't be able to register. Login must contain only symbol combination defined by admin. Usually, we recommend to use only A-Z letters, digits and maybe "_" sign. But, if admin defines more symbols, you can also use them. There is only one possibility to view defined symbols - to make a mistype in username. Then you will see them in error message. Anyway, don't choose "exotic" usernames - at least, it is stupid. You can use a name with length from 3 to 40 symbols.</li>
+
+<li><b>PASSWORD:</b> your password for BB. Must contain only A-Z letters, digits and "_" sign (no spaces!). You can use password with length from 5 to 32 symbols. Why exactly 32? We don't know ;) If seriously, try to use not more than 10 symbols.</li>
+
+<li><b>PASSWORD ONCE AGAIN:</b> this must be the same symbol combination, as the "PASSWORD". This is just for checking - have you entered password correctly, or not. Pay attention: all passwords are saved in encoded way. There is no possibility to view user password even by admin! Despite you can anyway receive new password via email, but it will be different from your orignal one (randomly generated).</li>
+
+<li><b>EMAIL:</b> your email. Must be also unique (no 2 users with the same email are possible). Email is checked by simple regular expression for avoiding "stupid" emails. If you can't register some email, please report to admin, or at least, miniBB team. Even we have checked this combination in many cases, there are some "exotic" emails that can not be validated with our function. But this is a rare thing.</li>
+
+</ul>
+
+<p>Depending on what option current forum has, you can be registered just after filling the form, and can login to forums straight forward after it. Otherwise, if administrator has set avoiding of open registration, you'll need to check for the password your email first. When open registrations are forbidden, your password will be generated by the system, that's why you need to enter the correct email-address.</p>
+
+<!--2.0 RC4-->
+<p>Beginning from the version 2.0 RC4, it is allowed for admin to disallow user registrations (set <b>$enableNewRegistrations=FALSE;</b> in setup_options.php), but at the same time, to register them, logging as admin and visiting the link under <i>?action=registernew</i>. For example, paste in your <i>templates/admin_panel.html</i>:</p>
+
+<pre>
+&lt;!-- Register new user --&gt;&lt;li&gt;&lt;a href="{$indexphp}action=registernew"&gt;New user Sign Up&lt;/a&gt;&lt;/li&gt;
+</pre>
+
+<p>this link will drive you in registration form. Enter necessary user data, click "Submit" button - you will see regular registration message, and your new user will be created with the data you provided. An implementation for those who want to open forums only for REALLY trusted users!</p>
+
+<!--/2.0 RC4-->
+
+<h2><a name="newposts">New topics and replies</a></h2>
+
+<p>New topic form is placed at the bottom of each topics listing page. You need to type topic's title ("New topic") and body ("Message"). At least, "New topic" field must be filled in. If you write in it and don't write in "Message", message will be automatically equal to topic's title.</p>
+
+<p>New post form is located at the bottom of each threads page.</p>
+
+<p>Note: if the anti-spam protection is enabled (usually it is), you can make posts and topics only once-per-defined-time. Usually, this time is 1-2 minutes - and it means, you can make posts not often than 1 per 1-2 minutes as well.</p>
+
+<p>Note 2: before making a post, make sure you have corresponding ENCODING for this. F.e., if you have to make post on non-english language, let's say, chinese, be sure your browser encoding is set to it. To do it:</p>
+
+<ul>
+
+<li>In Internet Explorer, click the right mouse button on the screen, choose "Encoding", and then set it;</li>
+
+<li>In Netscape Navigator/Opera, choose menu's "View" -&gt; "Character Set (Encoding)" and then set it.</li>
+
+</ul>
+
+<p>Note 3: text breaks (newlines+carriage returns) are automatically converted to "physical" breaks.</p>
+
+<p>Note 4: don't use a lot of apostrophes, quotes and specific tags in your messages. Actually, they are converted to "real" HTML-tags like "&amp;#039;" (apostrophe), "&amp;amp;" (&amp; sign) etc. As you see, HTML special char takes at least 4 times more space than usual symbol. So, if topic's title limitation is set, let's say, to 70 symbols by administrator, your sentence can contain maximum 17 special symbols. Practical example: your topic is "Quick brown fox jumps over lazy dog's ears &amp; nose" (49 symbols). Actual title is converted to: "Quick brown fox jumps over lazy dog&amp;#039;s ears &amp;amp; nose" (58 symbols). If the limitation would be 50 symbols, the sentence would be cutted to "Quick brown fox jumps over lazy dog&#039;s ears" (minus "nose" minus 5 special-symbols).</p>
+
+<h2><a name="emailNotifications">Email notifications</a></h2>
+
+<p>Email notifications can be enabled or disabled by forums admin. Usually, on large forums they are disabled. If enabled, every user who makes a post, can subscribe to them. Alternatively, there us also a way to make notifications available without posting some text. Notifications are sent to user's email when someone replies to the topic after this user. Users can subscribe to notifications even if they are not topic authors. Users can also unsubscribe from notifications. For that, got to the desired topic and find "Unsubscribe" link instead of notifications checkbox, and just click on it.</p>
+
+<p>According to the setup, user may receive notifications on custom language (in multilanguage forums). Admin receives notifications on default board's language.</p>
+
+<h2><a name="highlight">Automatic links highlighting</a></h2>
+
+<p>If you are using links like http://www.minibb.com (beginning with "http://", "https://", "ftp://", "www" or "mailto:"), they are automatically converted to "real" links. But, when checking "Disable" box, links ARE NOT automatically highlighted, both as BB-codes (see below).</p>
+
+<h2><a name="bbcodes">BB Codes</a></h2>
+
+<p>miniBB doesn't support straight HTML code, it is displayed like you type it. However the message text can contain so called "BB-codes" - special codes which are transformed to the allowed HTML code upon submission.</p>
+
+<p>Currently, miniBB supports the following codes:</p>
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Codes</b></td><td width="80%">[url=http://SOME_URL]HYPERLINK TEXT[/url], [url]http://SOME_URL[/url]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;a href="http://SOME_URL" target="_blank" rel="nofollow"&gt;HYPERLINK TEXT&lt;/a&gt;</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the text between URI tags with "nofollow" attribute.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Guests are not allowed to use this tag; registered members are allowed to use it only if amount of their postings is greater than specified under <b>$allowHyperlinks</b> option. This limitation doesn't affect the admin.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[urlc=http://SOME_URL]HYPERLINK TEXT[/url]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;a href="http://SOME_URL" target="_blank" &gt;HYPERLINK TEXT&lt;/a&gt;</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the text between URI tags with no extra attributes.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to admin only.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[nourl]SOME URL or ANYTHING ELSE[/nourl]</td></tr>
+<tr><td><b>Transformed to</b></td><td>SOME URL or ANYTHING ELSE</td></tr>
+<tr><td><b>Explanation</b></td><td>Removes the link attribute from any kind of URL which can be transformed into link. Useful if you would like to provide an URI but without the referenced tag.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[imgs=http://SOME_URL]ALTERNATIVE TEXT[/imgs]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;a href="http://SOME_URL" target="_blank" rel="nofollow"&gt;&lt;img src="http://SOME_URL" alt="ALTERNATIVE TEXT" title="ALTERNATIVE TEXT" style="width:150px" /&gt;&lt;/a&gt;</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the tag for the external picture which can be enlarged when you click on it. Available extension of the images are gif, jpg, jpeg, png.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[img=http://SOME_URL]ALTERNATIVE TEXT[/img]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;img src="http://SOME_URL" alt="ALTERNATIVE TEXT" title="ALTERNATIVE TEXT" /&gt;</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the tag for the external picture which is displayed in the thread with no applying to size. Available extension of the images are gif, jpg, jpeg, png.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody. This tag is also used for the smilies add-on.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[b]SOME TEXT[/b]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;strong&gt;SOME TEXT&lt;/strong&gt; (<strong>SOME TEXT</strong>)</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the Bold attribute for the text.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[i]SOME TEXT[/i]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;em&gt;SOME TEXT&lt;/em&gt; (<em>SOME TEXT</em>)</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the Italic attribute for the text.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[u]SOME TEXT[/u]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;u&gt;SOME TEXT&lt;/u&gt; (<u>SOME TEXT</u>)</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the Underline attribute for the text.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to admin and moderators only.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[font#HEX_CODE]SOME TEXT[/font]</td></tr>
+<tr><td><b>Transformed to</b></td><td>&lt;span style="color:#HEX_CODE"&gt;SOME TEXT&lt;/span&gt;</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the color attribute for the text.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to admin and moderators only. HEX_CODE must consist of 6 chars numerical color code in Hex format, for example <span style="color:red">red is FF0000</span>.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[quote=SOME NAME]SOME TEXT[/quote], [quote]SOME TEXT[/quote]</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the quoting block in the text which differs from the main text by another background, font style and possibly other attributes.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[hl]SOME TEXT[/hl]</td></tr>
+<tr><td><b>Explanation</b></td><td>Puts the highlighting block in the text which differs from the main text by another background and styling (for example, programming quote, special excerpt etc.)</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<br />
+
+<table border="1" width="100%">
+<tr><td width="20%"><b>Code</b></td><td width="80%">[align<b>left</b>|<b>right</b>|<b>center</b>]SOME TEXT[/align]</td></tr>
+<tr><td><b>Explanation</b></td><td>Aligns the block of the text by the left, right or center.</td></tr>
+<tr><td><b>Special Notes</b></td><td>Available to everybody.</td></tr>
+</table>
+
+<p>The codes could be properly nested, for example you can put a Bold tag for URL; however you should follow the order of the code. If the Bold code opens first, it should be closed last.</p>
+
+<p>The codes could be typed in UPPERCASE or lowercase; but there should be no spaces in tags themselves (for example [&nbsp;b&nbsp;] text [&nbsp;/b&nbsp;] will not work, [b] text [/b] will).</p>
+
+<p>Above the message form, when you compose new topic, new reply or edit the message, there are buttons which help to apply the styling to your message in BB codes format quickly. Highlight the text you have wrote in the form, then click the button to apply the attribute. In some cases, like for URL or IMG tag, you will be asked to enter additional attributes. In Internet Explorer, <a href="http://www.minibb.com/forums/9_4396_0.html" target="_blank">scripted windows</a> must be enabled to use this feature.</p>
+
+<h2><a name="quoting">Quoting messages</a></h2>
+
+<p>Topic posters can quote other messages. There is no "quote" BB-code included, as on some bulletin boards. Instead of it, you can use "italic" style to separate quotes. For better comfort, there is a "quote" link near every post made. For making a quote, you need to select some text and press this link. Selected text will be automatically inserted into reply box at the bottom of the page.</p>
+
+<p>This feature is based on JavaScript code and works only in newest browser versions. Specific or old browsers users may experience some troubles with it.</p>
+
+<h2><a name="userlocktopic">Locking topics</a></h2>
+
+<p>Topic authors can lock their topics, if they think it is correct. In order to do it, topic author needs to be logged in. At the bottom of the topic's page he must see small "lock topic" link. Clicking on it, topic becomes closed.</p>
+
+<p>Nobody except topic author or administrator can lock the topic. If topic was locked by admin, topic author can unlock it ONLY if it is defined in forum options (in most cases it's not).</p>
+
+<h2><a name="editmessage">Editing messages</a></h2>
+
+<p>Registered users (and only registered) can edit THEIR messages, but only if they are cookie-logged and only if the time of the message is not expired. For this, just click on "Edit" near each post (if it is your message, you'll see the link, else not). When editing message, "automatic highlights" are replaced with "real" BB-codes, so there is no need to delete them once again. Also, "real" HTML tags are replaced back to codes. Via editing, user can add new BB-codes, links etc. - like in any new post or topic. User can edit only his POST, not topic's title, even if he is the author of the topic. After message is edited by user, info about that is displayed near each post.</p>
+
+<p>There is no way to delete your message (and if not allowed, to edit topic's title), if you are topic's author. Only admin can do this.</p>
+
+<p>In some cases, after administrator has edited user's message, for user, it is no way to edit it once again.</p>
+
+<h2><a name="userprefs">Editing preferences</a></h2>
+
+<p>For editing user preferences, you need to log in and go to the "preferences" appearing in menu. You can type new data for your account, except login, that can not be changed. If you don't want to change your password leave the password field and go next to the fields you want to edit, you don't need to write your password once more, 'cause are already logged. Then done just press submission button below.</p>
+
+<p>This action works exactly like registration: you need to type grammatically correct data. Thus, you can not change your email to the one of someone who already registered (incl. admin's email ;) ). Updating preferences, you don't need to enter password, if you don't want to change it. Just leave these fields blank.</p>
+
+<p>Two exceptions:</p>
+
+<ul>
+<li><a name="viewemail"><b>Show email public?</b></a>: that option allows (or not) other users to view your email in user info. It does not affect emailing notifications etc.</li>
+<li><a name="sorttopics"><b>Sort topics by</b></a>: that option switches sorting filter. On topics and last discussions pages, you can view topic names sorted by new topics or new posts. This is one of the points of why to register: logging into the forums, you can quickly view, what's new. This option is saved on all pages, since anonymous users will need to click on "sort" every time.</li>
+</ul>
+
+<h2><a name="changepassword">Changing user password</a></h2>
+
+<p>Login, go to the preferences, type new password 2 times in "password" fields. Your password will be updated to the new one.</p>
+
+<p>Note: after changing password your old password will not be valid, and you will need to re-login on the login page. If you will edit more settings, you'll get the message "not allowed" or something similar.</p>
+
+<h2><a name="forgotpassword">Resetting forgotten password</a></h2>
+
+<p>miniBB passwords are encrypted using MD5 algorithm. You can decode MD5-hash only with special hacker tools, using forces or dictionaries; it is impossible to decode it in "easy way". As longer password you have, as it more difficult to encode it. If you have forgotten your password, PHP-script can't restore it anymore, but instead, it generates new random password.</p>
+
+<p>Follow these steps to receive new password:</p>
+
+<ul>
+<li>Click on "password" links near login form;</li>
+<li>Enter an email you've mentioned in the registration form;</li>
+<li>If your email is correct (we hope, yes :) you will receive further instructions via email;</li>
+<li>Follow link described in email and confirm your password;</li>
+<li>Your password will be changed <b>only after confirmation</b>. You will be able to change it to something "human" in "preferences".</li>
+</ul>
+
+<h2><a name="search">Forums search panel</a></h2>
+
+<p>You can quickly search forums for keywords. Search panel is placed under the "Search" link in menu. You can search text in topics and posts, in topics only, in poster names, in specified forums, by all words, any words or the whole phrase. Newest messages are shown first.</p>
+
+<p>Search phrase length can't be more than 100 chars. Minimum length of any word is 3 symbols. As more search parameters you specify, as more longer by time and specific by content will be search results.</p>
+
+<!--20--><p>Search within specified forums is also available. You can either search in all forums or choose a forum you want to search in.<!--/20--></p>
+
+<p>Search algorithm tries to perform a search on a comprehend words. By <i>fragment</i>, we mean here fragment of the whole word from the beginning. For example if you search for a word "fox", it will be found in the sentense "The quick brown fox jumps over the lazy dog.", also as the word "jump" will be found. But the word "foxy" will not be found, also as "row" won't be found. Searching by whole phrase, script will find "fox jumps over", but won't find "fox dog" - use "Words or fragments" criteria for finding many words in the text at the same time.</p>
+
+<h2><a name="stats">Statistics</a></h2>
+
+<p>Under "Statistics" menu, you can get all available information about forums. This is the most "not needed" part of a forum. In statistics, you will find:</p>
+
+<ul>
+<li>Total number of registered users (except admin);</li>
+<li>Total number of topics;</li>
+<li>Total number of posts;</li>
+<li>Who is administrator;</li>
+<li>Who is last registered user;</li>
+<li>Most popular topics list (top 5, top 10, top 20, top 40), which is generated according to how many answers were posted in topic;</li>
+<li>Most viewed topics list (top 5, top 10, top 20, top 40), which is generated according to how many views each topic has;</li>
+<li>Most active registered users list (top 5, top 10, top 20, top 40).</li>
+</ul>
+<p>You can define period of days which will be used in calculating stats (this setting affects only most popular topics and most viewed topics, username stats are <b>NOT</b> affected). <!--20 RC3a-->Setting $l_stats_popular, $l_stats_aUsers, $l_stats_viewed in language pack to empty values (for example, <i>$l_stats_aUsers='';</i>), will remove corresponding panel from Statistics page.<!--/20 RC3a--></p>
+
+<h1>Some notes for developers</h1>
+
+<p>Please, don't study this section if you are unfamiliar with PHP, mySQL and programming at all, more so - don't even try described below. We are not giving additional support on these topics. They all are working like described; if something is not working on your side, miniBB is not the reason here.</p>
+
+<h2><a name="dbmodules">Database modules</a></h2>
+
+<p>Default version of miniBB is supported only by mySQL database. Anyway, we have developed special SQL-functions module which contains basic SQL-functions, which could be extended by another databases, supported by PHP. We plan to work on it in near future, but every developer who can help us in making another DB module is welcome. You'll get all necessary credits.</p>
+
+<p>Making a DB module is average simple. Since SQL functions are mostly the same (at least, by logic), in many cases you just need to make another database connection which is supported by PHP, and design database request if necessary. SQL requests mostly are parsed into array pointers, which can be accessed, f.e., via mysql_fetch_row() function. Probably, most databases can support this operation. In other words: just look, how mySQL parser works, and include other commands. Note: don't change names of variables, like &#36;result or &#36;sus, because some are called from the outside script.</p>
+
+<p>Below are described miniBB general/universal functions available in setup_<i>my</i>sql.php and prepared for programmers who want to extend plugins via this SQL-module separately.</p>
+
+<pre>string <b>makeLim</b> (int page,int numRows,int viewMax)</pre>
+
+<p>Returns SQL-string like "limit 10,20" prepared for inserting in SQL-request. If page=0, returns only single like "limit 10" string. numRows is the amount of total database request rows received via request. vieMax is the maximum amount of rows should be displayed (set in setup_options.php).</p>
+
+<pre>string <b>getClForums</b> (array closedForums, string more, string prefix, string field, string syntax, string condition)</pre>
+
+<p>Returns SQL-string like "where id=1 or id=2 or id=3" prepared for inserting additionally in SQL-request. "closedForums" must be a simple array of values which request will be compared to. "more" could be 'where' or simply ''. "prefix" inserts a point "." after table name. "field" is field name which values are compared to. "syntax" is alternatively 'and' or 'or'. "condition" is '=' or '!='. Example: if $closedForums=array(6,7)</p>
+
+<pre><i>$xtr=getClForums($closedForums,'where','','forum_id','and','!=');</i></pre>
+<p>returns:</p>
+<pre><i>where forum_id!=6 and forum_id!=7</i></pre>
+
+<pre>resource <b>db_simpleSelect</b> (boolean sus, [string table, [string fields, [string uniF, [string uniC, [string uniV, [string orderby, [string limit, [string uniF2, [string uniC2, [string uniV2]]]]]]]]])</pre>
+
+<p>Returns resource identifier on successfull SQL-request or FALSE on failure. "sus" determines either we need to make a first request (if 0) or just go through request rows (1). "table" is table name, "fields" are request fields separated by comma. "uniF", "uniC", "uniV" describes correspondly unique values which is used in additional request like "where id=1", if set. "orderby" specifies field name which is used in ordering result, and "limit" adds 'limit' statement (could be set via makeLim() function). "uniF2", "uniC2", "uniV2" are another set of additional unique fields. Example:</p>
+
+<pre><i>db_simpleSelect(0, 'minibb_topics', 'topic_id, topic_title','topic_id','&gt;','10', 'topic_id DESC', 20, 'topic_id', '!=', 25')</i></pre>
+
+<p>returns resource ID for the following request:</p>
+
+<pre><i>select topic_id, topic_title from minibb_topics where topic_id&gt;10 and topic_id!=25 order by topic_id DESC limit 20</i></pre>
+
+<pre>int <b>insertArray</b> (array insertArray, string tabh)</pre>
+
+<p>Returns SQL error-number after executing the request like "<i>insert into users (id, name) values (1, 'Paul')</i>". "insertArray" must be prepared simple array of variable names which MUST correspond to their values. In the given example, it should be array('id','name'), and in that case, in the script itself, there must be variable $id and $name, and their values correspondly must be 1 and 'Paul'. "tabh" is table name where values must be inserted ('users' in the given example).</p>
+
+<pre>int <b>updateArray</b> (array updateArray, string tabh, string uniq, string uniqVal)</pre>
+
+<p>Returns affected rows amount after executing an update request. In many cases similar to insertArray(). "updateArray" must be the same type array, and "tabh" is table name. "uniq" is unique field's name, and "uniqVal" is it's value. Example: if we have $updateArray=array('id','name'), and variable names, $tabh are the same as in the insertArray() example, and $uniq='user_id' and $uniqVal='2', SQL-command will be the following:</p>
+
+<pre><i>update users set id=1, name='Paul' where user_id=2</i></pre>
+
+
+<pre>int <b>db_delete</b> (string table, [string uniF, [string uniC, [string uniV, [string uniF2, [string uniC2, string[uniV2]]]]]])</pre>
+
+<p>Executes DELETE request in SQL-query, return amount of affected rows. Field names mean the same as in db_simpleSelect.</p>
+
+<pre>int <b>db_calcAmount</b> (string tbName, string tbKey, string tbVal, string setName, string setField)</pre>
+
+<p>Function to get amount of values from table $tbName by criteria $tbKey='$tbVal'; then update another necessary table's $setName field $setField by this amount. Call this function after deleting reply, topic, user, or moving topic, or inserting new reply.</p>
+
+<p>Another functions in SQL-module are specific. They either don't fit to described universal functions or are too complex for designing something special for them. You can make your own specific functions, identificating them with prefix "db_" at the beginning.</p>
+
+
+<h2><a name="includeindex">Including in your own PHP script</a></h2>
+
+<p>If you are the creator of your own PHP site, you probably have the same header and footer for the whole site, or just want to use another functions that fit into your project and miniBB together. As usual, they are .php files, and are included in, for example, index.php. Since miniBB owns the same index.php in its structure by default, you can <b>change the name of miniBB's index</b> to something else, setting <i>$indexphp</i> option in setup_options.php. Including forums from your own script requires a knowledge of PHP and things what are happening inside of miniBB. If you simply include your board using include(); you will get errors like "Headers already sent" or similar. This could happen when user loggs in to the forums, and cookies are set (they can not be set in that case, because some of your HTML stuff goes before include(); ). In this case, miniBB is a stick on two ends. The most efficient solution is to include your board this way:</p>
+
+<pre>
+&lt;?php 
+
+ob_start(); 
+
+include ('./index.php'); 
+
+$flushed=ob_get_contents(); 
+ob_end_clean(); 
+
+/* Output your header here */ 
+echo 'header'; 
+
+echo $flushed; 
+
+/* Output your footer here */ 
+echo 'footer'; 
+
+?&gt;
+
+</pre>
+
+<p>where <i>echo 'header';</i> stands for the output of your common header, and <i>echo 'footer';</i> stands for the output of your common footer.</p>
+
+<p>Most probably you will have completely <b>another</b> paths and filenames; we hope you are able to turn your thinking on for changing them. You may also change <i>$pathToFiles</i> setting in setup_options.php, which will make your life easier with including files from different paths.</p>
+
+
+<h2><a name="mod_rewrite">Keywords-rich and user-friendly URLs using Apache's mod_rewrite engine</a></h2>
+
+<p>If you have <a href="http://www.apache.org">Apache</a> server with <i>mod_rewrite</i> module turned on, you probably already know what benefits it could bring you. Bundling miniBB in mod_rewrite mode means overriding default URLs. They won't look like <i>./index.php?action=vtopic&amp;forum=4</i> or <i>./index.php?action=vthread&amp;forum=1&amp;topic=75</i>, but: <i>4_0.html</i> or <i>1_75_0.html</i>, or even containing keywords related to topic titles. Such kind of links will be more likely interpreted with search crawlers when referrencing to your website from the other external webpages.</p>
+
+<p>It is very important to understand what such kind of URLs would be useful for. URLs could be <strong>user-friendly</strong> or <strong>keywords-rich</strong>. Those are different things. "User-friendly" means a very short URL, which could be written manually on paper without mistakes, and that way re-typed easily on the other computer. It also could be remembered fast (depends on your brain's memory resources of course). "Keywords-rich" stands for the URL which contains a lot of keywords in it, related to the topic's title and actually build up on this title. Most-likely if there are more than 3 words in a topic's title, it can't be called "user-friendly" already. However such URLs are useful for SEO, specially in terms when somebody refers to your specific topic in the other website's context. In that case, the crawler gets more chances to apply some keywords to your page in its internal mechanism.</p>
+
+<p>miniBB supports both types of such URLs. It's only your choice, what kind of type you will use for your forums. Each of them has cons and pros.</p>
+
+<p><strong>Keywords-rich-URLs</strong> are useful for SEO and they mean point of the current web context fashion. However if you change the topic's title, the forum script will automatically change the URL, too. It means if it was previously indexed in the crawler, now the crawler needs to eliminate it and reference to the new URL, which appears after 301-header redirection. A lot of redirections, i.e. if the topic title has been renamed often for some reason, means "bad" for the crawler. It is useful only for the forums which do not change their topic titles too often, and most likely 90% of such URLs will not be user-friendly at all. Additionally, such URLs may be useful for English-based forums only. International forums must either contain specific algorithms regarding special characters in topic titles, either to use encoded characters in URLs themselves, which means they have a very limited ability of being transferred via the global web.</p>
+
+<p><strong>User-friendly-URLs</strong> in miniBB contain digits only (actually, forum and topic IDs). They are forever static, not depending on the topic's title change and not depending on what kind of language the forums use. They are completely user-friendly and short, and may be typed on any computer in the world. We recommend to use them for non-English communities and for those who carry about static longterm content a lot.</p>
+
+<p>For enabling mod_rewritten URLs, you need to uncomment and set to <i>TRUE</i> a <b>$mod_rewrite</b> option under setup_options.php.</p>
+
+<p>Notice that only links to threads and forums listings will be rewritten that way. There is no special need in changing links to Registration, Statistics, User profiles and other pages. Search indexers need just your content.</p>
+
+<p>In the <strong>user-friendly mode</strong>, hyperlinks are build under the following scenario:</p>
+
+<ul>
+<li>List of topics: [FORUM_ID]_[PAGE].html</li>
+<li>List of threads: [FORUM_ID]_[TOPIC_ID]_[PAGE].html</li>
+</ul>
+
+<p>When you are sure that mod_rewrite module is set up correctly on your server, you need to create .htaccess file and put under the forums folder. It should look like this:</p>
+
+<pre>
+RewriteEngine On
+RewriteRule ^index\.html$ ./index.php?mdrw=on
+RewriteRule ^manual\.html$ ./index.php?action=manual&amp;mdrw=on
+RewriteRule ^([0-9]+)_([0-9]+)_([-0-9]+)\.html$ ./index.php?action=vthread&amp;forum=$1&amp;topic=$2&amp;page=$3&amp;mdrw=on
+RewriteRule ^([0-9]+)_([-0-9]+)\.html$ ./index.php?action=vtopic&amp;forum=$1&amp;page=$2&amp;mdrw=on
+</pre>
+
+<p>where index.php is your forums file (it could have other name, if you renamed it earlier). Make sure that under forums folder you don't have other .HTML files matching the above scheme. They may not be displayed properly.</p>
+
+<p>If you don't want index.php interpreted as index.html, remove the second line in the aforementioned code. Your forums manual could be also interpreted as a content page; if you want to avoid it, remove the third line in the code.</p>
+
+<p>If you would like to set up the <strong>keywords-rich mode</strong> for your forum URLs, refer to our "Keywords-rich URLs" package under the Downloads area. Such add-ons are available only for miniBB beginning from the version 2.4. There are different variations of how the URLs could be transformed, and it's very up to you how you will apply them to the forums; it very depends on the forums language, audience and marketing positions as well, not saying you should be an advanced enough coder to make such thing happen. It's very specific. Even for our default forums, we are using currently the modified version of one of the add-ons presented in such package. It is not suitable for everybody automatically - of course, if you want to achieve a really professional result with it. MiniBB is not lame in this aspect.</p>
+
+<p>Beginning from version 2.0 RC5, pay attention at "mdrw" variable, it must be set ONLY in .htaccess configuration, telling the script to put "NOINDEX,NOFOLLOW" tags in the HTML header. So crawlers will index your mod_rewrite-like pages, <i>1_0.html</i>, for example, but <b>not</b> <i>index.php?action=vforum&amp;forum=1</i>. These 2 different addresses point to the <b>same</b> page, and it could be interpreted as duplicated content. So, putting "mdrw" variable, we force the crawler not to index your .php page, if it's URL already presented as the "static" .html. If you use mod_rewrite, providing links to your forum pages from another sources, try to avoid .php addresses for content pages as well.</p>
+
+<h2><a name="phpcode">PHP scripts</a></h2>
+
+<p>In PHP scripts, no tabs were used by us. All functions and operations are separated by newlines only. Most of the comments were removed in final miniBB release, however, there are some very necessary comments left, that will help you understand what's going on. Also, in many string variables cases we have used apostrophes ('') instead of quotes (""), because that increases the speed of the scripts dramatically.</p>
+
+<!--20 RC5-->
+<h1><a name="upgrades">Upgrading miniBB</a></h1>
+
+<p>If you want to have always up-to-date miniBB version, check for updates constantly. Our <a href="http://www.minibb.com/forums/rss2.php">RSS feed</a> contains any news related to miniBB new versions. When the new version is coming out, it is recommended for all users to upgrade immediately, because having the newest version you get a bigger chance to keep your forums safe, and all our plugins are tested only with the latest release. As soon you upgrade - as easy will be your next upgrade.</p>
+
+<p>For upgrading miniBB, you will need to do the following:</p>
+
+<ul>
+<li><b>BACK UP YOUR CURRENT FILES AND DATABASE</b> - else you may lose your work with no way back;</li>
+<li>almost always <b>overwrite core script files;</b></li>
+<li>in some cases <b>update customized files, settings, laguage pack and/or templates;</b></li>
+<li>in rare cases <b>update database structure.</b></li>
+</ul>
+
+<p>By "core script files", we mean here basic .php scripts, which in most cases are not necessary to edit. You probably could change these files only if you have heavily customized your version. In this case, you are losing possibility to upgrade easily. All core scripts in the package by default have prefix "bb_", also as "index.php", "setup_mysql.php" are also core scripts. Exceptions are:</p>
+
+<ul>
+<li>bb_codes.php - this file could be modified to have your own BB codes;</li>
+<li>bb_cookie.php - could be modified to have your own authorization routine;</li>
+<li>bb_default_style.css - could and should be modified to have your own unique colors/fonts layout;</li>
+<li>bb_plugins.php - could be modified to have various extensions (addons and plugins);</li>
+<li>bb_specials.php - could be modified to have additional special options of forums</li>
+</ul>
+
+<p>One file you modify in any case, is called "setup_options.php". This is a settings file, and upgrading miniBB, you should <b>never</b> to overwrite this file, keeping your settings. Additionally, you may add new settings at the end of file, if needed. We are always adding new options at the end of this file in new version.</p>
+
+<p>Customizing your board, you probably always will change the template called "main_header.html". It is kept in /templates/ directory amongst other HTML templates. Upgrading miniBB, keep in mind all templates you have upgraded. If some changed template is mentioned in upgrade history, you can either overwrite it, either edit it, changing updated code or variables, and keeping your previous work.</p>
+
+<p>Language pack (eng.php or whatever is placed in /lang/ directory) is also subject to update in many cases. Since we ourselves are supporting only English version of the board, other language packs, created by 3rd party, most commonly need to be updated, if English pack is changed. If you have other language than English, or have made some changes even to your default English version, you shouldn't overwrite new original language pack, bud edit your own.</p>
+
+<p>miniBB 2.x series releases contain very detailed upgrading history. It is kept in a file called "<b>!UPDATE.txt</b>", which you can download in our "Downloads" section in "Update History" package. This file contains a list of all changes, which have been done from version to version. History begins from the release 2.0 RC1, the first release of 2.x series - if you're uprading from older 1.x series, start checking from this section.</p>
+
+<p>Before upgrade, you must get the clue how you'll upgrade (hopefully, you got it from the description above), and to know your current version of miniBB. It is hidden from public for security reasons; however, it is always kept in a file "bb_functions.php". Edit this file and notice your version at the very top.</p>
+
+<p>In most common cases, you should close your forums before upgrade, so users don't affect database with new postings or registrations. Rename your default forums index file, commonly "index.php", to "index_u.php", and then set the option <i>$indexphp</i> in setup_options.php as 'index_u.php?'. You can set another filename, of course, any filename. Create a NEW index.php file and put there simple text like <i>"We are upgrading. Please, come again in few minutes!"</i>, then upload it to server. In that case, users visiting your forum, will see the warning message, at the time only you will know the name of temporary index file, and will be able to run it in order to see your results after upgrading.</p>
+
+<p>When you are ready to upgrade, download latest miniBB release, and start checking !UPDATE.txt file from the version you currently have. For example, if you're having version "2.0 RC1f", find the section "Changes comparision: 2.0 RC1f - 2.0 RC1g" and follow down below the history file content until the end. So you should pass all comparision versions: 2.0 RC1g - 2.0 RC2, 2.0 RC2 - 2.0 RC2a, 2.0 RC2a - 2.0 RC2b etc. Each section provides you detailed information, on which <b>core files</b> you need to <b>overwrite</b>, which <b>customized files</b> you should <b>modify</b>, and which SQL commands you should <b>execute</b> in order for upgrading your database structure.</p>
+
+<p>Take all newest files from the <b>latest release</b>, despite they are mentioned as earlier versions. If you will some way notice or remember, which files you have overwritten already, it is not necessary to upgrade them twice, if they are mentioned in the next history sections. For example, "index.php" of "bb_functions.php" are 2 files which are almost always necessary to upgrade. So you just need to ovewrite these files once, despite they are mentioned in many cases.</p>
+
+<p>When adding new option(s), language variables, special arrays, take a look at the default file(s) from the latest package - in most common cases, you need to paste these options the same way in your modified files.</p>
+
+<p>History file may also contain some non-critical updates, or just mention miniBB changes, which will not affect your old installation. They are mentioned just for your knowledge, and there is nothing to upgrade.</p>
+
+<p>After you have done all upgrade changes, test your board, manually pointing to the "index_u.php" file you have renamed before. If there are no critical errors shown from the first step, and you are able to login/out, post new topic and reply - the board should work ok. In any way, if some errors will be found after your upgrade, users will notice you. Create a new topic titled "Forum software upgraded" and notice the users about your software changes.</p>
+
+<p>Finally, rename your index file back and put it's name in setup_options.php file. Forums are ready to rock again!</p>
+
+<p>If upgrading process seems difficult to you, we are always ready to help you for a reasonable rate. Check our <a href="http://www.minibb.com/paid_support.html">Paid Support</a> section for more details.</p>
+
+<!--/20 RC5-->
+
+<h1><a href="http://www.fsf.org/licenses/fdl.html#TOC1" name="gnu">GNU Free Documentation License</a></h1>
+
+<pre>
+		GNU Free Documentation License
+		  Version 1.2, November 2002
+
+
+ Copyright (C) 2000,2001,2002  Free Software Foundation, Inc.
+     51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+
+0. PREAMBLE
+
+The purpose of this License is to make a manual, textbook, or other
+functional and useful document "free" in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it,
+with or without modifying it, either commercially or noncommercially.
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible
+for modifications made by others.
+
+This License is a kind of "copyleft", which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft
+license designed for free software.
+
+We have designed this License in order to use it for manuals for free
+software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals;
+it can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.
+
+
+1. APPLICABILITY AND DEFINITIONS
+
+This License applies to any manual or other work, in any medium, that
+contains a notice placed by the copyright holder saying it can be
+distributed under the terms of this License.  Such a notice grants a
+world-wide, royalty-free license, unlimited in duration, to use that
+work under the conditions stated herein.  The "Document", below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as "you".  You accept the license if you
+copy, modify or distribute the work in a way requiring permission
+under copyright law.
+
+A "Modified Version" of the Document means any work containing the
+Document or a portion of it, either copied verbatim, or with
+modifications and/or translated into another language.
+
+A "Secondary Section" is a named appendix or a front-matter section of
+the Document that deals exclusively with the relationship of the
+publishers or authors of the Document to the Document's overall subject
+(or to related matters) and contains nothing that could fall directly
+within that overall subject.  (Thus, if the Document is in part a
+textbook of mathematics, a Secondary Section may not explain any
+mathematics.)  The relationship could be a matter of historical
+connection with the subject or with related matters, or of legal,
+commercial, philosophical, ethical or political position regarding
+them.
+
+The "Invariant Sections" are certain Secondary Sections whose titles
+are designated, as being those of Invariant Sections, in the notice
+that says that the Document is released under this License.  If a
+section does not fit the above definition of Secondary then it is not
+allowed to be designated as Invariant.  The Document may contain zero
+Invariant Sections.  If the Document does not identify any Invariant
+Sections then there are none.
+
+The "Cover Texts" are certain short passages of text that are listed,
+as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+the Document is released under this License.  A Front-Cover Text may
+be at most 5 words, and a Back-Cover Text may be at most 25 words.
+
+A "Transparent" copy of the Document means a machine-readable copy,
+represented in a format whose specification is available to the
+general public, that is suitable for revising the document
+straightforwardly with generic text editors or (for images composed of
+pixels) generic paint programs or (for drawings) some widely available
+drawing editor, and that is suitable for input to text formatters or
+for automatic translation to a variety of formats suitable for input
+to text formatters.  A copy made in an otherwise Transparent file
+format whose markup, or absence of markup, has been arranged to thwart
+or discourage subsequent modification by readers is not Transparent.
+An image format is not Transparent if used for any substantial amount
+of text.  A copy that is not "Transparent" is called "Opaque".
+
+Examples of suitable formats for Transparent copies include plain
+ASCII without markup, Texinfo input format, LaTeX input format, SGML
+or XML using a publicly available DTD, and standard-conforming simple
+HTML, PostScript or PDF designed for human modification.  Examples of
+transparent image formats include PNG, XCF and JPG.  Opaque formats
+include proprietary formats that can be read and edited only by
+proprietary word processors, SGML or XML for which the DTD and/or
+processing tools are not generally available, and the
+machine-generated HTML, PostScript or PDF produced by some word
+processors for output purposes only.
+
+The "Title Page" means, for a printed book, the title page itself,
+plus such following pages as are needed to hold, legibly, the material
+this License requires to appear in the title page.  For works in
+formats which do not have any title page as such, "Title Page" means
+the text near the most prominent appearance of the work's title,
+preceding the beginning of the body of the text.
+
+A section "Entitled XYZ" means a named subunit of the Document whose
+title either is precisely XYZ or contains XYZ in parentheses following
+text that translates XYZ in another language.  (Here XYZ stands for a
+specific section name mentioned below, such as "Acknowledgements",
+"Dedications", "Endorsements", or "History".)  To "Preserve the Title"
+of such a section when you modify the Document means that it remains a
+section "Entitled XYZ" according to this definition.
+
+The Document may include Warranty Disclaimers next to the notice which
+states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this
+License, but only as regards disclaiming warranties: any other
+implication that these Warranty Disclaimers may have is void and has
+no effect on the meaning of this License.
+
+
+2. VERBATIM COPYING
+
+You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies
+to the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further
+copying of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+
+You may also lend copies, under the same conditions stated above, and
+you may publicly display copies.
+
+
+3. COPYING IN QUANTITY
+
+If you publish printed copies (or copies in media that commonly have
+printed covers) of the Document, numbering more than 100, and the
+Document's license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover
+Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+the back cover.  Both covers must also clearly and legibly identify
+you as the publisher of these copies.  The front cover must present
+the full title with all words of the title equally prominent and
+visible.  You may add other material on the covers in addition.
+Copying with changes limited to the covers, as long as they preserve
+the title of the Document and satisfy these conditions, can be treated
+as verbatim copying in other respects.
+
+If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.
+
+If you publish or distribute Opaque copies of the Document numbering
+more than 100, you must either include a machine-readable Transparent
+copy along with each Opaque copy, or state in or with each Opaque copy
+a computer-network location from which the general network-using
+public has access to download using public-standard network protocols
+a complete Transparent copy of the Document, free of added material.
+If you use the latter option, you must take reasonably prudent steps,
+when you begin distribution of Opaque copies in quantity, to ensure
+that this Transparent copy will remain thus accessible at the stated
+location until at least one year after the last time you distribute an
+Opaque copy (directly or through your agents or retailers) of that
+edition to the public.
+
+It is requested, but not required, that you contact the authors of the
+Document well before redistributing any large number of copies, to give
+them a chance to provide you with an updated version of the Document.
+
+
+4. MODIFICATIONS
+
+You may copy and distribute a Modified Version of the Document under
+the conditions of sections 2 and 3 above, provided that you release
+the Modified Version under precisely this License, with the Modified
+Version filling the role of the Document, thus licensing distribution
+and modification of the Modified Version to whoever possesses a copy
+of it.  In addition, you must do these things in the Modified Version:
+
+A. Use in the Title Page (and on the covers, if any) a title distinct
+   from that of the Document, and from those of previous versions
+   (which should, if there were any, be listed in the History section
+   of the Document).  You may use the same title as a previous version
+   if the original publisher of that version gives permission.
+B. List on the Title Page, as authors, one or more persons or entities
+   responsible for authorship of the modifications in the Modified
+   Version, together with at least five of the principal authors of the
+   Document (all of its principal authors, if it has fewer than five),
+   unless they release you from this requirement.
+C. State on the Title page the name of the publisher of the
+   Modified Version, as the publisher.
+D. Preserve all the copyright notices of the Document.
+E. Add an appropriate copyright notice for your modifications
+   adjacent to the other copyright notices.
+F. Include, immediately after the copyright notices, a license notice
+   giving the public permission to use the Modified Version under the
+   terms of this License, in the form shown in the Addendum below.
+G. Preserve in that license notice the full lists of Invariant Sections
+   and required Cover Texts given in the Document's license notice.
+H. Include an unaltered copy of this License.
+I. Preserve the section Entitled "History", Preserve its Title, and add
+   to it an item stating at least the title, year, new authors, and
+   publisher of the Modified Version as given on the Title Page.  If
+   there is no section Entitled "History" in the Document, create one
+   stating the title, year, authors, and publisher of the Document as
+   given on its Title Page, then add an item describing the Modified
+   Version as stated in the previous sentence.
+J. Preserve the network location, if any, given in the Document for
+   public access to a Transparent copy of the Document, and likewise
+   the network locations given in the Document for previous versions
+   it was based on.  These may be placed in the "History" section.
+   You may omit a network location for a work that was published at
+   least four years before the Document itself, or if the original
+   publisher of the version it refers to gives permission.
+K. For any section Entitled "Acknowledgements" or "Dedications",
+   Preserve the Title of the section, and preserve in the section all
+   the substance and tone of each of the contributor acknowledgements
+   and/or dedications given therein.
+L. Preserve all the Invariant Sections of the Document,
+   unaltered in their text and in their titles.  Section numbers
+   or the equivalent are not considered part of the section titles.
+M. Delete any section Entitled "Endorsements".  Such a section
+   may not be included in the Modified Version.
+N. Do not retitle any existing section to be Entitled "Endorsements"
+   or to conflict in title with any Invariant Section.
+O. Preserve any Warranty Disclaimers.
+
+If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version's license notice.
+These titles must be distinct from any other section titles.
+
+You may add a section Entitled "Endorsements", provided it contains
+nothing but endorsements of your Modified Version by various
+parties--for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.
+
+You may add a passage of up to five words as a Front-Cover Text, and a
+passage of up to 25 words as a Back-Cover Text, to the end of the list
+of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or
+through arrangements made by) any one entity.  If the Document already
+includes a cover text for the same cover, previously added by you or
+by arrangement made by the same entity you are acting on behalf of,
+you may not add another; but you may replace the old one, on explicit
+permission from the previous publisher that added the old one.
+
+The author(s) and publisher(s) of the Document do not by this License
+give permission to use their names for publicity for or to assert or
+imply endorsement of any Modified Version.
+
+
+5. COMBINING DOCUMENTS
+
+You may combine the Document with other documents released under this
+License, under the terms defined in section 4 above for modified
+versions, provided that you include in the combination all of the
+Invariant Sections of all of the original documents, unmodified, and
+list them all as Invariant Sections of your combined work in its
+license notice, and that you preserve all their Warranty Disclaimers.
+
+The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by
+adding at the end of it, in parentheses, the name of the original
+author or publisher of that section if known, or else a unique number.
+Make the same adjustment to the section titles in the list of
+Invariant Sections in the license notice of the combined work.
+
+In the combination, you must combine any sections Entitled "History"
+in the various original documents, forming one section Entitled
+"History"; likewise combine any sections Entitled "Acknowledgements",
+and any sections Entitled "Dedications".  You must delete all sections
+Entitled "Endorsements".
+
+
+6. COLLECTIONS OF DOCUMENTS
+
+You may make a collection consisting of the Document and other documents
+released under this License, and replace the individual copies of this
+License in the various documents with a single copy that is included in
+the collection, provided that you follow the rules of this License for
+verbatim copying of each of the documents in all other respects.
+
+You may extract a single document from such a collection, and distribute
+it individually under this License, provided you insert a copy of this
+License into the extracted document, and follow this License in all
+other respects regarding verbatim copying of that document.
+
+
+7. AGGREGATION WITH INDEPENDENT WORKS
+
+A compilation of the Document or its derivatives with other separate
+and independent documents or works, in or on a volume of a storage or
+distribution medium, is called an "aggregate" if the copyright
+resulting from the compilation is not used to limit the legal rights
+of the compilation's users beyond what the individual works permit.
+When the Document is included in an aggregate, this License does not
+apply to the other works in the aggregate which are not themselves
+derivative works of the Document.
+
+If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document's Cover Texts may be placed on
+covers that bracket the Document within the aggregate, or the
+electronic equivalent of covers if the Document is in electronic form.
+Otherwise they must appear on printed covers that bracket the whole
+aggregate.
+
+
+8. TRANSLATION
+
+Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between
+the translation and the original version of this License or a notice
+or disclaimer, the original version will prevail.
+
+If a section in the Document is Entitled "Acknowledgements",
+"Dedications", or "History", the requirement (section 4) to Preserve
+its Title (section 1) will typically require changing the actual
+title.
+
+
+9. TERMINATION
+
+You may not copy, modify, sublicense, or distribute the Document except
+as expressly provided for under this License.  Any other attempt to
+copy, modify, sublicense or distribute the Document is void, and will
+automatically terminate your rights under this License.  However,
+parties who have received copies, or rights, from you under this
+License will not have their licenses terminated so long as such
+parties remain in full compliance.
+
+
+10. FUTURE REVISIONS OF THIS LICENSE
+
+The Free Software Foundation may publish new, revised versions
+of the GNU Free Documentation License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.  See
+http://www.gnu.org/copyleft/.
+
+Each version of the License is given a distinguishing version number.
+If the Document specifies that a particular numbered version of this
+License "or any later version" applies to it, you have the option of
+following the terms and conditions either of that specified version or
+of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.
+
+
+ADDENDUM: How to use this License for your documents
+
+To use this License in a document you have written, include a copy of
+the License in the document and put the following copyright and
+license notices just after the title page:
+
+    Copyright (c)  YEAR  YOUR NAME.
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.2
+    or any later version published by the Free Software Foundation;
+    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+    A copy of the license is included in the section entitled "GNU
+    Free Documentation License".
+
+If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+replace the "with...Texts." line with this:
+
+    with the Invariant Sections being LIST THEIR TITLES, with the
+    Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
+
+If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.
+
+If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of
+free software license, such as the GNU General Public License,
+to permit their use in free software.
+</pre>

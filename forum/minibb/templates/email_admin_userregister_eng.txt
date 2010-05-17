@@ -1,0 +1,16 @@
+SUBJECT>>{$sitename}: New Registration<<
+Hello,
+
+Someone has been registered at "{$sitename}":
+
+ID: {$insres}
+
+Login: {$username}
+Email: {$user_email}
+ICQ: {$user_icq}
+Website: {$user_website}
+Occupation: {$user_occ}
+Region: {$user_from}
+Interests: {$user_interest}
+
+P.S. If you would like to turn off messages like this, set $emailadmin variable in your setup_options.php to '0'.

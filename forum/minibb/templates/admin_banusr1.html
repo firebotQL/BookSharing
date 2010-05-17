@@ -1,0 +1,23 @@
+<form action="{$main_url}/{$bb_admin}" method="post" class="formStyle">
+<table class="tbTransparentmb">
+<tr>
+<td class="tbTransparentCell">
+<span class="warning">{$warning}&nbsp;</span>
+<br />
+
+<span class="txtNr">{$l_enterIP}:</span>
+<br />
+<input type="text" maxlength="50" size="30" name="banip" value="{$banip}" class="textForm" />
+<br />
+
+<span class="txtNr">{$l_banReason}:</span>
+<br />
+<input type="text" maxlength="255" size="30" name="banreason" value="{$banreason}" class="textForm" />
+
+<input type="hidden" name="action" value="banUsr2" />
+<br /><br />
+<input type="submit" value="{$l_ban}" class="inputButton" />
+</td>
+</tr>
+</table>
+</form>

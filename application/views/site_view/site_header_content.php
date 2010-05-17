@@ -1,19 +1,22 @@
 <div class="logo">
-    <img class="logo_img" src="/images/layout/booksharing_logo.gif">
+    <img class="logo_img" src=""> <!--/images/layout/booksharing_logo.gif -->
 </div>
 <div class="navigation">
     <ul class="siteNav">
         <li>
-            <a href ="<?php echo base_url(); ?>site/site_area"> HOME </a>
+            <a href ="<?php echo base_url(); ?>site/site_area"> Main </a>
         </li>
+        |
         <li>
-            <a href ="<?php echo base_url(); ?>books/show">BOOKS</a>
+            <a href ="<?php echo base_url(); ?>books/show">Upload books</a>
         </li>
+        |
         <li>
-            <a href="<?php echo base_url(); ?>friends/show">FRIENDS</a>
+            <a href="<?php echo base_url(); ?>friends/show">Find freinds</a>
         </li>
+        |
         <li>
-            <a href="<?php echo base_url(); ?>community/show">COMMUNITY</a>
+            <a href="<?php echo base_url(); ?>community/show">Share & Discuss</a>
         </li>
     </ul>
 </div>

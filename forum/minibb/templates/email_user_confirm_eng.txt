@@ -1,0 +1,12 @@
+SUBJECT>>{$sitename}: Confirm Email<<
+Hello {$loginName},
+
+Click on the confirmation link below, or copy/paste it as your browser's URL address, for gaining full access to our forums:
+
+{$main_url}/{$indexphp}action=confirmpasswd&confirmCode={$confirmCode}
+
+Best Regards,
+Forum Administrator
+{$main_url}/{$startIndex}
+
+This email has been sent automatically. Please do not reply!

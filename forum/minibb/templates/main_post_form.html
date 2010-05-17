@@ -1,0 +1,25 @@
+<tr><td class="caption2"><a id="newreply"></a>{$l_messageABC}&nbsp;{$backToPostLink}</td></tr>
+<tr>
+<td class="pform" id="editorControls" style="vertical-align:middle;padding-top:7pt;border-bottom:0px">
+
+<!--BBJSBUTTONS-->
+<a href="JavaScript:paste_strinL(selektion,3,'[b]','[/b]','')" onmouseover="window.status='{$l_bb_bold}'; return true" onmouseout="window.status=''; return true" onmousemove="pasteSel()"><img src="{$main_url}/img/button_bold.gif" style="width:23px;height:22px" alt="{$l_bb_bold}" title="{$l_bb_bold}" /></a>&nbsp;
+
+<a href="JavaScript:paste_strinL(selektion,3,'[i]','[/i]','')" onmouseover="window.status='{$l_bb_italic}'; return true" onmouseout="window.status=''; return true" onmousemove="pasteSel()"><img src="{$main_url}/img/button_italic.gif" style="width:23px;height:22px" alt="{$l_bb_italic}" title="{$l_bb_italic}" /></a>&nbsp;
+
+<a href="JavaScript:paste_strinL('',3,'[imgs='+prompt('URL:','{$main_url}'+'/img/p.gif')+']',prompt('{$l_promptAlt}','')+'[/imgs]','')" onmouseover="window.status='{$l_bb_image}';return true" onmouseout="window.status='';return true"><img src="{$main_url}/img/button_image.gif" style="width:23px;height:22px" alt="{$l_bb_image}" title="{$l_bb_image}" /></a>&nbsp;
+
+<a href="JavaScript:paste_strinL(selektion,4,'[url='+prompt('URL:','{$main_url}'+'/')+']','[/url]','')" onmouseover="window.status='{$l_bb_url}'; return true" onmouseout="window.status=''; return true" onmousemove="pasteSel()"><img src="{$main_url}/img/button_url.gif" style="width:23px;height:22px" alt="{$l_bb_url}" title="{$l_bb_url}" /></a>&nbsp;
+
+<!--/BBJSBUTTONS-->
+
+</td>
+</tr>
+<tr>
+<td class="pform" style="border-top:0px">
+<textarea name="postText" id="postText" cols="38" rows="10" class="textForm postingForm" tabindex="2">{$postText}</textarea>
+<br />
+{$emailCheckBox}
+</td>
+</tr>
+<tr><td class="pform" id="pformBottom">{$loginLogout}</td></tr>

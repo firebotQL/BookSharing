@@ -52,6 +52,7 @@ class Books extends Controller {
                     $data['book_info'] =  $temporary_data;
                 }
                 $data['page_info'] = array('title' => 'Results From Amazon Search', 'search-term' => $keywords, 'item-page' => $item_page);
+
         }
         else
         {
@@ -66,10 +67,28 @@ class Books extends Controller {
          $config['num_links'] = '10';
          $config['uri_segment'] = '5';
 
+         $exist = array();
+         $profile_id = $this->session->userdata('user_id');
+         foreach ($data['book_info']->Items->Item as $book)
+         {
+            $isbn = (string)$book->ItemAttributes->ISBN;
+            $cnt_result = $this->book_model->check_book_exist($profile_id, $isbn);
+            if ($cnt_result > 0)
+            {
+               
+                $exist += array( $isbn => TRUE);
+            }
+            else
+            {
+                $exist += array( $isbn => FALSE);
+            }
+         }
+
+         $data['exist'] = $exist;
          $this->pagination->initialize($config);
 
 
-         $data['profile_id'] = $this->session->userdata('user_id');
+         $data['profile_id'] = $profile_id;
          $this->load->view('template', $data); 
     }
 
@@ -101,7 +120,7 @@ class Books extends Controller {
          $user_id = $this->session->userdata('user_id');
          $this->load->model('book_model');
          $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
-         redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
+         //redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
     }
 
     function add_book_a()
@@ -112,12 +131,13 @@ class Books extends Controller {
         if (!isset($isbn) ||
             !isset($book_type)
         )
-
+        return;
+        
         $user_id = $this->session->userdata('user_id');
         $this->load->model('book_model');
         $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
 
-        print_r("Already in bookshelve");
+        echo "Already in bookshelve";
     }
 
     function details()
@@ -168,6 +188,79 @@ class Books extends Controller {
                 $data['exist'] = FALSE;
             }
             $this->load->view('template', $data);
+        }
+    }
+
+    function remove()
+    {
+        $isbn = $this->input->post('isbn');
+        $user_id = $this->session->userdata('user_id');
+        $this->load->model('book_model');
+        $this->book_model->remove_from_bookshelve($user_id, $isbn);
+        redirect('site/mybooks');
+    }
+
+    function upload()
+    {
+        $config['upload_path'] = './images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '1024';
+        $config['max_width'] = '158';
+        $config['max_height'] = '158';
+        $config['encrypt_name'] = TRUE;
+        $config['overwrite'] = FALSE;
+
+        $this->load->library('upload', $config);
+        
+        $book_data = array('title' => $this->input->post('title'),
+                            'author' => $this->input->post('author'),
+                            'publisher' => $this->input->post('publisher'),
+                            'isbn' => $this->input->post('isbn'),
+                            'publ_date' => $this->input->post('publ_date'),
+                            'pages' => $this->input->post('pages')
+        );
+        $bUploaded = $this->upload->do_upload('cover');
+        $error = array('error' => $this->upload->display_errors());
+        $user_data = $this->session->userdata('user_id');
+
+        $this->load->library('form_validation');
+        // field name, error message, validation rules
+
+        $this->form_validation->set_rules('title', 'Title', 'trim|required');
+        $this->form_validation->set_rules('author', 'Author', 'trim|max_length[255]');
+        $this->form_validation->set_rules('publisher', 'Publisher', 'trim|max_length[255]');
+
+        $this->form_validation->set_rules('isbn', 'ISBN', 'trim|exact_length[10]');
+        $this->form_validation->set_rules('publ_date', 'Publication date', 'trim|max_length[4]|is_natural_no_zero');
+        $this->form_validation->set_rules('pages', 'Pages', 'trim|is_natural_no_zero');
+
+        $file_data = $this->upload->data();
+           if (!empty($file_data['file_name']))
+               $book_data += array('cover' => "/images/" . $file_data['file_name']);
+
+        if ((!$bUploaded &&
+            strpos($error['error'],"You did not select a file to upload.") == FALSE) // TODO: Fix this hack :)
+            || $this->form_validation->run() == FALSE)
+        {
+            $error = array('error2' => validation_errors());
+            echo $error['error2'];
+        }
+        else
+        {
+            $data['user_id'] = $this->session->userdata('user_id');
+
+            $this->load->model('book_model');
+            $result = $this->book_model->upload_book($data['user_id'], $book_data);
+            if ($result)
+            {
+                echo "Book uploaded!";
+            }
+            else
+            {
+                unlink('.' . $book_data['cover']);
+                echo "Book already exists in database.";
+
+            }
         }
     }
         

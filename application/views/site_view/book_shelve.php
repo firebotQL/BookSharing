@@ -22,6 +22,10 @@
                             echo form_hidden('isbn', set_value('isbn', $book->ItemAttributes->ISBN));
                             echo form_submit('submit', 'View details');
                             echo form_close();
+                            echo form_open('books/remove');
+                            echo form_hidden('isbn', set_value('isbn', $book->ItemAttributes->ISBN));
+                            echo form_submit('submit', 'Remove book');
+                            echo form_close();
                         ?>
                     </td>
                 </tr>

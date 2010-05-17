@@ -1,0 +1,23 @@
+<form action="{$main_url}/{$bb_admin}" method="post" class="formStyle">
+
+<table class="tbTransparent"><tr><td class="tbTransparentCell"><span class="warning">{$warning}</span></td></tr></table>
+
+<table class="forums">
+<tr>
+<td width="20%" class="caption5">&nbsp;Admin login: </td>
+<td width="80%" class="caption5"><input type="text" name="adminusr" size="25" maxlength="40" class="textForm" /></td>
+</tr>
+
+<tr>
+<td class="caption5">&nbsp;Admin password: </td>
+<td class="caption5"><input type="password" name="adminpwd" size="25" maxlength="40" class="textForm" /></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td class="caption5"><input type="submit" value="Login" class="inputButton" /></td></tr>
+</table>
+
+<input type="hidden" name="mode" value="login" />
+
+</form>

@@ -1,0 +1,65 @@
+<form name="forumform" action="{$main_url}/{$bb_admin}" method="post" class="formStyle">
+
+<table class="tbTransparentmb">
+<tr>
+<td class="tbTransparentCell" style="width:50%">
+
+<script type="text/javascript">
+var check;
+function alertForumDelete(){
+if (!check || check==0) check = 1;
+else if (check == 1) check = 0;
+if (check == 1) {
+alert('{$l_forumDeleteAlert}');
+}
+}
+
+function paste_strinL(strinL){ 
+var input=document.forms["forumform"].elements["forum_icon"];
+input.value='';
+input.value=strinL;
+}
+
+</script>
+
+<span class="warning">{$warning}&nbsp;</span>
+<p><b>{$l_editforum}</b></p>
+{$l_forumname}:
+<br />
+<input type="text" name="forum_name" value="{$forum_name}" size="25" maxlength="150" class="textForm" style="width:250px;" />
+<br /><br />
+{$l_forumdesc}:
+<br />
+<textarea name="forum_desc" cols="25" rows="10" class="textForm" style="width:250px;">{$forum_desc}</textarea>
+<br /><br />
+{$l_forumIcon}:
+<br />
+<input type="text" size="25" maxlength="255" name="forum_icon" value="{$forum_icon}" class="textForm" style="width:250px;" />
+<br /><br />
+{$l_forumgroup}:
+<br />
+<input type="text" name="forum_group" value="{$forum_group}" size="25" maxlength="150" class="textForm" style="width:250px;" />
+<br /><br />
+{$l_deleteforum} ({$l_noAsking}): <input type="checkbox" name="deleteforum" onclick="JavaScript:alertForumDelete();" />
+<br />
+<span class="warning">{$l_forumDeleteAlert}</span>
+<br />
+
+<input type="hidden" name="action" value="editforum3" />
+<input type="hidden" name="forumID" value="{$forumID}" />
+<br />
+<input type="submit" value="{$l_editforum}" class="inputButton" />
+
+<p>{$l_fastforumspreview}</p>
+{$forumsPreview}
+</td>
+<td width="50%" class="tbTransparentCell" valign="top">
+<span>&nbsp;</span>
+<p><b>{$l_forumIcon}</b></p>
+{$iconList}
+</td>
+</tr>
+</table>
+</form>
+
+<a name="bottom"></a>

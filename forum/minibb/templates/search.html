@@ -1,0 +1,220 @@
+<script type="text/javascript">
+<!--
+var modes = new Array();
+var views = new Array();
+
+modes={
+'tbSearchType':{$viewtbSearchType},
+'tbSearchWhere':{$viewtbSearchWhere},
+'tbSearchForum':{$viewtbSearchForum},
+'tbSearchDate':{$viewtbSearchDate},
+'tbSearchPoster':{$viewtbSearchPoster}
+}
+
+function hideElement(elementId) {
+var element, sign;
+if (document.all) element = document.all[elementId];
+else if (document.getElementById) element = document.getElementById(elementId);
+if (element && element.style) element.style.display = 'none';
+modes[elementId]=0;
+sign=elementId+'Sign';
+document.getElementById(sign).innerHTML='[+]&nbsp;';
+}
+
+function showElement(elementId) {
+var element;
+if (document.all) element = document.all[elementId];
+else if (document.getElementById) element = document.getElementById(elementId);
+if (element && element.style) element.style.display = '';
+modes[elementId]=1;
+sign=elementId+'Sign';
+document.getElementById(sign).innerHTML='[-]&nbsp;';
+}
+
+function elLay(elementId){
+if(modes[elementId]==1) hideElement(elementId); else showElement(elementId);
+}
+
+function submitSearch(){
+var elem, old;
+//var parent = document.getElementsByTagName('form')[0];
+//alert(modes['tbSearchType']);return;
+if(modes['tbSearchType']==0) {
+elem = document.getElementById('searchType');
+old = (elem.parentNode).removeChild(elem);
+}
+if(modes['tbSearchWhere']==0) {
+elem = document.getElementById('where');
+old = (elem.parentNode).removeChild(elem);
+}
+if(modes['tbSearchForum']==0) {
+elem = document.getElementById('forum');
+old = (elem.parentNode).removeChild(elem);
+}
+if(modes['tbSearchDate']==0) {
+elem = document.getElementById('sDay');
+old = (elem.parentNode).removeChild(elem);
+elem = document.getElementById('sMonth');
+old = (elem.parentNode).removeChild(elem);
+elem = document.getElementById('sYear');
+old = (elem.parentNode).removeChild(elem);
+elem = document.getElementById('eDay');
+old = (elem.parentNode).removeChild(elem);
+elem = document.getElementById('eMonth');
+old = (elem.parentNode).removeChild(elem);
+elem = document.getElementById('eYear');
+old = (elem.parentNode).removeChild(elem);
+}
+if(modes['tbSearchPoster']==0) {
+elem = document.getElementById('posterName');
+old = (elem.parentNode).removeChild(elem);
+}
+
+document.forms['searchform'].submit();
+}
+
+function handleEnter(e) {
+var keynum;
+// IE
+if(window.event) keynum=e.keyCode;
+// Netscape/Firefox/Opera
+else if(e.which) keynum = e.which;
+if(keynum==13) submitSearch();
+return keynum;
+}
+
+//-->
+</script>
+
+<table class="forumsmb">
+<tr>
+<td class="caption3"><a href="{$main_url}/{$startIndex}">{$sitename}</a> / <a href="{$main_url}/{$indexphp}action=search" rel="nofollow">{$l_searchSite}</a></td>
+</tr>
+</table>
+
+<form action="{$main_url}/{$indexphp}" method="get" class="formStyle" id="searchform" name="searchform">
+
+<table class="forums">
+
+<tr>
+<td class="tbClCp">{$l_search[0]}</td>
+<td class="caption5" style="width:100%"><input name="phrase" type="text" size="50" maxlength="50" class="textForm" value="{$phrase}" onkeydown="JavaScript:handleEnter(event);" />
+<span class="txtSm">
+<br />
+<span id="tbSearchTypeSign">[+]&nbsp;</span><a href="JavaScript:elLay('tbSearchType');">{$l_search[2]}</a>
+&nbsp;<span id="tbSearchWhereSign">[+]&nbsp;</span><a href="JavaScript:elLay('tbSearchWhere');">{$l_search[1]}</a>
+&nbsp;<span id="tbSearchForumSign">[+]&nbsp;</span><a href="JavaScript:elLay('tbSearchForum');">{$l_forum}</a>
+&nbsp;<span id="tbSearchDateSign">[+]&nbsp;</span><a href="JavaScript:elLay('tbSearchDate');">{$l_search[8]}</a>
+&nbsp;<span id="tbSearchPosterSign">[+]&nbsp;</span><a href="JavaScript:elLay('tbSearchPoster');">{$l_search[6]}</a>
+</span>
+</td>
+</tr>
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:2px" alt="" /></td>
+<td style="width:100%"><img src="{$main_url}/img/p.gif" style="width:1px;height:2px" alt="" /></td>
+</tr>
+</table>
+
+<table id="tbSearchType" class="forums">
+<tr>
+<td class="tbClCp">{$l_search[2]}</td>
+<td class="caption5" style="width:100%">{$searchTypeDroDown}</td>
+</tr>
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:2px" alt="" /></td>
+<td style="width:100%"><img src="{$main_url}/img/p.gif" style="width:1px;height:2px" alt="" /></td>
+</tr>
+</table>
+
+<table id="tbSearchWhere" class="forums">
+<tr>
+<td class="tbClCp">{$l_search[1]}</td>
+<td class="caption5" style="width:100%">{$whereDropDown}</td>
+</tr>
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:2px" alt="" /></td>
+<td style="width:100%"><img src="{$main_url}/img/p.gif" style="width:1px;height:2px" alt="" /></td>
+</tr>
+</table>
+
+<table id="tbSearchForum" class="forums">
+<tr>
+<td class="tbClCp">{$l_forum}</td>
+<td class="caption5" style="width:100%"><select class="selectTxt" name="forum" id="forum"><option value="">&mdash;</option>{$listForums}</select>
+</td>
+</tr>
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:2px" alt="" /></td>
+<td style="width:100%"><img src="{$main_url}/img/p.gif" style="width:1px;height:2px" alt="" /></td>
+</tr>
+</table>
+
+<table id="tbSearchDate" class="forums">
+<tr>
+<td class="tbClCp">{$l_search[8]}</td><td class="caption5" style="width:100%">
+{$l_from} {$sDayDropDown} {$sMonthDropDown} {$sYearDropDown} {$l_to} {$eDayDropDown} {$eMonthDropDown} {$eYearDropDown}
+</td>
+</tr>
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:2px" alt="" /></td>
+<td style="width:100%"><img src="{$main_url}/img/p.gif" style="width:1px;height:2px" alt="" /></td>
+</tr>
+</table>
+
+<table id="tbSearchPoster" class="forums">
+<tr>
+<td class="tbClCp">{$l_search[6]}</td>
+<td class="caption5" style="width:100%"><input type="text" name="posterName" id="posterName" class="textForm" value="{$posterName}" /></td>
+</tr>
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:1px" alt="" /></td>
+<td style="width:100%"><img src="{$main_url}/img/p.gif" style="width:1px;height:2px" alt="" /></td>
+</tr>
+</table>
+
+<table class="forums">
+<tr>
+<td><img src="{$main_url}/img/p.gif" style="width:200px;height:45px" alt="" /></td> 
+<td style="width:100%">&nbsp;
+<script type="text/javascript">
+<!--
+document.write('<input type="button" value="{$l_search[3]}" class="inputButton" onClick="submitSearch();" />');
+//-->
+</script>
+<noscript><input type="submit" value="{$l_search[3]}" class="inputButton" /></noscript>
+</td> 
+</tr>
+</table>
+
+<input type="hidden" name="action" value="search" />
+<input type="hidden" name="searchGo" value="1" />
+</form>
+
+<table class="tbTransparentmb"><tr><td class="tbTransparentCell">{$warning}&nbsp;</td></tr></table>
+
+<table class="tbTransparentmb">
+<tr><td class="tbTransparentCell"><span class="txtSm"><b>{$pageNav}&nbsp;</b></span></td></tr>
+</table>
+
+<table class="tbTransparent">
+<tr>
+<td width="1%">&nbsp;</td>
+<td width="99%">
+{$searchResults}
+</td>
+</tr>
+</table>
+
+<table class="tbTransparentmb">
+<tr><td class="tbTransparentCell"><span class="txtSm"><b>{$pageNav}&nbsp;</b></span></td></tr>
+</table>
+
+<script type="text/javascript">
+<!--
+if(modes['tbSearchType']==0) hideElement('tbSearchType'); else showElement('tbSearchType');
+if(modes['tbSearchWhere']==0) hideElement('tbSearchWhere'); else showElement('tbSearchWhere');
+if(modes['tbSearchForum']==0) hideElement('tbSearchForum'); else showElement('tbSearchForum');
+if(modes['tbSearchDate']==0) hideElement('tbSearchDate'); else showElement('tbSearchDate');
+if(modes['tbSearchPoster']==0) hideElement('tbSearchPoster'); else showElement('tbSearchPoster');
+//-->
+</script>

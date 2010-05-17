@@ -1,0 +1,15 @@
+<form action="{$main_url}/{$bb_admin}" method="post" class="formStyle">
+<table class="tbTransparentmb">
+<tr>
+<td class="tbTransparentCell">
+<p><b>{$l_chooseeditforum}:</b></p>
+<select name="forumID" class="textForm">
+{$listForums}
+</select>
+<input type="hidden" name="action" value="editforum2" />
+<br /><br />
+<input type="submit" value="{$l_editforum}" class="inputButton" />
+</td>
+</tr>
+</table>
+</form>
