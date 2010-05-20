@@ -5,7 +5,7 @@
 </script>
 <div class="main_books">
     <div class="book_upload">
-        <h2>Upload your book from here</h2>
+        <h1>Upload your book from here</h1>
         <?php echo isset($error) ? $error : "" ?>
         <?php echo validation_errors('<p class="error">');?>
         <?php

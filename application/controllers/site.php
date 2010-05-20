@@ -11,7 +11,7 @@ class Site extends Controller {
         $data = array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
-                       'main_content' => 'site_view/new_books',
+                       'main_content' => 'site_view/news_area',
                        'profile_content' => 'site_view/profile'
                         );
         $data['profile_id'] = $this->session->userdata('user_id');
@@ -205,6 +205,7 @@ class Site extends Controller {
                         );
 
         $separated = "";
+        $amazon_result = NULL;
         if($result->num_rows() > 0)
         {
             foreach ($result->result() as $row)
@@ -212,13 +213,13 @@ class Site extends Controller {
                 $search_query[] = $row->isbn;
             }
             $separated = implode("|", $search_query);
-        }
-        $amazon_result = $this->book_model->search($separated, $page_nr, "Medium");
+            $amazon_result = $this->book_model->search($separated, $page_nr, "Medium");
+        }        
         $data['book_list'] = $amazon_result;
         $data['profile_id'] = $this->session->userdata('user_id');
 
         $config['base_url'] = "/site/mybooks/";
-        $config['total_rows'] = $amazon_result->Items->TotalResults;
+        $config['total_rows'] = isset($amazon_result->Items->TotalResults) ? $amazon_result->Items->TotalResults : 0;
         $config['per_page'] = '10';
         $config['num_links'] = '10';
         $config['uri_segment'] = 3;
@@ -350,14 +351,15 @@ class Site extends Controller {
                 $search_query[] = $row->isbn;
             }
             $separated = implode("|", $search_query);
+            $amazon_result = $this->book_model->search($separated, $page_nr, "Medium");
         }
-        $amazon_result = $this->book_model->search($separated, $page_nr, "Medium");
-        $data['book_list'] = $amazon_result;
+        
+        $data['book_list'] = isset($amazon_result) ? $amazon_result : NULL;
         $data['profile_id'] = $user_id;
 
         // Pagination for bookshelve
         $config['base_url'] = "/site/profile/" . $user_id ;
-        $config['total_rows'] = $amazon_result->Items->TotalResults;
+        $config['total_rows'] = isset($amazon_result->Items->TotalResults) ? $amazon_result->Items->TotalResults : 0;
         $config['per_page'] = '10';
         $config['num_links'] = '10';
         $config['uri_segment'] = 4;
@@ -520,7 +522,8 @@ class Site extends Controller {
         return $this->user_model->user_exist_by_name($username);
     }
 
-    function is_logged_in() {
+    function is_logged_in()
+    {
         $is_logged_in = $this->session->userdata('is_logged_in');
 
         if(!isset($is_logged_in) || $is_logged_in != true) {
@@ -528,6 +531,4 @@ class Site extends Controller {
             die();
         } 
     }
-
-
 }

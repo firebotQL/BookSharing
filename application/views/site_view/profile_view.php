@@ -40,8 +40,9 @@
             <?php echo $set_1 ?>
             </div>
             <div class="my_book_shelve">
-                <?php if (!empty($book_list)): ?>
                 <table>
+                <?php if (isset($book_list) && !empty($book_list)): ?>
+
                     <?php foreach ($book_list->Items->Item as $book): ?>
                             <tr>
                                 <td class="profile_book_p">
@@ -50,8 +51,15 @@
                                 </td>
                             </tr>
                     <?php endforeach; ?>
-                </table>
+                
+                <?php else :?>
+                  <tr>
+                      <td>
+                        <p>No books were added to the bookshelve</p>
+                      </td>
+                  </tr>
                 <?php endif; ?>
+                </table>
             </div>
         </div>
     <div class="profile_comments">

@@ -4,7 +4,7 @@ class Books extends Controller {
 
     function __construct() {
         parent::Controller();
-       // $this->is_logged_in();    // TODO: FIX SESSIONS
+        $this->is_logged_in();  
         $this->load->model('book_model');
     }
 
@@ -261,6 +261,16 @@ class Books extends Controller {
                 echo "Book already exists in database.";
 
             }
+        }
+    }
+
+    function is_logged_in()
+    {
+        $is_logged_in = $this->session->userdata('is_logged_in');
+
+        if(!isset($is_logged_in) || $is_logged_in != true) {
+            echo 'You don\'t have have persmission to access sthis page. <a href="../login">Login</a>';
+            die();
         }
     }
         

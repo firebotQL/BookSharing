@@ -1,18 +1,18 @@
 <?php
+class About extends Controller {
 
-class Community extends Controller
-{
-    function __construct() {
-        parent::Controller();
-        $this->is_logged_in();
+    function About()
+    {
+            parent::Controller();
+            $this->is_logged_in();
     }
 
     function show()
     {
-       $data = array( 'header_content' => 'site_view/site_header',
+        $data = array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
-                       'main_content' => 'site_view/community_view',
+                       'main_content' => 'site_view/about_view',
                        'profile_content' => 'site_view/profile'
                         );
         $data['profile_id'] = $this->session->userdata('user_id');
@@ -28,5 +28,4 @@ class Community extends Controller
             die();
         }
     }
-
 }

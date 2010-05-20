@@ -2,7 +2,7 @@
     <?php echo $this->pagination->create_links(); ?>
 </div>
 <div class="my_book_shelve">
-    <?php if ($book_list->Items->TotalResults > 0): ?>
+    <?php if (isset($book_list) && $book_list->Items->TotalResults > 0): ?>
     <table>
         <?php foreach ($book_list->Items->Item as $book): ?>
                 <tr>
@@ -33,7 +33,7 @@
     </table>
     <?php else: ?>
     <div>
-        No books were added to the bookshelve
+        <p>No books were added to the bookshelve</p>
     </div>
     <?php endif; ?>
 </div>

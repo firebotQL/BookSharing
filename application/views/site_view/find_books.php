@@ -1,3 +1,4 @@
+<h1>Book search results</h1>
 <div class="pagination">
     <?php echo $this->pagination->create_links(); ?>
 </div>

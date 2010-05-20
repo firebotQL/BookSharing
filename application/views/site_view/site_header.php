@@ -13,7 +13,4 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/gui-functionality.js"></script>
     </head>
     <body>
-        <div class="parent_container">
-            <div class="header_container">
-                <?php $this->load->view('site_view/site_header_content'); ?>
-            </div>
+       <?php $this->load->view('site_view/site_header_content'); ?>
