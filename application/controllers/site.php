@@ -8,14 +8,88 @@ class Site extends Controller {
     }
     
     function site_area() {
+        $this->load->model('news_model');
+        $this->load->model('comment_model');
+        $from = 0;
+        $quantity = 3;
+
+        if ($this->uri->segment(3) != "")
+        {
+            $from = (int)$this->uri->segment(3);
+        }
+
+        
         $data = array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
                        'main_content' => 'site_view/news_area',
                        'profile_content' => 'site_view/profile'
                         );
+        $news_list= $this->news_model->get_news($from, $quantity);
+        $comments = array();
+        if($news_list->num_rows() > 0)
+        {
+            foreach($news_list->result() as $row)
+            {
+                $comments[$row->id] = $comments_count = $this->comment_model->get_comments_count($row->id, "2");
+            }
+        }
+        $data['comments'] = $comments;
+        $data['news_list'] = $news_list;
+       //  Pagination for news
+        $config['base_url'] = "/site/site_area/";
+        $config['total_rows'] = $this->news_model->get_total_news();
+        $config['per_page'] = '3';
+        $config['num_links'] = '10';
+        $config['uri_segment'] = 3;
+        $this->pagination->initialize($config);
         $data['profile_id'] = $this->session->userdata('user_id');
         $this->load->view('template', $data);
+    }
+
+    function news_comments()
+    {
+        $news_id;
+        $from = 0;
+        $quantity = 5;
+        $type_id = 2;
+        if ($this->uri->segment(3) != "")
+        {
+            $news_id = $this->uri->segment(3);
+        }
+        else
+        {
+            echo "Please don't trick the system";
+            return;
+        }
+
+        if ($this->uri->segment(4) != "")
+        {
+            $from = $this->uri->segment(4);
+        }
+
+
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/news_details',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $this->load->model('news_model');
+        $this->load->model('comment_model');
+        $data['news_id'] = $news_id;
+        $data['news_list'] = $this->news_model->get_news_by_id($news_id);
+
+        $data['comments'] = $this->comment_model->get_comments($news_id, $from, $quantity, $type_id);
+        $config['base_url'] = "/site/news_comments/" . $news_id . "/";
+        $config['total_rows'] = $this->comment_model->get_total($news_id, $type_id);
+        $config['per_page'] = '5';
+        $config['num_links'] = '10';
+        $config['uri_segment'] = 4;
+        $this->pagination->initialize($config);
+        $data['profile_id'] = $this->session->userdata('user_id');
+        $this->load->view('template', $data);
+
     }
     
     function message_box() {
@@ -73,7 +147,16 @@ class Site extends Controller {
                 $username = ($type_id != "1") ? 
                             anchor(base_url() . "site/profile/" . $row->receiver_id, $row->receivername) :
                             anchor(base_url() . "site/profile/" . $row->sender_id, $row->sendername) ;
-                $subject = anchor(base_url() . "site/read_message/" . $row->m_id, $row->subject);
+                $subject;
+                switch ($type_id)
+                {
+                    case "1":
+                        $subject = anchor(base_url() . "site/read_message/" . $row->m_id, $row->subject);
+                        break;
+                    case "2":
+                        $subject = anchor(base_url() . "site/read_message/" . $row->m_id . "/i", $row->subject);
+                        break;
+                }
                 $this->table->add_row(array($username,
                                          $subject,
                                          $row->date_sent));
@@ -94,12 +177,27 @@ class Site extends Controller {
 
     function compose() {
          $username = $this->uri->segment(3);
+         $reply_message_id = $this->uri->segment(4);
          $this->load->model('user_model');
          $exist = $this->user_model->user_exist_by_name($username);
          $data = array();
+         $user_id = NULL;
          if ($username != "" && $exist)
          {
              $data['username'] = $username;
+             $user_id = $this->user_model->get_user_id($username);
+         }
+
+         
+         if ($reply_message_id != "" && $user_id)
+         {
+            $this->load->model('message_model');
+            $message_result = $this->message_model->get_message($user_id, $reply_message_id, 1);
+            if ($message_result->num_rows() > 0)
+            {
+                $data['reply_subject'] = "Re: " . $message_result->row()->subject;
+                $data['reply_content'] = "\n" . $message_result->row()->content;
+            }
          }
          
          $data += array( 'header_content' => 'site_view/site_header',
@@ -117,13 +215,19 @@ class Site extends Controller {
         if ($this->uri->segment(3) == "")
         {
             return FALSE;
-        } 
+        }
+        $type_id = 0;
+        if ($this->uri->segment(4) == "i")
+        {
+            $type_id = 1;
+        }
 
         $user_id = $this->session->userdata('user_id');
         $message_id = $this->uri->segment(3);
         $this->load->model("message_model");
         $data = array();
-        $message_result = $this->message_model->get_message($user_id, $message_id);
+        $message_result = $this->message_model->get_message($user_id, $message_id, $type_id);
+        $data['type_id'] = $type_id;
         if ($message_result->num_rows() > 0)
         {
             $message_data = $message_result->row();
@@ -467,6 +571,9 @@ class Site extends Controller {
         $this->form_validation->set_rules('description', 'Description', 'trim|max_length[2056]');
 
 
+        $file_data = $this->upload->data();
+            if (!empty($file_data['file_name']))
+                $user_data += array('avatar' => "/images/" . $file_data['file_name']);
         $password = $this->input->post('password');
         if (strlen($password) > 0)
         {
@@ -479,6 +586,7 @@ class Site extends Controller {
             || $this->form_validation->run() == FALSE)
         {
             $error['user_data'] = (object)$user_data;
+            unlink('.' . $user_data['avatar']);
             $error += array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
@@ -492,9 +600,6 @@ class Site extends Controller {
         else
         {
             $data['user_id'] = $this->session->userdata('user_id');
-            $file_data = $this->upload->data();
-            if (!empty($file_data['file_name']))
-                $user_data += array('avatar' => "/images/" . $file_data['file_name']);
             $this->load->model('user_model');
             $this->user_model->update_user_data($data['user_id'], $user_data);
             $this->user_model->update_password($data['user_id'], $password);
@@ -509,6 +614,45 @@ class Site extends Controller {
 
             $this->load->view('template', $data);
         } 
+    }
+
+    function post_news()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$this->session->userdata('admin'))
+        {
+            echo "You must have administrator rights to do this action";
+            return;
+        }
+
+
+        $data = array( 'header_content' => 'site_view/site_header',
+                       'site_content' => 'site_view/site_area',
+                       'footer_content' => 'site_view/site_footer',
+                       'main_content' => 'site_view/news_post',
+                       'profile_content' => 'site_view/profile'
+                        );
+        $data['profile_id'] = $user_id;
+
+        $this->load->view('template', $data);
+    }
+
+    function send_news()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$this->session->userdata('admin'))
+        {
+            echo "You must have administrator rights to do this action";
+            return;
+        }
+
+        $header = $this->input->post('header');
+        $content = $this->input->post('content');
+
+        $this->load->model('news_model');
+        $this->news_model->save_news($user_id, $header, $content);
+
+        redirect('site/site_area');
     }
 
     function logout()
@@ -530,5 +674,11 @@ class Site extends Controller {
             echo 'You don\'t have have persmission to access sthis page. <a href="../login">Login</a>';
             die();
         } 
+    }
+
+    function testing()
+    {
+        $this->load->model('forum_model');
+        $this->forum_model->testing();
     }
 }

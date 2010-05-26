@@ -1,0 +1,10 @@
+window_sizes 1280 779 637 637 515 176
+show_stereotypes
+selected 
+  package_ref 128007 // UML_GENERATE
+open
+  deploymentview_ref 128007 // controllers
+  
+  package_ref 128391 // models
+end
+end

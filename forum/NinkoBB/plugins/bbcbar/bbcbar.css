@@ -1,0 +1,128 @@
+.btn {
+	background: transparent url('buttons.gif') no-repeat scroll 0 0;
+	width:20px;
+	height:20px;
+	margin-right:5px;
+	display:inline-block;
+	float:left;
+}
+
+.btn.bold {
+	background-position:0 0;
+}
+
+.btn.bold:hover {
+	background-position:0 -25px;
+}
+
+.btn.italic {
+	background-position:-25px 0;
+}
+
+.btn.italic:hover {
+	background-position:-25px -25px;
+}
+
+.btn.underline {
+	background-position:-50px 0;
+}
+
+.btn.underline:hover {
+	background-position:-50px -25px;
+}
+
+.btn.link {
+	background-position:-75px 0;
+}
+
+.btn.link:hover {
+	background-position:-75px -25px;
+}
+
+.btn.quote {
+	background-position:-100px 0;
+}
+
+.btn.quote:hover {
+	background-position:-100px -25px;
+}
+
+.btn.code {
+	background-position:-125px 0;
+}
+
+.btn.code:hover {
+	background-position:-125px -25px;
+}
+
+.btn.image {
+	background-position:-150px 0;
+}
+
+.btn.image:hover {
+	background-position:-150px -25px;
+}
+
+.btn.nlist {
+	background-position:-175px 0;
+}
+
+.btn.nlist:hover {
+	background-position:-175px -25px;
+}
+
+.btn.blist {
+	background-position:-200px 0;
+}
+
+.btn.blist:hover {
+	background-position:-200px -25px;
+}
+
+.btn.litem {
+	background-position:-225px 0;
+}
+
+.btn.litem:hover {
+	background-position:-225px -25px;
+}
+
+.btn.back {
+	background-position:-250px 0;
+}
+
+.btn.back:hover {
+	background-position:-250px -25px;
+}
+
+.btn.back_disable {
+	background-position:-250px -50px;
+}
+
+.btn.forward {
+	background-position:-275px 0;
+}
+
+.btn.forward:hover {
+	background-position:-275px -25px;
+}
+
+.btn.forward_disable {
+	background-position:-275px -50px;
+}
+
+.btn.usize {
+	background-position:-300px 0;
+}
+
+.btn.usize:hover {
+	background-position:-300px -25px;
+}
+
+.btn.dsize {
+	background-position:-325px 0;
+}
+
+.btn.dsize:hover {
+	background-position:-325px -25px;
+}

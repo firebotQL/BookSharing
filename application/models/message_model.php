@@ -61,7 +61,7 @@ class Message_model extends Model {
         }
     }
 
-    function get_message($user_id, $message_id)
+    function get_message($user_id, $message_id, $type = 0)
     {
         $this->db->select('mr.sender_id as \'sender_id\',
                            m.id as \'message_id\',
@@ -71,7 +71,14 @@ class Message_model extends Model {
                          ');
         $this->db->join('message m', "m.id = mr.message_id");
         $this->db->join('user us', "us.id = mr.sender_id");
-        $this->db->where('receiver_id', $user_id);
+        if ($type == 0)
+        {
+            $this->db->where('receiver_id', $user_id);
+        }
+        else 
+        {
+            $this->db->where('sender_id', $user_id);
+        }
         $this->db->where('message_id', $message_id);
         $query = $this->db->get('message_relation mr');
         return $query;

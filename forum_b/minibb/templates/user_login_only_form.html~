@@ -1,0 +1,6 @@
+<form action="{$main_url}/{$indexphp}" method="post" class="formStyle" id="login" name="login">
+<table class="tbTransparent" style="width:100%"><tr><td class="tbTransparentCell">
+{$loginLogout}
+<input type="hidden" name="pagetype" value="index" /><input type="submit" value="{$l_enterforums}" class="inputButton" tabindex="5" />
+</td></tr></table>
+</form>

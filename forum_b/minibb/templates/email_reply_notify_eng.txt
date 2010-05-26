@@ -1,0 +1,37 @@
+SUBJECT>>{$sitename}: New Post<<
+Hello,
+
+You're receiving this letter, because You are subscribed
+to the topic "{$topicTitle_em}" in our forum "{$forum_title_em}",
+and {$user_usr_em} has posted it or replied in it.
+
+Message begins with:
+--
+
+{$postTextSmall}
+
+--
+
+Click the link below, or copy/paste it as Your browser's URL address,
+to read the whole topic and/or replies:
+
+{$main_url}/{$indexphp}action=vthread&forum={$forum}&topic={$topic}&goPost={$topic_last_post_id}&user=[USER_ID]
+
+If You don't want to receive more notifications about this topic,
+click on the link provided above, go to the bottom of the page,
+sign in with Your login Name and Password, then click on the
+"Unsubscribe" link available below the "Reply" textarea. If topic is
+locked, sign in on the main forums page, then follow topic's URL, and
+complete the same actions.
+
+If You forgot Your Name and/or Password, go to the forums main page:
+
+{$main_url}/{$startIndex}
+
+Click on the "Password" link available in Login form at the top of the
+page. Submit Your email address and follow instructions in the letter.
+
+Best Regards,
+Forum Administrator
+
+This email has been sent automatically. Please do not reply!

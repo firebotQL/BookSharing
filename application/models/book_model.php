@@ -229,7 +229,6 @@ class Book_model extends Model {
         }
 
         // Uploading book to the local storage
-        print_r('uploading author');
         // 1. Checking if author exist, if not creating it and receiving id
         $author_data = array('name' => $book_data['author']);
         $author_result = $this->db->get('author', $author_data);

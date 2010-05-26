@@ -18,15 +18,19 @@ class Login extends Controller {
 
     function validate_credentials() {
         $this->load->model('user_model');
+        $this->load->model('forum_model');
         $query = $this->user_model->validate();
 
         if ($query->num_rows() > 0 ) {// if the user's credentials validated...
-           
+            $user_data = $this->user_model->get_user_data($query->row()->id);
+            $admin = $user_data->user_type;
             $data = array(
                 'user_id' => $query->row()->id,
                 'username' => $this->input->post('username'),
-                'is_logged_in' => true
+                'is_logged_in' => true,
+                'admin' => $admin
             );
+
             $this->session->set_userdata($data);
             redirect('site/site_area');
         } else {
@@ -46,11 +50,11 @@ class Login extends Controller {
         $this->load->library('form_validation');
         // field name, error message, validation rules
 
-        $this->form_validation->set_rules('first_name', 'Name', 'trim|required');
-        $this->form_validation->set_rules('second_name', 'Second Name', 'trim|required');
+        $this->form_validation->set_rules('first_name', 'Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('second_name', 'Second Name', 'trim|required|alpha');
         $this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email|callback_unique_email');
 
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|callback_unique_user');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|max_length[25]|alpha_numeric|callback_unique_user');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required|matches[password]');
 
@@ -58,8 +62,13 @@ class Login extends Controller {
             $this->signup();
         } else {
             $this->load->model('user_model');
+            $this->load->model('forum_model');
             $query = $this->user_model->create_user();
-            if ($query) {
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $email = $this->input->post('email_address');
+            $query2 = $this->forum_model->register($username, $password, $email);
+            if ($query && $query2) {
                 $data = array( 'header_content' => 'login_view/login_header',
                                'site_content' => 'login_view/signup_successful',
                                'footer_content' => 'login_view/login_footer'
@@ -70,6 +79,7 @@ class Login extends Controller {
             }
         }
     }
+    
 
     function unique_user($str) {
         $this->load->model('user_model');

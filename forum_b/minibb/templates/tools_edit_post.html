@@ -1,0 +1,40 @@
+<script type="text/javascript">
+<!--
+var l_accessDenied="{$l_forbidden}";
+var l_quoteMsgAlert="{$l_quoteMsgAlert}";
+var tlength={$post_text_minlength};
+var anonPost=0;
+//-->
+</script>
+<script type="text/javascript" src="{$main_url}/templates/form.js"></script>
+
+<form id="postMsg" action="{$main_url}/{$indexphp}" method="post" class="formStyle">
+
+<input type="hidden" name="action" value="editmsg2" />
+<input type="hidden" name="forum" value="{$forum}" />
+<input type="hidden" name="topic" value="{$topic}" />
+<input type="hidden" name="post" value="{$post}" />
+<input type="hidden" name="page" value="{$page}" />
+<input type="hidden" name="anchor" value="{$anchor}" />
+
+<table class="forumsmb">
+
+{$mainPostForm}
+
+<tr><td class="pform">
+<script type="text/javascript">
+<!--
+document.write('<input type="button" name="subbut" value="{$l_edit}" class="inputButton" onclick="submitForm();" />');
+//-->
+</script>
+<noscript><input type="submit" value="{$l_edit}" class="inputButton" /></noscript>
+</td>
+</tr>
+</table>
+</form>
+
+<script type="text/javascript">
+<!--
+document.forms['postMsg'].elements['subbut'].disabled=false;
+//-->
+</script>

@@ -17,16 +17,19 @@
                             <p>
                                 <?php echo anchor('site/profile/' . $row->friend_id, 'View profile', array('class' => 'jid_unique')) ?>
                                 <?php
-                                if (!$friend_exist)
+                                if (!($friend_exist[$row->friend_id]))
                                 {
-                                    $url = base_url() . "site/add_friend/" . $user_data->user_id;
-                                    echo anchor($url, "Add to friendlist", array('class' => 'jid_unique'));
+                                    $url = base_url() . "site/add_friend/";
+                                    echo form_open($url);
+                                    echo form_hidden('friend_id', $row->friend_id);
+                                    echo form_submit('submit', 'Add to friendlist ');
+                                    echo form_close();
                                 }
                                 else
                                 {
-                                    echo anchor("", "Already your friend", 'onclick="return false"', array('class' => 'jid_unique'));
-                                } ?>
-                                <?php echo anchor('friends/add/' . $row->username, 'Add as a friend'); ?>
+                                    echo "<p>Already your friend</p>";
+                                }
+                                ?>
                             </p>
                         </td>
                     </tr>

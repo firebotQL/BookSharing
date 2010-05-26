@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMI xmlns:UML="org.omg/standards/UML" verified="false" timestamp="" xmi.version="1.2">
+<XMI.header>
+<XMI.documentation>
+<XMI.exporter>PHP2XMI</XMI.exporter>
+<XMI.exporterVersion>1.0</XMI.exporterVersion>
+<XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+</XMI.documentation>
+<XMI.model xmi.name="php2xmi" />
+<XMI.metamodel xmi.name="UML" href="UML.xml" xmi.version="1.3" />
+</XMI.header>
+<XMI.content>
+<UML:Model>
+<UML:Namespace.ownedElement>
+<UML:Stereotype visibility="public" xmi.id="4" name="my-stereotype" />
+<UML:Stereotype visibility="public" xmi.id="5" name="datatype" />
+<UML:Stereotype visibility="public" xmi.id="6" name="interface" />
+<UML:DataType stereotype="5" visibility="public" xmi.id="9" name="mixed"/>
+<UML:DataType stereotype="5" visibility="public" xmi.id="11" name="void"/>
+<UML:Package visibility="public" xmi.id="31" name="package.CodeIgniter">
+<UML:Namespace.ownedElement>
+<UML:Class visibility="public" xmi.id="8" name="CI_Base">
+<UML:Classifier.feature>
+<UML:Attribute visibility="private" xmi.id="10" value="" type="mixed" name="instance" ownerScope="classifier"/>
+<UML:Operation visibility="public" xmi.id="12" type="void" name="CI_Base">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="13" type="void" name="get_instance" ownerScope="classifier">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+</UML:Classifier.feature>
+</UML:Class>
+<UML:Class visibility="public" xmi.id="14" name="Controller">
+<UML:Classifier.feature>
+<UML:Attribute visibility="public" xmi.id="15" value="" type="mixed" name="_ci_scaffolding"/>
+<UML:Attribute visibility="public" xmi.id="16" value="" type="mixed" name="_ci_scaff_table"/>
+<UML:Operation visibility="public" xmi.id="17" type="void" name="Controller">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="18" type="void" name="_ci_initialize">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="19" type="void" name="_ci_scaffolding">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+</UML:Classifier.feature>
+</UML:Class>
+</UML:Namespace.ownedElement>
+</UML:Package>
+<UML:Class visibility="public" xmi.id="20" name="Books">
+<UML:Classifier.feature>
+<UML:Operation visibility="public" xmi.id="21" type="void" name="__construct">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="22" type="void" name="index">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="23" type="void" name="search">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="24" type="void" name="show">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="25" type="void" name="add_book">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="26" type="void" name="add_book_a">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="27" type="void" name="details">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="28" type="void" name="remove">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="29" type="void" name="upload">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+<UML:Operation visibility="public" xmi.id="30" type="void" name="is_logged_in">
+<UML:BehavioralFeature.parameter>
+</UML:BehavioralFeature.parameter>
+</UML:Operation>
+</UML:Classifier.feature>
+</UML:Class>
+<UML:Generalization child="14" visibility="public" xmi.id="32" parent="8" />
+<UML:Generalization child="20" visibility="public" xmi.id="33" parent="14" />
+</UML:Namespace.ownedElement>
+</UML:Model>
+</XMI.content>
+</XMI>

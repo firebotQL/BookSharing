@@ -1,0 +1,6 @@
+<tr class="{$bg}">
+<td class="caption1 txtC"><img src="{$main_url}/img/forum_icons/{$forum_icon}" style="width:{$fIconWidth}px;height:{$fIconHeight}px" alt="{$forum_title}" title="{$forum_title}" /></td>
+<td class="caption1" style="width:100%"><b><a href="{$linkToForums}" title="{$forum_title}">{$forum_title}</a></b><br />{$forum_desc}</td>
+<td class="caption1 txtC author">{$numTopics}</td>
+<td class="caption1 txtC latest">{$numPosts}</td>
+</tr>

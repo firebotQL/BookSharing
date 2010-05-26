@@ -109,4 +109,18 @@ class User_model extends Model {
         $this->db->where('id', $id);
         $this->db->update('user', $data);
     }
+
+    function get_user_id($username)
+    {
+        $this->db->where('username', $username);
+        $query = $this->db->get('user');
+        if ($query->num_rows() > 0)
+        {
+            return $query->row()->id;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
 }

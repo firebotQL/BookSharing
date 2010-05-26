@@ -1,0 +1,13 @@
+SUBJECT>>Welcome to {$sitename}!<<
+Hello,
+
+thank You for signing up at our forums!
+
+Your Username is: {$username}
+Your Password is: {$passwd}
+
+Please, keep this data in a cool and dry place for further assistance.
+
+Best Regards,
+Forum Administrator
+{$main_url}/{$startIndex}

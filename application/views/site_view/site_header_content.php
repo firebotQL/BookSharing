@@ -35,7 +35,7 @@
                     <a href="<?php echo base_url(); ?>friends/show">Find friends</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url(); ?>community/show">Share & Discuss</a>
+                    <a href="<?php echo base_url(); ?>forum/NinkoBB/" class="jid_s_and_d">Share & Discuss</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url(); ?>about/show">About</a>

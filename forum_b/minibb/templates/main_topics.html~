@@ -1,0 +1,101 @@
+<script type="text/javascript">
+<!--
+var l_accessDenied="{$l_forbidden}";
+var l_quoteMsgAlert="{$l_quoteMsgAlert}";
+var tlength={$post_text_minlength};
+var anonPost={$anonPost};
+//-->
+</script>
+<script type="text/javascript" src="{$main_url}/templates/form.js"></script>
+
+<!--MAINTOPICSPAGE-->
+<table class="forums">
+<tr>
+<td class="caption3" colspan="2"><a href="{$main_url}/{$startIndex}">{$sitename}</a> /</td>
+</tr>
+<tr>
+<td class="tbTransparentCell" style="vertical-align:middle; background-image:url({$main_url}/img/forum_icons/{$forumIcon}); background-repeat:no-repeat; background-position: 0% 50%; padding-left:20px"><h1 class="headingTitle">{$forumName}</h1></td><td class="tbTransparentCell txtR noWrap" style="width:40%;vertical-align:middle"><span class="txtSm">{$l_sortedBy}&nbsp;{$sortedByT}.&nbsp;<a href="{$main_url}/{$indexphp}action=vtopic&amp;forum={$forum}&amp;sortBy={$sortByNew}" rel="nofollow">{$l_sortBy}&nbsp;{$sortByT}</a></span></td>
+</tr>
+</table>
+
+<table class="tbTransparent{$mbpn}">
+<tr><td class="tbTransparentCell"><span class="txtSm"><b>{$pageNav}&nbsp;</b></span></td></tr>
+</table>
+
+<table class="forumsmb">
+
+<tr>
+<td class="captionTop" style="width:25px"><img src="{$main_url}/img/p.gif" style="width:25px;height:1px" alt="" /></td>
+<td class="captionTop">{$l_topic}</td>
+<td class="captionTop" style="text-align:center">{$l_replies}</td>
+<td class="captionTop" style="text-align:center">{$l_views}</td>
+<td class="captionTop" style="text-align:center">{$l_author}</td>
+<td class="captionTop" style="text-align:center;white-space:nowrap;">{$l_lastAuthor}</td>
+</tr>
+
+{$list_topics}
+
+<tr>
+<td style="width:25px;"><img src="{$main_url}/img/p.gif" style="width:25px;height:1px" alt="" /></td>
+<td style="width:70%"><img src="{$main_url}/img/p.gif" style="width:1px;height:1px" alt="" /></td>
+<td style="width:40px;"><img src="{$main_url}/img/p.gif" style="width:1px;height:1px" alt="" /></td>
+<td style="width:40px;"><img src="{$main_url}/img/p.gif" style="width:1px;height:1px" alt="" /></td>
+<td style="width:15%;"><img src="{$main_url}/img/p.gif" style="width:1px;height:1px" alt="" /></td>
+<td style="width:15%;"><img src="{$main_url}/img/p.gif" style="width:1px;height:1px" alt="" /></td>
+</tr>
+
+</table>
+
+<table class="tbTransparent{$mbpn}">
+<tr><td class="tbTransparentCell"><span class="txtSm"><b>{$pageNav}&nbsp;</b></span></td></tr>
+</table>
+<!--/MAINTOPICSPAGE-->
+
+<!--MAINTOPICFORM-->
+<form id="postMsg" action="{$main_url}/{$indexphp}" method="post" class="formStyle">
+
+<table class="forumsmb">
+{$newTopicForm}
+<tr>
+<td class="caption2"><a id="newtopic">{$l_topicTitle}</a></td>
+</tr>
+<tr>
+<td class="pform">
+<input type="text" name="topicTitle" size="38" maxlength="{$topic_max_length}" class="textForm topicTitle" tabindex="1" />
+</td>
+</tr>
+
+{$mainPostForm}
+
+<tr>
+<td class="pform">
+<script type="text/javascript">
+<!--
+document.write('<input type="button" name="subbut" value="{$l_sub_post_tpc}" class="inputButton" tabindex="5" onClick="submitForm();" />');
+//-->
+</script>
+
+<noscript><input type="submit" value="{$l_sub_post_tpc}" class="inputButton" tabindex="5" /></noscript>
+
+<!--MAINTOPICFORUMINPUT-->
+<input type="hidden" name="forum" value="{$forum}" />
+<!--/MAINTOPICFORUMINPUT-->
+<input type="hidden" name="action" value="ptopic" />
+</td>
+</tr>
+</table>
+
+</form>
+<!--/MAINTOPICFORM-->
+
+<!--MAINTOPICSPAGE-->
+
+{$forumsList}
+
+<script type="text/javascript">
+<!--
+if(document.forms['postMsg']) document.forms['postMsg'].elements['subbut'].disabled=false;
+//-->
+</script>
+
+<!--/MAINTOPICSPAGE-->

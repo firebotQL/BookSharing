@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$title}</title>
+<meta name="ROBOTS" content="{$metaRobots}" />
+{$l_meta}
+<meta name="Description" content="{$description}" /> 
+<meta name="Keywords" content="build make start my own free custom paid web discussion easy small mini forum software download site web best bulletin board boards bb php online mysql database mod rewrite mod_rewrite open source gpl customize integrate seo google search engine embed conference postgresql" /> 
+<meta name="Document-state" content="Dynamic" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<style type="text/css">
+<!--
+A:hover {
+background:url({$main_url}/img/dottedhl.gif) repeat-x 0 100%;
+}
+-->
+</style>
+</head>
+<body class="gbody">
+<a name="top"></a>
+
+<table style="width:100%;padding:0px;margin:0px;border-collapse:collapse">
+<tr><td style="background-color:#4967A0;">
+
+
+
+</td></tr>
+<tr>
+
+<table class="forumsmb">
+<tr class="tbHead">
+<td class="capMenu">&nbsp;{$l_menu[1]}</td>
+</tr>
+</table>
+
+</td></tr></table>

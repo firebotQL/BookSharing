@@ -1,0 +1,49 @@
+<script type="text/javascript">
+function paste_strinL(strinL){ 
+var input=document.forms["forumform"].elements["forum_icon"];
+input.value='';
+input.value=strinL;
+}
+</script>
+
+<form name="forumform" action="{$main_url}/{$bb_admin}" method="post" class="formStyle">
+
+<table class="tbTransparentmb">
+
+<tr>
+
+<td width="50%" valign="top" class="tbTransparentCell">
+<span class="warning">{$warning}&nbsp;</span>
+<p><b>{$l_addforum}</b></p>
+{$l_forumname}:
+<br />
+<input type="text" name="forum_name" value="{$forum_name}" size="25" maxlength="150" class="textForm" style="width:250px;" />
+<br /><br />
+{$l_forumdesc}:
+<br />
+<textarea name="forum_desc" cols="25" rows="10" class="textForm" style="width:250px;">{$forum_desc}</textarea>
+<br /><br />
+{$l_forumIcon}:
+<br />
+<span class="txtSm">({$l_forumIconDesc})</span>
+<br />
+<input type="text" size="25" maxlength="255" name="forum_icon" value="{$forum_icon}" class="textForm" style="width:250px;" />
+<br /><br />
+{$l_forumgroup}:
+<br />
+<input type="text" name="forum_group" value="{$forum_group}" size="25" maxlength="150" class="textForm" style="width:250px;" />
+
+<input type="hidden" name="action" value="addforum2" />
+<br /><br />
+<input type="submit" value="{$l_addforum}" class="inputButton" />
+</td>
+
+<td width="50%" class="tbTransparentCell" valign="top">
+<span>&nbsp;</span>
+<p><b>{$l_forumIcon}</b></p>
+{$iconList}
+</td>
+</tr>
+</table>
+</form>
+

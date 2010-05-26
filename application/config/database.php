@@ -50,6 +50,19 @@ $db['default']['cachedir'] = "";
 $db['default']['char_set'] = "utf8";
 $db['default']['dbcollat'] = "utf8_general_ci";
 
+$db['forum']['hostname'] = "localhost";
+$db['forum']['username'] = "root";
+$db['forum']['password'] = "start";
+$db['forum']['database'] = "book_forum";
+$db['forum']['dbdriver'] = "mysql";
+$db['forum']['dbprefix'] = "";
+$db['forum']['pconnect'] = TRUE;
+$db['forum']['db_debug'] = TRUE;
+$db['forum']['cache_on'] = FALSE;
+$db['forum']['cachedir'] = "";
+$db['forum']['char_set'] = "utf8";
+$db['forum']['dbcollat'] = "utf8_general_ci";
+
 
 /* End of file database.php */
 /* Location: ./system/application/config/database.php */

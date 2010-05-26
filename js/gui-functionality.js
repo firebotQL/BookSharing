@@ -1,7 +1,8 @@
 $(function() {
     $('.jid_hidden_data').submit(function() {
         var serialized = $(this).serialize();
-        var sUrl = "http://localhost/books/add_book_a";
+        var sUrl = "http://88.222.153.97/books/add_book_a";
+        //var sUrl = "http://localhost/books/add_book_a";
         $.ajax({
             url: sUrl,
             type: "POST",
@@ -14,14 +15,16 @@ $(function() {
         return false;
     });
 
-    $('#jid_f_book_upload').submit(function() {
-       var sUrl = "http://localhost/books/upload";
+    $('#jid_f_book_upload').live('submit',function() {
+       //var sUrl = "http://localhost/books/upload";
+       var sUrl = "http://88.222.153.97/books/upload";
 
        $(this).ajaxSubmit({
            url: sUrl,
            type: "POST",
            success: function(data) {
                $("#main").html(data);
+               $('#jid_f_book_upload').ajaxForm();
            },
            error: function (XMLHttpRequest) {
                alert(XMLHttpRequest);
@@ -31,7 +34,8 @@ $(function() {
     });
 
     $('#friends_search').submit(function() {
-       var sUrl = "http://localhost/friends/search";
+       //var sUrl = "http://localhost/friends/search";
+       var sUrl = "http://88.222.153.97/books/upload";
 
        $(this).ajaxSubmit({
            url: sUrl,
@@ -55,4 +59,40 @@ $(function() {
         }
         return true;
     });
+
+    $("#jid_f_login").submit(function() {
+        //var sUrl = "http://localhost/forum/NinkoBB//register.php";
+        var sUrl = "http://88.222.153.97/forum/NinkoBB//register.php";
+        var form = $(this);
+       form.ajaxSubmit({
+           url: sUrl,
+           type: "POST",
+           success: function(data) {
+               //var sUrl = "http://localhost/login/validate_credentials";
+               var sUrl = "http://88.222.153.97/login/validate_credentials";
+               form.ajaxSubmit({
+                   url: sUrl,
+                   type: "POST",
+                   success: function(data2) {
+                       //document.location = "http://localhost/site/site_area";
+                       document.location = "http://88.222.153.97/site/site_area";
+                   },
+                   error: function (XMLHttpRequest) {
+                       alert(XMLHttpRequest);
+                   }
+               });
+           },
+           error: function (XMLHttpRequest) {
+               alert(XMLHttpRequest);
+           }
+       });
+       return false;   
+       
+    });
+    $(".jid_s_and_d").live('click', function() {
+        var link = $(this).attr("href");
+        $("#main").load(link);
+        return false;
+    });
+
 });

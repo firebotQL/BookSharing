@@ -1,0 +1,21 @@
+<table class="tbTransparentmb">
+<tr>
+<td class="tbTransparentCell">
+
+<br />{$l_moveTopic} "<b>{$topicTitle}</b>" {$l_to}:<br /><br />
+<form action="{$main_url}/{$indexphp}" method="post" class="formStyle">
+<input type="hidden" name="action" value="movetopic2" />
+<input type="hidden" name="topic" value="{$topic}" />
+<input type="hidden" name="forum" value="{$forum}" />
+<input type="hidden" name="page" value="{$page}" />
+<select name="forumWhere" class="selectTxt">
+{$listForums}
+</select>
+&nbsp;&nbsp;
+<input type="submit" value="{$l_moveTopic}" class="inputButton" />
+
+</form>
+
+</td>
+</tr>
+</table>

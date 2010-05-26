@@ -33,10 +33,23 @@ class Friends extends Controller
         {
             $from = (int)$this->uri->segment(3);
         }
-        print_r($keyword);
         $this->load->model('friend_model');
-        $data['search_result'] = $this->friend_model->search_friends($keyword, $from - 1, 10);
+        $search_result = $this->friend_model->search_friends($keyword, $from - 1, 10);
         $total_search = $this->friend_model->get_search_friend_count($keyword);
+        $friend_exist = "";
+        if ($search_result->num_rows() > 0)
+        {
+            foreach($search_result->result() as $row)
+            {
+                $friend_exist[$row->friend_id] = $this->friend_model->friend_exist(
+                    $this->session->userdata('user_id'),
+                    $row->friend_id);
+            }
+        }
+
+        $data['friend_exist'] = $friend_exist;
+
+        $data['search_result'] = $search_result;
         $config['base_url'] = "/friends/search/";
         $config['total_rows'] = $total_search;
         $config['per_page'] = '10';

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>{$title}</title>
+{$l_meta}
+<link href="{$main_url}/bb_{$skin}_style.css" type="text/css" rel="stylesheet" />
+</head>
+<body class="gbody">
+<form action="{$main_url}/{$indexphp}" method="post">
+
+<table class="forums">
+<tr>
+<td class="tbTransparentCell" style="width:100%;text-align:center">
+
+<img src="{$main_url}/img/keypwd.gif" style="width:31;height:31" alt="" />
+<br />
+<span class="txtNr">{$l_forumProtected}:<br /><br /></span>
+
+<input type="password" maxlength="30" size="20" name="allForums" value="" class="textForm" style="width:200px;" /><br /><br />
+<input type="submit" value="{$l_enterforums}" class="inputButton" style="width:200px;" />
+<input type="hidden" name="queryStr" value="{$queryStr}" />
+<br /><br />
+</td>
+</tr>
+</table>
+
+</form>
+
+</body>
+</html>

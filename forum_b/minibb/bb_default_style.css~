@@ -1,0 +1,647 @@
+* {margin:0;padding:0;}
+
+.popUp{
+padding:3pt;
+}
+
+/* Common: generic tables */
+
+td{
+text-align:left;
+}
+
+
+table.forums, table.forumsmb {
+width:95%;
+display:table;
+color:#000;
+border-collapse:collapse;
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+} 
+
+table.forumsmb{
+margin-bottom:12pt;
+}
+
+.tbTransparent, .tbTransparentmb{
+width:95%;
+background:transparent;
+font-size:9pt;
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+vertical-align:top;
+}
+
+.tbTransparentmb{
+margin-bottom:3pt;
+}
+
+.tbTransparentCell{
+text-align:left;
+line-height:15pt;
+vertical-align:top;
+}
+
+/* Common: image */
+
+img {
+border:0px;
+}
+
+/* Common: hyperlinks */
+
+A:link {
+color:#002244;text-decoration:underline;
+}
+A:active {
+color:#002244; text-decoration:none;
+}
+A:visited {
+color:#002244; text-decoration:underline;
+}
+A:hover {
+color:#002244; text-decoration:none;
+}
+
+/* Common: $l_sepr */
+
+.sepr{
+color:#D2C7C7;
+}
+
+/* Common: regular SPAN text */
+
+.txtNr{
+text-decoration:none;
+font-size:9pt;
+}
+
+/* Common: small SPAN text with low importance  */
+
+.txtSm{
+text-decoration:none;
+font-size:8pt;
+color:#696969;
+}
+
+.txtSm A:link, .txtSm A:active, .txtSm A:visited{
+color: #00365F;
+}
+
+/* Common: list */
+
+.limbb, UL{
+list-style:circle;
+font-size:9pt;
+margin-left:10pt;
+padding-left:10pt;
+margin:1pt;
+line-height:15pt;
+}
+
+/* Common: page navigation link */
+
+.navCell{
+font-family:'lucida grande',tahoma,verdana,arial,sans-serif;
+font-size:8pt;
+border:1px #DBDBDB solid;
+background-color:#e7e7df;
+padding-left:2pt;
+padding-right:2pt;
+padding-top:1pt;
+padding-bottom:1pt;
+margin-top:1pt;
+}
+
+/* Common: <FORM> */
+
+.formStyle{
+margin: 0px;
+}
+
+/* Common: dropdowns */
+
+.selectTxt {
+font-size:9pt;
+background-color:#fff;
+}
+
+/* Common: button */
+
+.inputButton {
+font-size:9pt;
+color:#fff;
+border: 1px solid #D9DFEA;
+padding:2px 12px 3px 12px;
+text-align:center;
+background-color:#73A05C;
+position:relative;
+vertical-align:baseline;
+cursor: pointer;
+-moz-border-radius: 4px;
+-khtml-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+-moz-box-sizing: content-box;
+-webkit-box-sizing: content-box;
+-khtml-box-sizing: content-box;
+box-sizing: content-box;
+}
+
+.inputButton:hover{
+border-color: #61864F;
+}
+
+/* Common: TEXTAREA, INPUT TEXT fields */
+
+.textForm {
+background:#fff;
+border-bottom:#B7B7B7 1px solid;
+border-left:#B7B7B7 1px solid;
+border-right:#B7B7B7 1px solid;
+border-top:#B7B7B7 1px solid;
+font-size:10pt;
+padding:2px;
+-moz-border-radius: 2px;
+-khtml-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+-moz-box-sizing: content-box;
+-webkit-box-sizing: content-box;
+-khtml-box-sizing: content-box;
+box-sizing: content-box;
+}
+
+/* Common: navigation captions at the top of pages */
+
+td.caption3 {
+padding:3px;
+font-size:9pt;
+font-weight:bold;
+line-height:11pt;
+vertical-align:middle;
+width:100%;
+}
+
+/* Common: graphic icon cell */
+
+td.icon{
+padding:5px;
+text-align:center;
+vertical-align:middle;
+width:20px;
+height:20px;
+}
+
+/* Common: table row with swapped colors */
+
+td.caption1 {
+border:1px #dbdbdb solid;
+font-size:9pt;
+line-height:15pt;
+padding-bottom:1px;
+padding-left:5px;
+padding-right:5px;
+padding-top:2px;
+text-align:left;
+}
+
+/* Common: no-wrapping for text */
+.noWrap{
+white-space:nowrap;
+}
+
+/* Common: swapped cell #1 */
+
+.tbCel1{
+background-color:#EEEEEE;
+}
+
+/* Common: swapped cell #2 */
+
+.tbCel2{
+background-color:#e4e4e4;
+}
+
+/* Common: table with 2 columns / left column's cell; generic table title's caption */
+
+td.caption4, td.tbClCp {
+text-transform:uppercase;
+padding:5px;
+font-size: 8pt;
+color:#333333;
+line-height:15px;
+vertical-align:top;
+border:1px #B7B7B7 solid;
+background-color:#E7E7E7;
+}
+
+td.caption4{
+text-align:center;
+}
+
+td.tbClCp{
+text-align:right;
+}
+
+/* Common: centered text in the row */
+td.txtC{
+text-align:center;
+}
+
+/* Common: left aligned text in the row */
+td.txtL{
+text-align:left;
+}
+
+/* Common: right aligned text in the row */
+td.txtR{
+text-align:right;
+}
+
+/* Common: table with 2 columns; right column's cell */
+
+td.caption5 {
+padding:4px;
+background-color:#F4F4F4;
+font-size:10pt;
+line-height:13pt;
+}
+
+/* Front Page: desktop table */
+
+table.forumCol{
+width:100%;
+text-align:left;
+color:#000;
+display:table;
+border-collapse:collapse;
+margin-bottom:12pt;
+}
+
+/* Front Page, Topics listing, Messages: <H1> heading */
+
+.headingTitle{
+font-weight:bold;
+font-size:13pt;
+color:#003A66;
+margin-top:10pt;
+margin-bottom:10pt;
+}
+
+/* Front Page, Topics listing, Messages: swapped cell column #1 */
+
+tr.tbCel1 td.replies{
+background-color:#F3F4F6;
+}
+
+tr.tbCel1 td.author{
+background-color:#EFEFE8;
+}
+
+tr.tbCel1 td.latest{
+background-color:#ECEFEC;
+}
+
+td.author, td.latest{
+font-size:8pt;
+}
+
+/* Front page: Recent Topics icon */
+td.rdficon{
+background-color:#F9F9F9;
+text-align:center;
+vertical-align:middle;
+padding-right:2pt;
+}
+
+/* Front Page, Topics listing, Messages: swapped cell column #2 */
+
+tr.tbCel2 td.replies{
+background-color:#E6E9EB;
+}
+
+tr.tbCel2 td.author{
+background-color:#E7E7DF;
+}
+
+tr.tbCel2 td.latest{
+background-color:#E2E6E2;
+}
+
+/* Front Page: views number */
+
+.views{
+color:#9F9F9F;
+}
+
+/* Front Page: supertitle */
+
+.groupTitle{
+color:#FFFFF9;
+text-transform:uppercase;
+font-size:9pt;
+background-color:#003A66;
+padding:4pt;
+padding-left:3pt;
+padding-right:3pt;
+border-bottom:1px #000 solid;
+}
+
+/* Front Page: Group title link */
+.groupTitle A:link, .groupTitle A:active, .groupTitle A:visited{
+color:#F0F0E3;
+font-weight:bold;
+}
+
+/* Front Page: forum title */
+
+td.forumTitle{
+font-size:9pt;
+padding:2pt;
+padding-left:4pt;
+border-color:#eee;
+border:0px;
+border-bottom:1px solid #F0F0F0;
+background-color:#E8EACD;
+line-height:14pt;
+}
+
+/* Front Page: forum title hyperlink */
+
+td.forumTitle A{
+font-weight:normal;
+color:#002244;
+text-decoration:underline;
+background:none;
+}
+
+td.forumTitle A:hover{
+text-decoration:none;
+}
+
+/* Front Page: forum description */
+.fdesc, .fdescNum{
+padding:3px;
+padding-bottom:7pt;
+font-size:8pt;
+line-height:11pt;
+vertical-align:top;
+}
+
+/* Front Page: forum counts */
+
+.fdescNum{
+color:#696969;
+}
+
+.fdescNum strong{
+color:#333;
+}
+
+/* Messages: username */
+
+.username{
+font-size:10pt;
+font-weight:bold;
+}
+
+.username A:hover, .groupTitle A:hover{
+background:#4967A0;
+color:#F0F0E3;
+text-decoration:none;
+}
+
+/* Messages: text, hyperlink */
+
+.postedText{
+font-size:10pt;
+line-height:13pt;
+padding-top:10pt;
+padding-bottom:10pt;
+}
+
+.postedText A:link, .postedText A:active, .postedText A:visited, .postedText A:hover{
+color:#002244;
+font-weight:bold;
+text-decoration:underline;
+}
+
+.postedText A:hover{
+text-decoration:none;
+color:#002244;
+font-weight:bold;
+}
+
+/* Messages: author row */
+td.pauthor{
+background-color:#EFEFE8;
+border:1px #EFEFE8 solid;
+border-bottom:#dbdbdb 1px solid;
+font-size:9pt;
+line-height:15pt;
+padding-bottom:1px;
+padding-left:5px;
+padding-right:5px;
+padding-top:2px;
+}
+
+/* Messages: quoting */
+
+.quote{
+background-color:transparent;
+border-left:7px solid #FAFAFA;
+color:#696969;
+font-size:8pt;
+margin-left:5pt;
+padding:3px;
+width:90%;
+}
+
+.quoting{
+font-weight:bold;
+border-top:0px;
+color:#696969;
+margin-left:3pt;
+width:90%;
+}
+
+/* Messages: highlight block */
+
+.hl{
+font-size:9pt;
+background-color:#FAFCEE;
+border-left:7px solid #F6F8EA;
+color:#535353;
+margin-left:5pt;
+padding:4px;
+width:70%;
+}
+
+/* Message form: new reply href's hover */
+
+#newreply:hover, #newtopic:hover{
+text-decoration:none;
+background-color:transparent;
+}
+
+/* Message form: table */
+
+td.caption2{
+background-color:#4967A0;
+border-top:1px #4967A0;
+border-left:1px solid #4967A0;
+border-right:1px solid #4967A0;
+border-bottom:1px solid #4967A0;
+padding:4px;
+color:#FFFFFF;
+font-size:9pt;
+font-weight:bold;
+line-height:15px;
+}
+
+/* Message form: table row */
+
+td.pform{
+background-color:#F6F8EB;
+border:1px #eee solid;
+padding-top:2px;
+padding-left:2px;
+font-size:9pt;
+border-bottom:1px #F3F3F3 solid;
+vertical-align:top;
+}
+
+/* Message form: BB code buttons, login/post button row */
+
+td.pform#editorControls, td.pform#pformBottom{
+background-color:#F0F0E3;
+padding-left:10px;
+text-align:left;
+padding-left:5px;
+padding-top:8px;
+padding-bottom:8px;
+}
+
+/* Message form: textarea's width, height */
+
+.postingForm, .topicTitle{
+width:550px;
+}
+
+.postingForm{
+height:250px;
+}
+
+/* Statistics: table */
+
+table.statsTable{
+border-top:0px;
+}
+
+/* Statistics: headings */
+
+tr.statsCaption TD{
+background:#F9F9F9;
+border-left:#F9F9F9 1px solid;
+border-right:#F9F9F9 1px solid;
+font-size:9pt;
+padding:5px;
+}
+
+/* Statistics: top table */
+
+tr#statsCaptionHead TD{
+background-color:#F0F0E3;
+color:#333;
+border:1px #F9F9F9 solid;
+border-bottom:1px solid #dbdbdb;
+}
+
+/* Statistics: page bar and rows */
+
+.tbStBar, table.statsTable td.caption5 td{
+padding:1px;
+padding-left:5px;
+}
+
+.tbStBar A{
+color:#000;
+}
+
+tr.tbStRow TD{
+text-align:left;
+font-size:8pt;
+}
+
+/* Statistics: bar */
+
+.tbStBar{
+margin:2px;
+background:#DDDDE3;
+border:1px solid #D7D7D7;
+border-bottom:1px solid #003A66;
+border-right:1px solid #BEBEBE;
+}
+
+/* Warning messages */
+
+.warning{
+font-family:'lucida grande',tahoma,verdana,arial,sans-serif;
+color:#FF0000;
+font-size:10pt;
+font-weight:bold;
+}
+
+.warning, .warningLnk{
+line-height:15pt;
+}
+
+/* Header: table */
+
+tr.tbHead{
+background-color:#4967A0;
+}
+
+tr.tbHead A:hover{
+background:none;
+}
+
+/* Header: menu row */
+
+td.capMenu{
+padding:4px;
+padding-left:0px;
+line-height: 13pt;
+vertical-align:top;
+border:1px #F0F0F0 solid;
+border-bottom:1px #dbdbdb solid;
+border-top:0px;
+background-color:#F6F8EA;
+white-space:nowrap;
+font-size: 9pt;
+width:70%
+}
+
+td.capMenu A:link, td.capMenu A:visited, td.capMenu A:active{
+text-decoration:none;
+}
+
+/* Common specific: hyperlink hover*/
+
+td.capMenu A:hover{
+color:#fff;
+background:#003A66;
+text-decoration:none;
+}
+
+.captionTop{
+/* text-transform:uppercase; */
+padding:3px;
+font-size: 8pt;
+color:#959595;
+vertical-align:top;
+}

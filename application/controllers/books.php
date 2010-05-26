@@ -226,11 +226,11 @@ class Books extends Controller {
         $this->load->library('form_validation');
         // field name, error message, validation rules
 
-        $this->form_validation->set_rules('title', 'Title', 'trim|required');
-        $this->form_validation->set_rules('author', 'Author', 'trim|max_length[255]');
-        $this->form_validation->set_rules('publisher', 'Publisher', 'trim|max_length[255]');
+        $this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[1024]');
+        $this->form_validation->set_rules('author', 'Author', 'trim|max_length[255]|aplha_numeric');
+        $this->form_validation->set_rules('publisher', 'Publisher', 'trim|max_length[255]|aplha_numeric');
 
-        $this->form_validation->set_rules('isbn', 'ISBN', 'trim|exact_length[10]');
+        $this->form_validation->set_rules('isbn', 'ISBN', 'trim|required|exact_length[10]|alpha_numeric');
         $this->form_validation->set_rules('publ_date', 'Publication date', 'trim|max_length[4]|is_natural_no_zero');
         $this->form_validation->set_rules('pages', 'Pages', 'trim|is_natural_no_zero');
 
@@ -242,8 +242,11 @@ class Books extends Controller {
             strpos($error['error'],"You did not select a file to upload.") == FALSE) // TODO: Fix this hack :)
             || $this->form_validation->run() == FALSE)
         {
-            $error = array('error2' => validation_errors());
-            echo $error['error2'];
+            //$error = array('error2' => validation_errors());
+            unlink('.' . $book_data['cover']);
+            $data = array();
+            $data['error'] = $error['error'];
+            $this->load->view('site_view/books_main', $data);
         }
         else
         {

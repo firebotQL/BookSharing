@@ -1,0 +1,10 @@
+<table class="forumsmb">
+<tr valign="top">
+<td class="caption1 pauthor" style="vertical-align:top"><img src="{$main_url}/img/s.gif" style="width:12px;height:9px;padding-top:6px" alt="{$l_author}" /></td>
+<td class="pauthor txtL" style="width:50%"><span class="username">{$pLink1}{$posterName}{$pLink2}</span><span class="txtSm"><br />{$viewReg}</span></td>
+<td class="txtR noWrap pauthor" style="width:50%"><div class="txtSm"><a id="msg{$cols[6]}" name="msg{$cols[6]}" href="#msg{$cols[6]}" class="txtSm">#{$anchor2}</a> {$l_sepr} {$l_posted}: {$postDate}{$editedBy}{$viewIP}<br /><script type="text/javascript">getQuotation('{$posterNameJs}', 2, {$cols[6]});</script><script type="text/javascript">getQuotation('{$posterNameJs}', 1, {$cols[6]});</script>{$allowed}</div></td>
+</tr>
+<tr valign="top" class="tbCel1">
+<td class="caption1" colspan="3"><div class="postedText">{$posterText}LABS</div>{$deleteBox}</td>
+</tr>
+</table>

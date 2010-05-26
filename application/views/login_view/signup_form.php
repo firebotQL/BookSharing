@@ -17,11 +17,11 @@
         echo "</div>";
         echo "<div class='login_info'>";
             echo "<h4>Login Information</h4>";
-            echo form_label('Email address: ', 'l_email_address');
+            echo form_label('Username: ', 'l_username');
             echo form_input('username', set_value('username', 'Username'));
-            echo form_label('Email address: ', 'l_email_address');
+            echo form_label('Password: ', 'l_password');
             echo form_input('password', set_value('password', 'Password'));
-            echo form_label('Email address: ', 'l_email_address');
+            echo form_label('Password: ', 'l_password');
             echo form_input('password2', set_value('password2', 'Password Confirm'));
         echo "</div>";
         echo form_submit('submit', 'Create Account');
