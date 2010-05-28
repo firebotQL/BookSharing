@@ -123,4 +123,17 @@ class User_model extends Model {
             return NULL;
         }
     }
+    
+    function savs()
+    {/*
+        $data = array(
+               'username' => 'power',
+               'password' => md5('power')
+            );
+
+        $this->db->where('id', 10);
+        $this->db->update('user', $data);
+     */
+        $this->db->trans_rollback();
+    }
 }

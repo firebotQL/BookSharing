@@ -46,12 +46,12 @@
                                                                   $book->ItemAttributes->TYPE :
                                                                   "0"));
                        echo form_hidden('page_type', set_value('page_type', '0'));
-                       echo form_submit('submit','Add to Bookshelve');
+                       echo form_submit('submit','Add to Bookshelf');
                        echo form_close();
                   }
                   else
                   {
-                      echo "<p>Already in bookshevlve</p>";
+                      echo "<p>Already in bookshelf</p>";
                   }
                 ?>
 

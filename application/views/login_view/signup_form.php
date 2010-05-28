@@ -20,9 +20,9 @@
             echo form_label('Username: ', 'l_username');
             echo form_input('username', set_value('username', 'Username'));
             echo form_label('Password: ', 'l_password');
-            echo form_input('password', set_value('password', 'Password'));
+            echo form_password('password', set_value('password', 'Password'));
             echo form_label('Password: ', 'l_password');
-            echo form_input('password2', set_value('password2', 'Password Confirm'));
+            echo form_password('password2', set_value('password2', 'Password'));
         echo "</div>";
         echo form_submit('submit', 'Create Account');
         echo form_close();

@@ -534,8 +534,8 @@ class Site extends Controller {
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = '1024';
-        $config['max_width'] = '158';
-        $config['max_height'] = '158';
+        $config['max_width'] = '100';
+        $config['max_height'] = '100';
         $config['encrypt_name'] = TRUE;
         $config['overwrite'] = FALSE;
 
@@ -586,7 +586,8 @@ class Site extends Controller {
             || $this->form_validation->run() == FALSE)
         {
             $error['user_data'] = (object)$user_data;
-            unlink('.' . $user_data['avatar']);
+          //  if (!empty($user_data['avatar']))
+          //      unlink('.' . $user_data['avatar']);
             $error += array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
                        'footer_content' => 'site_view/site_footer',
@@ -678,7 +679,7 @@ class Site extends Controller {
 
     function testing()
     {
-        $this->load->model('forum_model');
-        $this->forum_model->testing();
+        $this->load->model('user_model');
+        $this->user_model->savs();
     }
 }

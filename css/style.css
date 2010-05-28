@@ -523,3 +523,24 @@ input.button {
 .messages_list table {
     width: 450px;
 }
+
+.jid_required_field {
+    color: red;
+    margin: 0px;
+}
+
+.jid_field_notes {
+    margin: 0px;
+}
+
+#jid_f_book_upload input {
+    float: left;
+}
+
+#jid_f_book_upload label {
+    clear: both;
+}
+
+#jid_f_book_upload input[type=submit] {
+    
+}

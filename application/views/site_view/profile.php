@@ -4,7 +4,7 @@
                 <ul class="sidemenu">
                         <li><?php echo anchor('site/profile/' . $profile_id, 'Profile'); ?></li>
                         <li><?php echo anchor('site/message_box', 'Message box'); ?></li>
-                        <li><?php echo anchor('site/mybooks', 'Bookshelve'); ?></li>
+                        <li><?php echo anchor('site/mybooks', 'Bookshelf'); ?></li>
                         <li><?php echo anchor('site/myfriends', 'Friendlist'); ?></li>
                         <?php echo '<br/>'; ?>
                         <?php if ($this->session->userdata('admin')) : ?>

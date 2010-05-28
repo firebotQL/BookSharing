@@ -391,8 +391,8 @@ td.grey {
 }
 
 .codebox {
-	min-width: 570px;
-	max-width: 570px;
+	min-width: 500px;
+	max-width: 875px;
 	margin: 5px auto;
 }
 

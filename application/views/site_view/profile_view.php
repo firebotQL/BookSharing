@@ -2,7 +2,7 @@
     <h4><?php echo $user_name ?> profile </h4>
     <div class="main_profile_area">
         <div class="profile_photo">
-           <img src="<?php echo $user_data->avatar; ?>"  height="158px" width="158px"/>
+           <img src="<?php echo $user_data->avatar; ?>"  height="100px" width="100px"/>
         </div>
         <div class="profile_data">
             <h5>User data</h5>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="profile_bookshelve">
-         <h5>User bookshelve</h5>
+         <h5>Users bookshelf</h5>
          <div class="pagination">
             <?php echo $set_1 ?>
             </div>
@@ -55,7 +55,7 @@
                 <?php else :?>
                   <tr>
                       <td>
-                        <p>No books were added to the bookshelve</p>
+                        <p>No books were added to the bookshelf</p>
                       </td>
                   </tr>
                 <?php endif; ?>

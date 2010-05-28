@@ -1,0 +1,6 @@
+ 
+		<li><a href="<?php echo $config['url_path']; ?>/users.php?a=home"><?php echo lang('user_cp'); ?></a></li>
+<?php if($user_data['admin']) { ?>
+		<li><a href="<?php echo $config['url_path']; ?>/admin.php"><?php echo lang('admin_cp'); ?></a></li>
+<?php } ?>
+		<li><a href="<?php echo $config['url_path']; ?>/logout.php"><?php echo lang('logout_c'); ?></a></li>

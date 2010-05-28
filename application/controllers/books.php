@@ -120,7 +120,7 @@ class Books extends Controller {
          $user_id = $this->session->userdata('user_id');
          $this->load->model('book_model');
          $result = $this->book_model->add_to_bookshelve($isbn, $user_id, $book_type);
-         //redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
+         redirect('books/search/' . $keywords . '/' . $actions . '/' . $item_page );
     }
 
     function add_book_a()
@@ -205,8 +205,8 @@ class Books extends Controller {
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = '1024';
-        $config['max_width'] = '158';
-        $config['max_height'] = '158';
+        $config['max_width'] = '100';
+        $config['max_height'] = '100';
         $config['encrypt_name'] = TRUE;
         $config['overwrite'] = FALSE;
 
@@ -243,7 +243,8 @@ class Books extends Controller {
             || $this->form_validation->run() == FALSE)
         {
             //$error = array('error2' => validation_errors());
-            unlink('.' . $book_data['cover']);
+            if (!empty($book_data['cover']))
+                unlink('.' . $book_data['cover']);
             $data = array();
             $data['error'] = $error['error'];
             $this->load->view('site_view/books_main', $data);
