@@ -24,7 +24,7 @@ class Community extends Controller
         $is_logged_in = $this->session->userdata('is_logged_in');
 
         if(!isset($is_logged_in) || $is_logged_in != true) {
-            echo 'You don\'t have have persmission to access sthis page. <a href="../login">Login</a>';
+            echo 'You don\'t have have persmission to access this page. <a href="../login">Login</a>';
             die();
         }
     }

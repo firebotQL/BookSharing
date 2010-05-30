@@ -20,7 +20,6 @@ class Login extends Controller {
         $this->load->model('user_model');
         $this->load->model('forum_model');
         $query = $this->user_model->validate();
-
         if ($query->num_rows() > 0 ) {// if the user's credentials validated...
             $user_data = $this->user_model->get_user_data($query->row()->id);
             $admin = $user_data->user_type;
@@ -30,10 +29,11 @@ class Login extends Controller {
                 'is_logged_in' => true,
                 'admin' => $admin
             );
-
+            print_r($data);
             $this->session->set_userdata($data);
-            redirect('site/site_area');
+          //  redirect('site/site_area');
         } else {
+            print_r($data);
             $this->index();
         }
     }

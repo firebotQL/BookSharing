@@ -22,16 +22,18 @@
         <?php
             $content = isset($reply_content) ? $reply_content : 'Here is your message';
             $textarea_init = array('name' => 'content',
-                 'cols' => '60',
+                 'cols' => '100',
                  'value' => $content);
             echo form_open('site/send_message');
             $receipent = isset($username) ? $username : 'Receipent user';
             echo form_input('receipent', set_value('receipent', $receipent));
             $subject = isset($reply_subject) ? $reply_subject : 'Subject';
+            echo "<br />";
             echo form_input('subject', set_value('subject', $subject));
 
 
             echo form_textarea($textarea_init);
+            echo "<br />";
             echo form_submit('submit', 'Send');
             echo form_close();
         ?>
@@ -43,15 +45,18 @@
     <div class="read_message">
         <?php
             $textarea_init = array('name' => 'content',
-                 'cols' => '60',
+                 'cols' => '100',
                  'value' => $message_text);
+            echo form_open();
             $from = isset($username) ? $username : 'N/A';
             echo form_input('from', set_value('from', $from));
+            echo "<br />";
             echo form_input('subject', set_value('subject', $subject));
             echo form_textarea($textarea_init);
             if ($type_id != 1)
                 echo anchor("site/compose/". $from ."/" . $message_id, "Reply");
             echo "<a href='javascript:javascript:history.go(-1)'> Back</a>";
+            echo form_close();
         ?>
     </div>
 <?php endif; ?>

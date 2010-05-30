@@ -369,6 +369,7 @@ class Site extends Controller {
     function add_friend()
     {
          $friend_id = $this->uri->segment(3);
+         $friend_id = empty($friend_id) ? $this->input->post('friend_id') : $friend_id;
          $my_id = $this->session->userdata("user_id");
          if ($friend_id == "")
          {
@@ -603,7 +604,10 @@ class Site extends Controller {
             $data['user_id'] = $this->session->userdata('user_id');
             $this->load->model('user_model');
             $this->user_model->update_user_data($data['user_id'], $user_data);
-            $this->user_model->update_password($data['user_id'], $password);
+            if (!empty($password))
+            {
+                $this->user_model->update_password($data['user_id'], $password);
+            }
             
             $data += array( 'header_content' => 'site_view/site_header',
                        'site_content' => 'site_view/site_area',
@@ -672,7 +676,7 @@ class Site extends Controller {
         $is_logged_in = $this->session->userdata('is_logged_in');
 
         if(!isset($is_logged_in) || $is_logged_in != true) {
-            echo 'You don\'t have have persmission to access sthis page. <a href="../login">Login</a>';
+            echo 'You don\'t have have persmission to access this page. <a href="../login">Login</a>';
             die();
         } 
     }

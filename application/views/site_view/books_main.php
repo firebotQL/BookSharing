@@ -11,7 +11,7 @@
         <?php echo validation_errors('<p class="error">');?>
         <?php
             $form_attributes = array('id' => 'jid_f_book_upload');
-            echo form_open_multipart('books/upload', $form_attributes);
+            echo form_open_multipart('', $form_attributes);
             echo form_label('Upload cover', 'l_cover'); echo "<br />";
             echo form_upload('cover', set_value('cover', 'Upload cover')); 
             echo "<p class='jid_required_field'> *  (maximum size 100x100)</p>";

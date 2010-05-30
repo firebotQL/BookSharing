@@ -71,7 +71,7 @@
                         <?php foreach ($comments->result() as $row): ?>
                         <tr>
                             <td class="profile_comment_a">
-                                <img src="<?php echo $row->avatar; ?>"  height="55px" width="45px"/>
+                                <img src="<?php echo $row->avatar; ?>"  height="55px" width="55px"/>
                                 <p> <?php echo anchor('site/profile/' . $row->sender_id, $row->sender_name); ?> </p>
                             </td>
                             <td class="profile_comment_p" valign="top">
@@ -83,15 +83,18 @@
                     </table>
                 <?php endif; ?>
             </div>
+        <div class="comment_profile_area">
         <?php
             $textarea_init = array('name' => 'comment_content',
                  'cols' => '60',
                  'value' => 'Here is your comment');
             echo form_open('comments/send/' . $url_user_id);
             echo form_textarea($textarea_init);
+            echo "<br />";
             echo form_submit('submit','Post');
             echo form_close();
         ?>
+        </div>
     </div>
 </div>
 

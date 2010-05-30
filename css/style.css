@@ -1,18 +1,3 @@
-/* --------------------------------------------------
-
-   AUTHOR           :  	Erwin Aligam
-   WEBSITE          :   http://www.styleshout.com/
-   TEMPLATE NAME    : 	EliteCircle
-   TEMPLATE CODE    : 	S-0012
-   VERSION          :   1.2
-   LAST MODIFIED    :  	January 19, 2010
-
------------------------------------------------------ */
- 
-/* --------------------------------------------------
-   HTML ELEMENTS
------------------------------------------------------ */
-
 /* top elements */
 * { padding: 0; margin: 0; }
 
@@ -144,7 +129,7 @@ input {
 	color: #666666;
 }
 textarea {
-	width: 280px;
+	width: 400px;
 	padding:2px;
 	border: 1px solid #EFEFEF;
 	font: normal 1em Verdana, 'Trebuchet MS', Tahoma, sans-serif;
@@ -165,11 +150,11 @@ input.button {
 	background-color: transparent;
 	border: none;	
 	margin: 0; padding: 0px 10px 15px 0;
-	width: 330px;
+	width: 340px;
 }
 
 .searchform input.textbox { 
-	width: 255px;
+	width: 265px;
 	color: #333; 
 	height: 16px;
 	padding: 2px;	
@@ -543,4 +528,43 @@ input.button {
 
 #jid_f_book_upload input[type=submit] {
     
+}
+
+.messages_navigation {
+    float: left;
+    width: 20%;
+}
+
+.compose_message {
+    float: left;
+    width: 80%;
+}
+
+.read_message {
+    float: left;
+    width: 80%;
+}
+
+.message_heading input{
+    /*float: left;*/
+}
+
+.profile_comment_a {
+    width: 50px;
+}
+
+.profile_comment_p {
+    width: 550px;
+}
+
+.profile_book_p {
+    width: 600px;
+}
+
+.comment_profile_area textarea {
+    width: 400px;
+}
+
+#friends_search {
+    width: 370px;
 }

@@ -231,7 +231,7 @@ class Book_model extends Model {
         // Uploading book to the local storage
         // 1. Checking if author exist, if not creating it and receiving id
         $author_data = array('name' => $book_data['author']);
-        $author_result = $this->db->get('author', $author_data);
+        $author_result = $this->db->get_where('author', $author_data);
         $author_id;
         if ($author_result->num_rows() > 0)
         {
@@ -246,7 +246,7 @@ class Book_model extends Model {
 
         // 2. Checking if publisher exist, if not creating it and receiving id
         $publisher_data = array('name' => $book_data['publisher']);
-        $publisher_result = $this->db->get('publisher', $publisher_data);
+        $publisher_result = $this->db->get_where('publisher', $publisher_data);
         $publisher_id;
         if ($publisher_result->num_rows() > 0)
         {

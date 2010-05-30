@@ -9,6 +9,7 @@
             echo form_input('header', set_value('header', 'Type in header'));
             echo form_label('News content: ', 'l_content');
             echo form_textarea($textarea_init);
+            echo "<br />";
             echo form_submit('submit', 'Post news');
             echo form_close();
         ?>

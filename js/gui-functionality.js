@@ -75,8 +75,8 @@ $(function() {
                    url: sUrl,
                    type: "POST",
                    success: function(data2) {
-                       document.location = "http://localhost/site/site_area";
-                       //document.location = "http://88.222.153.97/site/site_area";
+                       //document.location = "http://localhost/site/site_area";
+                       document.location = "http://88.222.153.97/site/site_area";
                    },
                    error: function (XMLHttpRequest) {
                        alert(XMLHttpRequest);
@@ -89,7 +89,7 @@ $(function() {
        });
        return false;   
        
-    });
+    }); 
    /* $(".jid_s_and_d").live('click', function() {
         var link = $(this).attr("href");
         $("#main").load(link);
@@ -111,4 +111,7 @@ function add_dynamic_style(){
     $("#jid_f_book_upload input").css({'float': 'left'});
     $("#jid_f_book_upload label").css({'clear': 'both'});
     $("#jid_f_book_upload input[type=submit]").removeAttr("style");
+    $("#jid_f_profile_edit input").css({'float': 'left'});
+    $("#jid_f_profile_edit label").css({'clear': 'both'});
+    $("#jid_f_profile_edit input[type=submit]").removeAttr("style");
 }

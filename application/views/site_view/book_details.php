@@ -43,7 +43,7 @@
                         <?php foreach ($comments->result() as $row): ?>
                         <tr>
                             <td class="profile_comment_a">
-                                <img src="<?php echo $row->avatar; ?>"  height="55px" width="45px"/>
+                                <img src="<?php echo $row->avatar; ?>"  height="55px" width="55px"/>
                                 <p> <?php echo anchor('site/profile/' . $row->sender_id, $row->sender_name); ?> </p>
                             </td>
                             <td class="profile_comment_p" valign="top">
