@@ -8,13 +8,11 @@ class Book_model extends Model {
 
     function search($keywords, $item_page, $response_group)
     {
-                $private_key = '1T+RaZ/v5Zvun/OS6JXyUCOoNldd6Sj7lcRjMo/P';
                 $method = "GET";
                 $host = "ecs.amazonaws.co.uk";
                 $uri = "/onca/xml";
 
                 $timeStamp = gmdate("Y-m-d\TH:i:s\Z");
-                $params["AWSAccessKeyId"] = "AKIAI6E3GGOU4F3U6FBA";
                 $params["ItemPage"] = $item_page;
                 $params["Keywords"] = $keywords;
                 $params["ResponseGroup"] = $response_group;
